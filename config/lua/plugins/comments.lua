@@ -1,8 +1,9 @@
 local api = vim.api
 
 local cms_tbl = {
-    lua = "--",
-    c   = "//",
+    lua  = "--",
+    c    = "//",
+    fish = "#",
 }
 
 local cms_blk = {
@@ -11,8 +12,9 @@ local cms_blk = {
 }
 
 local reg_tbl = {
-    lua = "%-%-",
-    c   = "//",
+    lua  = "%-%-",
+    c    = "//",
+    fish = "#",
 }
 
 local set_text = api.nvim_buf_set_text

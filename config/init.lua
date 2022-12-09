@@ -11,19 +11,22 @@
 
 -- pcall(vim.cmd, "luafile ~/.config/nvim/plugin/packer_compiled.lua")
 
+
 require "UI"                -- ~/.config/nvim/lua/UI/init.lua
 vim.defer_fn(function ()
-    require "core.options"  -- ~/.config/nvim/lua/core/options.lua
-    require "core.keymaps"  -- ~/.config/nvim/lua/core/keymaps.lua
-    require "core.autocmd"  -- ~/.config/nvim/lua/core/autocmd.lua
-    require "core.filetype" -- ~/.config/nvim/lua/core/filetype.lua
-    require "plugins"       -- ~/.config/nvim/lua/plugins/init.lua
+
+    require "core.options"  -- ~/nvim/config/lua/core/options.lua
+    require "core.keymaps"  -- ~/nvim/config/lua/core/keymaps.lua
+    require "core.autocmd"  -- ~/nvim/config/lua/core/autocmd.lua
+    -- require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
+    require "plugins"       -- ~/nvim/config/lua/plugins/init.lua
 end, 10)
 
 vim.defer_fn(function ()
+
     vim.cmd [[
-        syntax on
-        filetype plugin indent on
-        source ~/.config/nvim/plugin/matchparen.vim
+        syntax on " THIS WILL AUTO OPEN filetype
+        " filetype plugin indent on
+        " source ~/nvim/config/plugin/matchparen.vim
     ]]
-end, 18)
+end, 20)

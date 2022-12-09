@@ -1,5 +1,4 @@
 
-local opt = vim.opt
 
 local ui_opts = {
     number         = true,
@@ -29,6 +28,7 @@ local ui_opts = {
     redrawtime    = 100,
 
     -- syntax       = "off",
+
     colorcolumn  = "140",
     signcolumn   = "auto:1",
     -- shortmess    = "WAICOTFcsao",
@@ -40,6 +40,8 @@ local ui_opts = {
     listchars = "eol:⸥,space:·,trail:,tab:,multispace:····,nbsp:,extends:e,precedes:+",
 }
 
+
+local opt = vim.o
 for key, value in pairs(ui_opts) do
     opt[key] = value
 end

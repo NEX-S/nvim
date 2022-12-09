@@ -1,6 +1,8 @@
 local api = vim.api
 local utils = require "utils"
 
+local opt = vim.o
+
 -- require "UI.x-color".set_hl {
 --     LuaFunc    = { bg = "NONE", fg = "#9C8FDC" },
 --     LuaError   = { bg = "NONE", fg = "#444444" },
@@ -18,10 +20,9 @@ local utils = require "utils"
 --     NvimCmd     = { bg = "NONE", fg = "#C53B82" },
 -- }
 
-
 vim.defer_fn(function ()
 
-    vim.opt.formatoptions = "tcqjr"
+    opt.formatoptions = "tcqjr"
 
     local lua_keymap = {
         ["gh"] = function ()
@@ -44,8 +45,8 @@ vim.defer_fn(function ()
             vim.wo.numberwidth = 3
 
             local lua_test_map = {
-                [";q"] = "<CMD>source $MYVIMRC | quit!<CR>",
-                [";;"] = "<CMD>source $MYVIMRC | quit!<CR>",
+                [";q"] = "<CMD>source ~/nvim/config/init.lua | quit!<CR>",
+                [";;"] = "<CMD>source ~/nvim/config/init.lua | quit!<CR>",
                 [";r"] = "<CMD>write! | source %<CR>",
             }
 
@@ -130,5 +131,3 @@ vim.defer_fn(function ()
     end
 
 end, 25)
-
-print("Hello")

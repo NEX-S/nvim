@@ -1,4 +1,5 @@
-local opt = vim.opt
+
+local opt = vim.o
 
 -- local plugin_list = {
 --     "2html_plugin",
@@ -85,28 +86,18 @@ local opts_str = {
 }
 
 local function set_opt (table)
+    local opt = vim.o
     for key, value in pairs(table) do
         opt[key] = value
-        -- vim.g[key] = value
     end
 end
 
-_G.async_set_opts = vim.loop.new_async(
-    vim.schedule_wrap(
-        function ()
-            set_opt(opts_bool)
-            set_opt(opts_num)
-            set_opt(opts_str)
+set_opt(opts_bool)
+set_opt(opts_num)
+set_opt(opts_str)
 
-            vim.defer_fn(function ()
-                -- vim.cmd "filetype on"
-                opt.undofile = true -- Bad Startup performance
-            end, 300)
-
-            _G.async_set_opts:close()
-        end
-    )
-)
-
-async_set_opts:send()
+vim.defer_fn(function ()
+    -- vim.cmd "filetype on"
+    opt.undofile = true -- Bad Startup performance
+end, 300)
 
