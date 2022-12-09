@@ -49,10 +49,10 @@ end
 require "UI.statusline"
 require "UI.tabline"
 require "UI.startup"
-vim.defer_fn(function ()
+-- vim.defer_fn(function ()
     require "UI.visual-cnt"
     require "UI.search-cnt"
     require "UI.cmdline"
-end, 200)
+-- end, 200)
 
 require "UI.x-color"

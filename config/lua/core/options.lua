@@ -31,7 +31,6 @@ local opt = vim.o
 -- end
 
 local opts_bool = {
-    -- list           = true,
     smartcase      = true,
     ignorecase     = true,
     incsearch      = true,
@@ -49,11 +48,7 @@ local opts_bool = {
     writebackup   = false,
     confirm       = false,
     autoread      = false,
-    spell         = false, -- Bad Performance
-    compatible    = false, -- Compatible with VI
     wrap          = false,
-    -- swapfile      = false,
-    paste         = false,  -- completion not popup
     warn          = false,
     loadplugins   = false,
 }
