@@ -32,6 +32,8 @@ end
 local function close_float_cmdline ()
     api.nvim_win_close(M.winid, true)
     api.nvim_buf_delete(M.bufnr, { force = true })
+
+    api.nvim_win_set_cursor(0, M.cursor_pos)
 end
 
 local function prompt_callback (text)
@@ -66,6 +68,12 @@ function _G._cmdline_complete (findstart, base)
 end
 
 vim.keymap.set("n", ":", function ()
+
+    M.cursor_pos = api.nvim_win_get_cursor(0)
+
+    vim.cmd [[ keeppatterns %s/\s\+$//e ]]
+
+
     -- open_float_cmdline({
     --     border = "single", title = " [ CMDLINE ] ", title_pos = "right"
     -- })

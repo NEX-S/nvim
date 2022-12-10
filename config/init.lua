@@ -33,7 +33,7 @@ vim.defer_fn(function ()
     require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
     require "plugins"       -- ~/nvim/config/lua/plugins/init.lua
 
-end, 207)
+end, 107)
 
 -- local async = nil
 -- async = vim.loop.new_async (
