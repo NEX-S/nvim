@@ -46,6 +46,8 @@ for key, value in pairs(ui_opts) do
     opt[key] = value
 end
 
+require "UI.x-color"
+
 require "UI.statusline"
 require "UI.tabline"
 require "UI.startup"
@@ -55,4 +57,3 @@ require "UI.startup"
     require "UI.cmdline"
 -- end, 200)
 
-require "UI.x-color"

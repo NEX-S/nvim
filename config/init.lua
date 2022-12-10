@@ -14,6 +14,7 @@
 -- vim.defer_fn(function ()
 -- end, 4)
 
+-- _G.package.path = "./?.lua"
 
 vim.defer_fn(function ()
     require "UI"                -- ~/.config/nvim/lua/UI/init.lua
@@ -33,14 +34,7 @@ vim.defer_fn(function ()
     -- require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
     require "plugins"       -- ~/nvim/config/lua/plugins/init.lua
 
-
 end, 207)
-
-
-
-
-
-
 
 
 -- local async = nil
@@ -54,28 +48,28 @@ end, 207)
 --         async:close()
 --     end)
 -- )
--- 
+--
 -- async:send()
 
 -- local uv = vim.loop
--- 
+--
 -- local callback
 -- callback = uv.new_async (vim.schedule_wrap (
--- 	function ()
--- 	    require "core.options"  -- ~/nvim/config/lua/core/options.lua
--- 	    require "core.keymaps"  -- ~/nvim/config/lua/core/keymaps.lua
--- 	    require "core.autocmd"  -- ~/nvim/config/lua/core/autocmd.lua
--- 	    -- require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
--- 	    require "plugins"       -- ~/nvim/config/lua/plugins/init.lua
--- 	    uv.close(callback)
--- 	end)
+--  function ()
+--      require "core.options"  -- ~/nvim/config/lua/core/options.lua
+--      require "core.keymaps"  -- ~/nvim/config/lua/core/keymaps.lua
+--      require "core.autocmd"  -- ~/nvim/config/lua/core/autocmd.lua
+--      -- require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
+--      require "plugins"       -- ~/nvim/config/lua/plugins/init.lua
+--      uv.close(callback)
+--  end)
 -- )
--- 
+--
 -- local function task (id, time, callback)
 --     local uv = vim.loop
 --     -- uv.sleep(time)
 --     uv.async_send(callback, 1)
 -- end
--- 
+--
 -- uv.new_thread(task, 1, 10, callback)
 
