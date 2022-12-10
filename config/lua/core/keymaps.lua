@@ -47,8 +47,8 @@ local multi_mode_tbl = {
         ["<C-h>"]   =  "<CMD>tabprevious<CR>",
         ["<C-l>"]   =  "<CMD>tabnext<CR>",
 
-        ["<TAB>"]    = "<C-w>p",
-        ["<S-TAB>"]  = "<C-w><C-w>",
+        ["<TAB>"]   = "<C-w><C-w>",
+        ["<S-TAB>"] = "<C-w>p",
 
         ["<F10>"]  =  "<CMD>bp<CR>",
         ["<F11>"]  =  "<CMD>bn<CR>",
@@ -67,10 +67,21 @@ local multi_mode_tbl = {
             local opts = {
                 start_ins = true,
                 resume    = true,
-                term_name = ";x",
+                term_name = "fish_shell",
                 exit_key  = "<ESC>",
             }
             require "plugins.terminal".open_term_float("fish", opts, { title = " [ TERMINAL ] ", title_pos = "right" })
+        end,
+
+        ["<C-f>"] = function ()
+            local opts = {
+                start_ins = true,
+                resume    = false,
+                term_name = "fzf",
+                exit_key  = "<ESC>",
+            }
+            local cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :100 {}'"
+            require "plugins.terminal".open_term_float(cmd, opts, { title = " [ TERMINAL ] ", title_pos = "right" })
         end,
 
         [";t"] = require "plugins.translate".translate,
@@ -116,6 +127,15 @@ local multi_mode_tbl = {
 
         ["aq"] = 'a"',
         ["iq"] = 'i"',
+
+        ["<C-h>"] = "=gv",
+        ["<C-l>"] = "=gv",
+        -- AUTOINDENT
+        ["<C-k>"] = ":<C-u>silent! '<,'>move-2<CR>gv=gv",
+        ["<C-j>"] = ":<C-u>silent! '<,'>move'>+<CR>gv=gv",
+        -- NOINDENT
+        -- ["<C-k>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
+        -- ["<C-j>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",
     },
 
     -- OPTRATOR MAP --

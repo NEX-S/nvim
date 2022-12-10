@@ -6,15 +6,17 @@ local utils = require "utils"
 
 local M = {}
 
+-- TODO: tabnew vim split vsp ...
+
 -- VERT TERM --
 function M.open_term_vert (shell_cmd, opts)
     vim.cmd("vs term://" .. shell_cmd)
     vim.cmd("vert resize " .. opts.vert_size .. " || set nonu")
-    
+
     if opts.start_ins == true then
         vim.cmd "startinsert"
     end
-    
+
     vim.keymap.set("n", opts.exit_key, "<CMD>quit!<CR>", { buffer = true })
 end
 
@@ -72,7 +74,6 @@ function M.open_term_float (shell_cmd, opts, ...)
     end
 
     vim.keymap.set("n", opts.exit_key, function ()
-        -- api.nvim_buf_del_extmark(virt_bufnr, virt_ns_id, 1)
         api.nvim_win_hide(winid)
         if opts.resume == false then
             api.nvim_buf_delete(bufnr, { force = true })
@@ -80,7 +81,6 @@ function M.open_term_float (shell_cmd, opts, ...)
     end, { buffer = true })
 
     vim.keymap.set("n", ";q", function ()
-        -- api.nvim_buf_del_extmark(virt_bufnr, virt_ns_id, 1)
         api.nvim_win_hide(winid)
         if opts.resume == false then
             api.nvim_buf_delete(bufnr, { force = true })
