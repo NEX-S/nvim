@@ -38,19 +38,16 @@ api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- AUTO TRIM SPACES TODO
-vim.api.nvim_create_autocmd("CmdlineEnter", {
+api.nvim_create_autocmd("CmdlineEnter", {
     pattern = "*",
-    command = [[silent! %s/\s\+$//e | retab]],
+    command = [[silent! keeppatterns %s/\s\+$//e | retab | set hlsearch ]],
 })
 
--- MAKE DIR
--- api.nvim_create_user_command("MakeDirectory", function()
---     ---@diagnostic disable-next-line: missing-parameter
---     local path = vim.fn.expand("%")
---     local dir = vim.fn.fnamemodify(path, ":p:h")
---     if vim.fn.isdirectory(dir) == 0 then
---         vim.fn.mkdir(dir, "p")
---     else
---         vim.notify("Directory already exists", "WARN", { title = "Nvim" })
---     end
--- end, { desc = "Create directory if it doesn't exist" })
+-- api.nvim_create_autocmd("CmdlineEnter", {
+--     command = "set hlsearch"
+-- })
+
+-- api.nvim_create_autocmd("CmdlineLeave", {
+--     command = "set nohlsearch"
+-- })
+

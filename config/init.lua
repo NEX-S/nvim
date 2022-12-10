@@ -19,23 +19,21 @@
 vim.defer_fn(function ()
     require "UI"                -- ~/.config/nvim/lua/UI/init.lua
     vim.cmd [[
-        syntax on " THIS WILL AUTO OPEN filetype
+        " syntax on " THIS WILL AUTO OPEN filetype
         " filetype plugin indent on
         " source ~/nvim/config/plugin/matchparen.vim
     ]]
 end, 5)
-
 
 vim.defer_fn(function ()
 
     require "core.options"  -- ~/nvim/config/lua/core/options.lua
     require "core.keymaps"  -- ~/nvim/config/lua/core/keymaps.lua
     require "core.autocmd"  -- ~/nvim/config/lua/core/autocmd.lua
-    -- require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
+    require "core.filetype" -- ~/nvim/config/lua/core/filetype.lua
     require "plugins"       -- ~/nvim/config/lua/plugins/init.lua
 
 end, 207)
-
 
 -- local async = nil
 -- async = vim.loop.new_async (

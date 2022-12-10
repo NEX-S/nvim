@@ -3,6 +3,7 @@ local multi_mode_tbl = {
     -- NORMAL MAP --
     normal_mode = {
 
+
         ["j"]  =  "gj",
         ["k"]  =  "gk",
 
@@ -57,7 +58,7 @@ local multi_mode_tbl = {
         [";a"] = "ggvG$",
 
         [";q"] = "<CMD>quit!<CR>",
-        [";w"] = "<CMD>write! ++p<CR>",
+        [";w"] = "<CMD>write ++p<CR>", -- dont add !
         [";r"] = "<CMD>R<CR>",
         [";s"] = "<CMD>split<CR>",
         [";v"] = "<CMD>vertical split<CR>",
@@ -75,12 +76,19 @@ local multi_mode_tbl = {
         [";t"] = require "plugins.translate".translate,
 
         -- GX MAP --
+
+        ["g)"] = "])",
+        ["g("] = "[(",
+        ["g}"] = "]}",
+        ["g{"] = "[{",
+
         ["gf"] = function ()
             local file_dir = vim.fn.expand("<cfile>")
             if file_dir:match("/") then
                 vim.cmd("tabnew " .. file_dir)
             end
         end,
+
     },
 
     -- VISUAL MAP --
@@ -101,10 +109,13 @@ local multi_mode_tbl = {
         ["y"] = '"+y',
         ["d"] = '"dd',
 
-        [";w"] = "<CMD>write!<CR>",
+        [";w"] = "<CMD>write<CR>",
         [";q"] = "<CMD>quit!<CR>",
 
         [";t"] = require "plugins.translate".translate,
+
+        ["aq"] = 'a"',
+        ["iq"] = 'i"',
     },
 
     -- OPTRATOR MAP --
@@ -116,11 +127,22 @@ local multi_mode_tbl = {
         ["K"] = "8k",
         ["H"] = "^",
         ["L"] = "$<LEFT>",
+
+        ["aq"] = 'a"',
+        ["iq"] = 'i"',
+        ["lq"] = 'i"',
+
+        ["l'"] = "i'",
+        ['l"'] = 'i"',
+
+        -- TODO
+        -- ["hq"] = '<CMD>normal!F"<CR>i"',
     },
 
     -- INSERT MAP --
     insert_mode = {
         ["<SPACE>"] = "<SPACE><C-g>u",
+        ["<C-c>"]   = "<C-r>=",
     },
 
     -- COMMAND MAP --
@@ -141,27 +163,17 @@ local multi_mode_tbl = {
     },
 }
 
-_G.async_set_keymap = vim.loop.new_async (
-    vim.schedule_wrap(
-        function ()
-            local mode_map = {
-                normal_mode = "n",
-                visual_mode = "v",
-                insert_mode = "i",
-                operat_mode = "o",
-                commnd_mode = "c",
-                termnl_mode = "t",
-            }
+local mode_map = {
+    normal_mode = "n",
+    visual_mode = "v",
+    insert_mode = "i",
+    operat_mode = "o",
+    commnd_mode = "c",
+    termnl_mode = "t",
+}
 
-            for mode, mode_tbl in pairs(multi_mode_tbl) do
-                for lhs, rhs in pairs(mode_tbl) do
-                    vim.keymap.set(mode_map[mode], lhs, rhs, { silent = false })
-                end
-            end
-
-            _G.async_set_keymap:close()
-        end
-    )
-)
-
-async_set_keymap:send()
+for mode, mode_tbl in pairs(multi_mode_tbl) do
+    for lhs, rhs in pairs(mode_tbl) do
+        vim.keymap.set(mode_map[mode], lhs, rhs, { silent = false })
+    end
+end

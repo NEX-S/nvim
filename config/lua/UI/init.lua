@@ -10,6 +10,7 @@ local ui_opts = {
     splitbelow     = true,
     splitright     = true,
     termguicolors  = true,
+    modeline       = false,
     showmode       = false,
     ruler          = false,
     showcmd        = false,
@@ -46,7 +47,7 @@ for key, value in pairs(ui_opts) do
     opt[key] = value
 end
 
-require "UI.x-color"
+require "UI.x-color" -- ~/.config/nvim/lua/UI/x-color.lua
 
 require "UI.statusline"
 require "UI.tabline"

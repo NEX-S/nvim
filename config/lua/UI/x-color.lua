@@ -16,7 +16,7 @@ local basic_hl = {
     MatchParen   =  { bg = "NONE",    fg = "#C53B82" },
     Error        =  { bg = "NONE",    fg = "NONE" },
 
-    Normal       =  { bg = "#232323", fg = "#777777"},
+    Normal       =  { bg = "#232323", fg = "#707070"},
     CursorLine   =  { bg = "#252525", fg = "NONE" },
     PmenuSbar    =  { bg = "#383838", fg = "NONE" },
     PmenuThumb   =  { bg = "#505050", fg = "NONE" },
