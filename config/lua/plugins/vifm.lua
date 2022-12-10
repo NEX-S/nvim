@@ -29,11 +29,11 @@ local function VIFM (args)
     local vifm_action = {
         ["<C-v>"] = function ()
             M.action = "vsp"
-            return "l"
+            return "<CR>"
         end,
         ["<C-s>"] = function ()
             M.action = "sp"
-            return "l"
+            return "<CR>"
         end,
     }
 
@@ -79,7 +79,7 @@ local function FZF ()
     M.winnr = utils.open_win_float(M.bufnr, {})
 
     vim.cmd "startinsert"
-    vim.fn.termopen("fzf --preview 'bat --style=numbers --color=always --line-range :100 {}' > /tmp/nvim-vifm", { on_exit = open_file })
+    vim.fn.termopen("fzf --preview 'bat --theme=Nord --style=plain --color=always --line-range :40 {}' > /tmp/nvim-vifm", { on_exit = open_file })
 
     M.action = "tabnew "
 
