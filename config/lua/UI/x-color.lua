@@ -96,8 +96,8 @@ function M.set_hl (tbl)
 end
 
 M.set_hl(basic_hl)
-M.set_hl(builtin_syntax_hl)
--- M.set_hl(treesitter_hl)
+-- M.set_hl(builtin_syntax_hl)
+M.set_hl(treesitter_hl)
 
 vim.defer_fn(function ()
     M.set_hl(plugin_hl)

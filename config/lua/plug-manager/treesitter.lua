@@ -1,4 +1,10 @@
 
+vim.cmd [[
+    packadd nvim-treesitter.git
+    packadd nvim-treesitter-context.git
+    packadd nvim-treesitter-textobjects.git
+]]
+
 require "nvim-treesitter.configs".setup {
     auto_install = false,
     ensure_installed = { "lua", "c", "markdown" },
@@ -62,7 +68,6 @@ require "nvim-treesitter.configs".setup {
             -- ["]"] = "@function.outer"
         },
     },
-
 }
 
 require "treesitter-context".setup {
@@ -87,5 +92,3 @@ require "treesitter-context".setup {
         }
     }
 }
-
--- vim.api.nvim_set_hl(0, "@return.lua", { bg = "NONE", fg = "#FFFFFF", bold = true })

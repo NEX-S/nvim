@@ -26,7 +26,7 @@ local function win_cmd_exec (cmd, opts)
     winid = utils.open_win_float(bufnr, opts)
 
     -- vim.fn.termopen(cmd or os.getenv("SHELL"))
-    vim.fn.termopen(cmd)
+    vim.fn.termopen(cmd, { on_exit = opts.on_exit or function () end })
 
     return winid, bufnr
 end
@@ -88,6 +88,7 @@ function M.open_term_float (shell_cmd, opts, ...)
     end, { buffer = true })
 
     vim.bo.ft = "TERMINAL"
+    -- api.nvim_buf_set_name(0, "TERMINAL")
 end
 
 return M

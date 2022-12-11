@@ -70,18 +70,13 @@ local multi_mode_tbl = {
                 term_name = "fish_shell",
                 exit_key  = "<ESC>",
             }
-            require "plugins.terminal".open_term_float("fish", opts, { title = " [ TERMINAL ] ", title_pos = "right" })
-        end,
-
-        ["<C-f>"] = function ()
-            local opts = {
-                start_ins = true,
-                resume    = false,
-                term_name = "fzf",
-                exit_key  = "<ESC>",
-            }
-            local cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :100 {}'"
-            require "plugins.terminal".open_term_float(cmd, opts, { title = " [ TERMINAL ] ", title_pos = "right" })
+            -- TODO rewrite terminal
+            require "plugins.terminal".open_term_float("fish", opts, { title = " [ TERMINAL ] ", title_pos = "right", on_exit = function ()
+                vim.cmd "quit"
+                for line in io.lines("/tmp/nvim-vifm") do
+                    vim.cmd("tabnew " .. line)
+                end
+            end})
         end,
 
         [";t"] = require "plugins.translate".translate,

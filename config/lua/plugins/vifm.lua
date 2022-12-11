@@ -29,11 +29,11 @@ local function VIFM (args)
     local vifm_action = {
         ["<C-v>"] = function ()
             M.action = "vsp"
-            return "<CR>"
+            return "l"
         end,
         ["<C-s>"] = function ()
             M.action = "sp"
-            return "<CR>"
+            return "l"
         end,
     }
 
@@ -99,8 +99,27 @@ api.nvim_create_user_command("F", VIFM, {
 -- M.bufnr = api.nvim_create_buf(false, true)
 -- vim.fn.termopen("vifm " .. dir .. " --choose-files /tmp/nvim-vifm", { on_exit = open_file })
 
+-- local function TERMINAL ()
+-- 
+--     M.bufnr = api.nvim_create_buf(false, true)
+--     M.winnr = utils.open_win_float(M.bufnr, {})
+-- 
+--     vim.cmd "startinsert"
+--     local cmd = [[
+--         function nvim
+--             echo $argv > /tmp/nvim-vifm
+--             exit
+--         end
+--     ]]
+--     vim.fn.termopen("fish -C '" .. cmd .. "'", { on_exit = open_file })
+-- 
+--     vim.keymap.set("t", "<ESC>", "<CMD>quit<CR>", { buffer = true })
+--     api.nvim_buf_set_name(M.bufnr, "TERMINAL")
+-- end
+
 vim.keymap.set("n", ";e", VIFM, { silent = true })
 vim.keymap.set("n", "<C-f>", FZF, { silent = true })
+-- vim.keymap.set("n", ";d", TERMINAL, { silent = true })
 
 -- ["<C-f>"] = function ()
 --     local opts = {
@@ -113,3 +132,4 @@ vim.keymap.set("n", "<C-f>", FZF, { silent = true })
 --     require "plugins.terminal".open_term_float(cmd, opts, { title = " [ TERMINAL ] ", title_pos = "right" })
 -- end,
 
+return M
