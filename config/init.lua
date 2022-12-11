@@ -8,8 +8,7 @@
 -- TODO: h operatorfunc
 
 vim.cmd [[ packadd impatient.nvim.git ]]
-
-require "impatient".enable_profile()
+require "impatient"
 
 -- pcall(vim.cmd, "luafile ~/.config/nvim/plugin/packer_compiled.lua")
 
@@ -37,10 +36,10 @@ end, 107)
 vim.defer_fn(function ()
     require "plug-manager.treesitter"  -- ~/.config/nvim/lua/plug-manager/treesitter.lua
 
-    vim.cmd [[ packadd nvim-colorizer.lua.git ]]
+    -- vim.cmd [[ packadd nvim-colorizer.lua.git ]]
 end, 20)
 
-require "colorizer".setup({ "*" }, { mode = "foreground" })
+-- require "colorizer".setup({ "*" }, { mode = "foreground" })
 
 -- syntax on " THIS WILL AUTO OPEN filetype
 -- filetype plugin indent on

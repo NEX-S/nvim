@@ -52,22 +52,22 @@ require "nvim-treesitter.configs".setup {
         }
     },
     -- MOVE
-    move = {
-        enable = true,
-        set_jumps = true,
-        goto_next_start = {
-            [";j"] = "@function.outer"
-        },
-        goto_next_end = {
-            -- ["]"] = "@function.outer"
-        },
-        goto_previous_start = {
-            [";k"] = "@function.outer"
-        },
-        goto_previous_end = {
-            -- ["]"] = "@function.outer"
-        },
-    },
+    -- move = {
+    --     enable = true,
+    --     set_jumps = true,
+    --     goto_next_start = {
+    --         [";j"] = "@function.outer"
+    --     },
+    --     goto_next_end = {
+    --         -- ["]"] = "@function.outer"
+    --     },
+    --     goto_previous_start = {
+    --         [";k"] = "@function.outer"
+    --     },
+    --     goto_previous_end = {
+    --         -- ["]"] = "@function.outer"
+    --     },
+    -- },
 }
 
 require "treesitter-context".setup {

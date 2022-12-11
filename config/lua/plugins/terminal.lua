@@ -73,19 +73,19 @@ function M.open_term_float (shell_cmd, opts, ...)
         vim.cmd "startinsert"
     end
 
-    vim.keymap.set("n", opts.exit_key, function ()
+    vim.keymap.set("t", opts.exit_key, function ()
         api.nvim_win_hide(winid)
         if opts.resume == false then
             api.nvim_buf_delete(bufnr, { force = true })
         end
     end, { buffer = true })
 
-    vim.keymap.set("n", ";q", function ()
-        api.nvim_win_hide(winid)
-        if opts.resume == false then
-            api.nvim_buf_delete(bufnr, { force = true })
-        end
-    end, { buffer = true })
+    -- vim.keymap.set("n", ";q", function ()
+    --     api.nvim_win_hide(winid)
+    --     if opts.resume == false then
+    --         api.nvim_buf_delete(bufnr, { force = true })
+    --     end
+    -- end, { buffer = true })
 
     vim.bo.ft = "TERMINAL"
     -- api.nvim_buf_set_name(0, "TERMINAL")
