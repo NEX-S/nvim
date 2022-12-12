@@ -10,6 +10,7 @@
 -- vim.cmd [[ packadd impatient.nvim.git ]]
 -- require "impatient"
 
+
 require "UI"                -- ~/.config/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
 
@@ -23,24 +24,20 @@ vim.defer_fn(function ()
     require "plugins"          -- ~/nvim/config/lua/plugins/init.lua
 
     require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
+
+    vim.o.shadafile = ""
+    vim.cmd "rshada"
 end, 106)
 
 
+
 vim.defer_fn(function ()
+
+    -- vim.o.shadafile = "~/.cache/nvim/shada"
+    -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
+
     require "plug-manager.treesitter"  -- ~/.config/nvim/lua/plug-manager/treesitter.lua
     vim.cmd [[ packadd nvim-colorizer.lua.git ]]
 end, 20)
 
-require "colorizer".setup({ "*" }, { mode = "foreground" })
-
--- RESUME CURSOR
-vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function ()
-        local fn = vim.fn
-        if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
-            fn.setpos(".", fn.getpos("'\""))
-            -- vim.cmd("silent! foldopen")
-        end
-    end,
-})
+-- require "colorizer".setup({ "*" }, { mode = "foreground" })
