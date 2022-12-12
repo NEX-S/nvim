@@ -4,19 +4,31 @@ local api = vim.api
 local utils = require "utils"
 
 api.nvim_create_autocmd("ModeChanged", {
-    pattern = "n:v",
+    pattern = { "n:v", "n:V" },
     callback = function ()
 
         local line_len = #api.nvim_get_current_line():gsub("^%s*", '') + 1
 
         local line = api.nvim_win_get_cursor(0)[1]
         local bufnr = api.nvim_get_current_buf()
-        local ns_id = utils.set_virt_buf(bufnr, "visual_cnt", " [ 1 / " .. line_len .. " ]", {
-            col = 0,
-            line = line - 1,
-            hl_group = "VisualCnt",
-            pos = "eol",
-        })
+
+        local ns_id = nil
+        if api.nvim_get_mode().mode == "V" then
+            ns_id = utils.set_virt_buf(bufnr, "visual_cnt", " [ " .. line_len .. " / " .. line_len .. " ]", {
+                col = 0,
+                line = line - 1,
+                hl_group = "VisualCnt",
+                pos = "eol",
+            })
+            -- return
+        else
+            ns_id = utils.set_virt_buf(bufnr, "visual_cnt", " [ 1 / " .. line_len .. " ]", {
+                col = 0,
+                line = line - 1,
+                hl_group = "VisualCnt",
+                pos = "eol",
+            })
+        end
 
         -- local au_id = api.nvim_create_augroup("VisualCntAutocmdGroup", { clear = true })
         local au_id = api.nvim_create_autocmd("CursorMoved", {

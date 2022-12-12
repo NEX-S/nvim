@@ -61,7 +61,7 @@ function M.open_win_float (bufnr, opts)
         height    = win_height,
         relative  = "editor",
         style     = "minimal",
-        border    = "single",
+        border    = opts.border or "single",
         title     = opts.title,
         title_pos = opts.title_pos,
     }

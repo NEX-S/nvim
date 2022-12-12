@@ -101,6 +101,6 @@ M.set_hl(treesitter_hl)
 
 vim.defer_fn(function ()
     M.set_hl(plugin_hl)
-end, 300)
+end, 200)
 
 return M

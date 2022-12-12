@@ -11,6 +11,10 @@ local function search_cnt_virt (offset)
         recompute = true, maxcount = 1000, timeout = 100
     }
 
+    if search_info.current == nil then
+        return
+    end
+
     local total   = search_info.total
     local current = search_info.current + 0
     local incomplete = search_info.incomplete

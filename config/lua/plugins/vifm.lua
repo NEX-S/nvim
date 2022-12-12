@@ -24,7 +24,7 @@ local function open_file ()
 end
 
 -- TODO: --choose-files - RPC
-local function VIFM (args)
+local function VIFM (opts)
 
     local vifm_action = {
         ["<C-v>"] = function ()
@@ -37,13 +37,13 @@ local function VIFM (args)
         end,
     }
 
-    local dir = "."
-    if args ~= nil then
-        dir = args.args
+    local dir = vim.fn.expand("%:p:h")
+    if opts ~= nil then
+        dir = opts.args
     end
 
     M.bufnr = api.nvim_create_buf(false, true)
-    M.winnr = utils.open_win_float(M.bufnr, {})
+    M.winnr = utils.open_win_float(M.bufnr, { border = "none" })
 
     vim.cmd "startinsert"
     vim.fn.termopen("vifm " .. dir .. " --choose-files /tmp/nvim-vifm", { on_exit = open_file })
@@ -58,7 +58,13 @@ local function VIFM (args)
 
 end
 
-local function FZF ()
+local function FZF (opts)
+
+    local dir = vim.fn.expand("%:p:h")
+
+    if opts ~= nil then
+        dir = opts.args
+    end
 
     local fzf_action = {
         ["<C-v>"] = function ()
@@ -76,10 +82,10 @@ local function FZF ()
     }
 
     M.bufnr = api.nvim_create_buf(false, true)
-    M.winnr = utils.open_win_float(M.bufnr, {})
+    M.winnr = utils.open_win_float(M.bufnr, { border = "none" })
 
     vim.cmd "startinsert"
-    vim.fn.termopen("fzf --preview 'bat --theme=Nord --style=plain --color=always --line-range :40 {}' > /tmp/nvim-vifm", { on_exit = open_file })
+    vim.fn.termopen("sudo rg --files --ignore-vcs --hidden " .. dir .. "| fzf", { on_exit = open_file })
 
     M.action = "tabnew "
 
@@ -95,15 +101,20 @@ api.nvim_create_user_command("F", VIFM, {
     complete = "dir",
 })
 
+api.nvim_create_user_command("FZF", FZF, {
+    nargs = "?",
+    complete = "dir",
+})
+
 -- TODO: First Open
 -- M.bufnr = api.nvim_create_buf(false, true)
 -- vim.fn.termopen("vifm " .. dir .. " --choose-files /tmp/nvim-vifm", { on_exit = open_file })
 
 -- local function TERMINAL ()
--- 
+--
 --     M.bufnr = api.nvim_create_buf(false, true)
 --     M.winnr = utils.open_win_float(M.bufnr, {})
--- 
+--
 --     vim.cmd "startinsert"
 --     local cmd = [[
 --         function nvim
@@ -112,13 +123,14 @@ api.nvim_create_user_command("F", VIFM, {
 --         end
 --     ]]
 --     vim.fn.termopen("fish -C '" .. cmd .. "'", { on_exit = open_file })
--- 
+--
 --     vim.keymap.set("t", "<ESC>", "<CMD>quit<CR>", { buffer = true })
 --     api.nvim_buf_set_name(M.bufnr, "TERMINAL")
 -- end
 
 vim.keymap.set("n", ";e", VIFM, { silent = true })
 vim.keymap.set("n", "<C-f>", FZF, { silent = true })
+
 -- vim.keymap.set("n", ";d", TERMINAL, { silent = true })
 
 -- ["<C-f>"] = function ()

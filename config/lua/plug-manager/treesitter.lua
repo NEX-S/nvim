@@ -7,7 +7,7 @@ vim.cmd [[
 
 require "nvim-treesitter.configs".setup {
     auto_install = false,
-    ensure_installed = { "lua", "c", "markdown" },
+    ensure_installed = { "lua", "c", "markdown", "vim" },
     sync_install = true,
     highlight = {
         enable = true,

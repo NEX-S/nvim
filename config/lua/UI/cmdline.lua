@@ -1,4 +1,6 @@
 
+vim.keymap.set("n", "/", ":", { remap = false, silent = false })
+
 local api = vim.api
 
 local M = {}
@@ -73,6 +75,11 @@ vim.keymap.set("n", ":", function ()
 
     vim.cmd [[ keeppatterns %s/\s\+$//e ]]
 
+    local n_lines = api.nvim_buf_line_count(0)
+    local last_nonblank = vim.fn.prevnonblank(n_lines)
+    if last_nonblank < n_lines then
+        api.nvim_buf_set_lines(0, last_nonblank, n_lines - 1, true, {})
+    end
 
     -- open_float_cmdline({
     --     border = "single", title = " [ CMDLINE ] ", title_pos = "right"
@@ -107,4 +114,3 @@ vim.keymap.set("n", ":", function ()
     end
 end)
 
-vim.keymap.set("n", "/", ":", { remap = false, silent = false })

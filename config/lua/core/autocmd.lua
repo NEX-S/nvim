@@ -39,14 +39,14 @@ api.nvim_create_autocmd("BufReadPost", {
 
 -- AUTO TRIM SPACES TODO
 api.nvim_create_autocmd("CmdlineEnter", {
-    pattern = "*",
+    pattern = ":",
     callback = function ()
 
         -- BAD PERFORMANCE
         -- local line_tbl = api.nvim_buf_get_lines(0, 1, -1, false)
         -- for i = 1, #line_tbl do
         --     local new_line = line_tbl[i]:gsub("%s*$", '')
-        --     api.nvim_buf_set_lines(0, i, i+1, false, { new_line })  
+        --     api.nvim_buf_set_lines(0, i, i+1, false, { new_line })
         -- end
 
         -- let v = winsaveview()
@@ -58,6 +58,12 @@ api.nvim_create_autocmd("CmdlineEnter", {
         -- retab ?
         vim.cmd [[ keeppatterns %s/\s\+$//e | set hlsearch ]]
         api.nvim_win_set_cursor(0, cursor_pos)
+
+        local n_lines = api.nvim_buf_line_count(0)
+        local last_nonblank = vim.fn.prevnonblank(n_lines)
+        if last_nonblank < n_lines then
+            api.nvim_buf_set_lines(0, last_nonblank, n_lines - 1, true, {})
+        end
     end
 })
 
