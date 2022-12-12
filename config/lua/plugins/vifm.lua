@@ -69,15 +69,15 @@ local function FZF (opts)
     local fzf_action = {
         ["<C-v>"] = function ()
             M.action = "vsp "
-            return "<CR>"
+            return "<C-l>"
         end,
         ["<C-s>"] = function ()
             M.action = "sp "
-            return "<CR>"
+            return "<C-l>"
         end,
         ["<C-l>"] = function ()
             M.action = "tabedit "
-            return "<CR>"
+            return "<C-l>"
         end,
     }
 
@@ -85,7 +85,7 @@ local function FZF (opts)
     M.winnr = utils.open_win_float(M.bufnr, { border = "none" })
 
     vim.cmd "startinsert"
-    vim.fn.termopen("sudo rg --files --ignore-vcs --hidden " .. dir .. "| fzf", { on_exit = open_file })
+    vim.fn.termopen("rg --files --ignore-vcs --hidden 2> /dev/null " .. dir .. "| fzf > /tmp/nvim-vifm", { on_exit = open_file })
 
     M.action = "tabnew "
 
