@@ -7,12 +7,18 @@ local ft_dict = {
     py   = "python",
     fish = "fish",
     vim  = "vim",
+    vifmrc = "vim",
 }
 
 local ext = nil
 local function ft_detect ()
-    ext = api.nvim_buf_get_name(0):gsub(".*%.", '')
-    vim.bo.ft = ft_dict[ext] or "UNKNOWN"
+    -- ext = api.nvim_buf_get_name(0):gsub(".*/", '')
+
+    local fileExt  = vim.fn.expand("%:e")
+    local fileName = vim.fn.expand("%:t")
+
+    vim.bo.ft = fileExt ~= "" and ft_dict[fileExt] or ft_dict[fileName]
+
     vim.defer_fn(function()
         pcall(vim.cmd, "luafile ~/nvim/config/after/ftplugin/" .. vim.bo.ft .. ".lua")
     end, 150)

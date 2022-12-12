@@ -25,18 +25,6 @@ end, 200)
 --     command = "!rm /tmp/nvim_time.log"
 -- })
 
--- RESUME CURSOR
-api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function ()
-        local fn = vim.fn
-        if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
-            fn.setpos(".", fn.getpos("'\""))
-            -- vim.cmd("silent! foldopen")
-        end
-    end,
-})
-
 -- AUTO TRIM SPACES TODO
 api.nvim_create_autocmd("CmdlineEnter", {
     pattern = ":",

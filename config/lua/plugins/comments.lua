@@ -4,6 +4,7 @@ local cms_tbl = {
     lua  = "--",
     c    = "//",
     fish = "#",
+    vim  = '"',
 }
 
 local cms_blk = {
@@ -15,6 +16,7 @@ local reg_tbl = {
     lua  = "%-%-",
     c    = "//",
     fish = "#",
+    vim  = '"',
 }
 
 local set_text = api.nvim_buf_set_text

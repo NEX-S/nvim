@@ -33,3 +33,14 @@ end, 20)
 
 require "colorizer".setup({ "*" }, { mode = "foreground" })
 
+-- RESUME CURSOR
+vim.api.nvim_create_autocmd("BufReadPost", {
+    pattern = "*",
+    callback = function ()
+        local fn = vim.fn
+        if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
+            fn.setpos(".", fn.getpos("'\""))
+            -- vim.cmd("silent! foldopen")
+        end
+    end,
+})

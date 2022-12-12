@@ -8,7 +8,7 @@ vim.defer_fn(function ()
     require "plugins.run-code"
     require "plugins.match"
     require "plugins.align"
-    require "plugins.vifm"
+    require "plugins.file-explorer"
 
     require "plugins.surround"
     -- require "plugins.packer"

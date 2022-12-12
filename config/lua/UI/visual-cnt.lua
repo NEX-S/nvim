@@ -60,7 +60,7 @@ api.nvim_create_autocmd("ModeChanged", {
         })
 
         api.nvim_create_autocmd("ModeChanged", {
-            pattern = "v:n",
+            pattern = { "v:n", "V:n" },
             once = true,
             callback = function ()
                 api.nvim_buf_del_extmark(bufnr, ns_id, 1)

@@ -82,10 +82,14 @@ local function FZF (opts)
     }
 
     M.bufnr = api.nvim_create_buf(false, true)
-    M.winnr = utils.open_win_float(M.bufnr, { border = "none" })
+    M.winnr = utils.open_win_float(M.bufnr, { border = "single" })
 
+    vim.fn.termopen (
+        "rg --files --ignore-vcs --hidden 2> /dev/null " .. dir ..
+        "| fzf --preview 'highlight -O ansi {} 2> /dev/null' --preview-window 'right,border-left,nowrap,nofollow,nocycle,' > /tmp/nvim-vifm",
+        { on_exit = open_file }
+    )
     vim.cmd "startinsert"
-    vim.fn.termopen("rg --files --ignore-vcs --hidden 2> /dev/null " .. dir .. "| fzf > /tmp/nvim-vifm", { on_exit = open_file })
 
     M.action = "tabnew "
 
