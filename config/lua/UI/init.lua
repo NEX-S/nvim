@@ -21,6 +21,7 @@ local ui_opts = {
     pumwidth      = 5,
     scrolloff     = 6,
     sidescrolloff = 10,
+    updatetime    = 20,
     pumheight     = 18,
     pumblend      = 25,
     winwidth      = 30,

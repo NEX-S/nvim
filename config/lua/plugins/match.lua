@@ -25,16 +25,7 @@ keymap({ "n", "x" }, "m", function ()
 
 end, { expr = true, remap = true })
 
-keymap({ 'n', 'v', 'o' }, "<SPACE>",
-    function ()
-        local right_char = utils.get_cursor_content(1, 1)
-        if right_char:match("['\"]") then
-            match_char_cnt = match_char_cnt + 1
-            return "f" .. right_char
-        end
-        return ";"
-    end,
-{ expr = true })
+keymap({ 'n', 'v', 'o' }, "<SPACE>", ";", { silent = true })
 
 
 -- vim.o.updatetime = 50
@@ -68,3 +59,14 @@ keymap({ 'n', 'v', 'o' }, "<SPACE>",
 --
 --     end
 -- })
+
+-- TODO: TREESITTER HL MATCHPAREN
+-- local function setHL ()
+--     local cursor_pos = api.nvim_win_get_cursor(0)
+--     local cursor_row = cursor_pos[1]
+--     local cursor_col = cursor_pos[2]
+-- 
+--     local bufnr = api.nvim_get_current_buf()
+--     ts_highlighter = vim.treesitter.highlighter.active[bufnr]
+-- 
+-- end

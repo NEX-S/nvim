@@ -11,9 +11,10 @@ local opt = vim.o
 --     LuaRequire = { bg = "NONE", fg = "#AFC460" },
 --     LuaPcall   = { bg = "NONE", fg = "#C53B82" },
 --     LuaParen   = { bg = "NONE", fg = "#9C8FDC" },
---
+--     LuaTODO    = { bg = "NONE", fg = "#9C8FDC" },
+-- 
 --     LuaParenError  = { bg = "NONE", fg = "#C53B82" },
---
+-- 
 --     NvimApi     = { bg = "NONE", fg = "#AFC460" },
 --     NvimApiCall = { bg = "NONE", fg = "#AFC460" },
 --     NvimFunc    = { bg = "NONE", fg = "#C53B82" },
@@ -111,7 +112,8 @@ vim.defer_fn(function ()
     --     syntax keyword LuaLogic   "and or not"
     --     syntax keyword LuaRequire "require"
     --     syntax keyword LuaPcall   "pcall"
-    --
+    --     syntax keyword LuaTODO   "TODO"
+    -- 
     --     syntax match NvimApi       "vim\.api"
     --     syntax match NvimApiCall   "\v(vim\.)?api\.\h*(\(.*\))?"
     --     syntax match NvimFunc      "\v(vim\.)?fn\.\h*"

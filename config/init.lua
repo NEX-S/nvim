@@ -26,10 +26,15 @@ vim.defer_fn(function ()
     require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
 
     vim.o.shadafile = ""
-    vim.cmd "rshada"
+
+    vim.cmd [[
+        rshada!
+        packadd matchparen.nvim
+        packadd nvim-colorizer.lua.git
+    ]]
+
+    require "matchparen".setup()
 end, 106)
-
-
 
 vim.defer_fn(function ()
 
@@ -37,7 +42,7 @@ vim.defer_fn(function ()
     -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
 
     require "plug-manager.treesitter"  -- ~/.config/nvim/lua/plug-manager/treesitter.lua
-    vim.cmd [[ packadd nvim-colorizer.lua.git ]]
+
 end, 20)
 
--- require "colorizer".setup({ "*" }, { mode = "foreground" })
+require "colorizer".setup({ "*" }, { mode = "foreground" })

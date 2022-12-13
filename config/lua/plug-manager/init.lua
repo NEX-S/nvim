@@ -8,6 +8,7 @@ local plugin_list = {
     "nvim-treesitter/nvim-treesitter.git",
     "nvim-treesitter/nvim-treesitter-textobjects.git",
     "nvim-treesitter/nvim-treesitter-context.git",
+    "nex-s/matchparen.nvim",
 }
 
 -- require "colorizer".setup({ "*" }, { mode = "foreground" })

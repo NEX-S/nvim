@@ -1,35 +1,6 @@
 
 local opt = vim.o
 
--- local plugin_list = {
---     "2html_plugin",
---     "getscript",
---     "getscriptPlugin",
---     "gzip",
---     "logiPat",
---     "matchit",
---     "matchparen",
---     "netrw",
---     "netrwFileHandlers",
---     "netrwPlugin",
---     "netrwSettings",
---     "remote_plugins",
---     "rrhelper",
---     "shada_plugin",
---     "spellfile_plugin",
---     "tar",
---     "tarPlugin",
---     "tutor_mode_plugin",
---     "vimball",
---     "vimballPlugin",
---     "zip",
---     "zipPlugin",
--- }
---
--- for i = 1, #plugin_list do
---     vim.g['loaded_' .. plugin_list[i]] = true
--- end
-
 local opts_bool = {
     smartcase      = true,
     ignorecase     = true,
@@ -60,7 +31,7 @@ local opts_num = {
     -- regexpengine  = 2,
 
     history       = 200,
-    updatetime    = 4000,
+    -- updatetime    = 4000,
 }
 
 local opts_str = {
