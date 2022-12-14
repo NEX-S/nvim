@@ -21,7 +21,7 @@ end
 
 local TabLineHL = {
 
-    TabLine   = { bg = "#191919", fg = "#666666" },
+    TabLine   = { bg = "#191918", fg = "#666666" },
     TabLineP  = { bg = "#191919", fg = "#C53B82" },
     TabLineX  = { bg = "#191919", fg = "#C53B82" },
 
@@ -60,7 +60,7 @@ local function GenActiveTab ()
 
     ActiveTabFileName = ActiveTabFileName == "" and "[  UNKNOWN  ]" or ActiveTabFileName:gsub(".*/", '') .. ActiveTabIndicator
 
-    local ActiveTabContent   = "%{% v:lua.get_ft_icon() %}%#ActiveTab#" .. ActiveTabFileName 
+    local ActiveTabContent   = "%{% v:lua.get_ft_icon() %}%#ActiveTab#" .. ActiveTabFileName
 
     return "%#ActiveTabSepL# " .. ActiveTabContent .. " %#ActiveTabSepR#"
 end
@@ -93,5 +93,4 @@ opt.tabline = "%!v:lua.nvim_tabline()"
 -- ~/.config/nvim/init.lua
 -- ~/.config/nvim/colors.md
 -- ~/.config/nvim/api.md
-
 

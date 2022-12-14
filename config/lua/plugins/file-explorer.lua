@@ -1,6 +1,23 @@
 local api = vim.api
 local utils = require "utils"
 
+local file_action = {
+    [";s"] = "sp",
+    [";v"] = "vsp",
+    ["gf"] = "tabedit",
+}
+
+for lhs, rhs in pairs(file_action) do
+    vim.keymap.set("n", lhs, function ()
+        local cfile = vim.fn.expand("<cfile>")
+        if cfile:match("/[-_a-zA-Z]") then
+            vim.cmd(rhs .. " " .. cfile)
+        else
+            vim.cmd(rhs)
+        end
+    end)
+end
+
 local M = {
     bufnr = nil,
     winnr = nil,
@@ -148,4 +165,7 @@ vim.keymap.set("n", "<C-f>", FZF, { silent = true })
 --     require "plugins.terminal".open_term_float(cmd, opts, { title = " [ TERMINAL ] ", title_pos = "right" })
 -- end,
 
+
+
 return M
+

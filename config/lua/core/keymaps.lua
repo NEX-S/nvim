@@ -42,10 +42,10 @@ local multi_mode_tbl = {
         -- ["<C-d>"]  =  "g<C-x>",
         ["<C-u>"]  =  "viw~",
 
-        ["<C-j>"]   =  "<C-i>",
-        ["<C-k>"]   =  "<C-o>",
-        ["<C-h>"]   =  "<CMD>tabprevious<CR>",
-        ["<C-l>"]   =  "<CMD>tabnext<CR>",
+        ["<DOWN>"]   =  "<C-i>",
+        ["<UP>"]   =  "<C-o>",
+        ["<LEFT>"]   =  "<CMD>tabprevious<CR>",
+        ["<RIGHT>"]   =  "<CMD>tabnext<CR>",
 
         ["<TAB>"]   = "<C-w><C-w>",
         ["<S-TAB>"] = "<C-w>p",
@@ -60,8 +60,6 @@ local multi_mode_tbl = {
         [";q"] = "<CMD>quit!<CR>",
         [";w"] = "<CMD>write ++p<CR>", -- dont add !
         [";r"] = "<CMD>R<CR>",
-        [";s"] = "<CMD>split<CR>",
-        [";v"] = "<CMD>vertical split<CR>",
 
         [";x"] = function ()
             local opts = {
@@ -79,6 +77,7 @@ local multi_mode_tbl = {
             end})
         end,
 
+
         [";t"] = require "plugins.translate".translate,
 
         -- GX MAP --
@@ -87,13 +86,6 @@ local multi_mode_tbl = {
         ["g("] = "[(",
         ["g}"] = "]}",
         ["g{"] = "[{",
-
-        ["gf"] = function ()
-            local file_dir = vim.fn.expand("<cfile>")
-            if file_dir:match("/") then
-                vim.cmd("tabnew " .. file_dir)
-            end
-        end,
 
     },
 
@@ -123,14 +115,14 @@ local multi_mode_tbl = {
         ["aq"] = 'a"',
         ["iq"] = 'i"',
 
-        ["<C-h>"] = "=gv",
-        ["<C-l>"] = "=gv",
+        ["<LEFT>"] = "=gv",
+        ["<RIGHT>"] = "=gv",
         -- AUTOINDENT
-        ["<C-k>"] = ":<C-u>silent! '<,'>move-2<CR>gv=gv",
-        ["<C-j>"] = ":<C-u>silent! '<,'>move'>+<CR>gv=gv",
+        ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv=gv",
+        ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv=gv",
         -- NOINDENT
-        -- ["<C-k>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
-        -- ["<C-j>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",
+        -- ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
+        -- ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",
     },
 
     -- OPTRATOR MAP --
@@ -162,19 +154,19 @@ local multi_mode_tbl = {
 
     -- COMMAND MAP --
     commnd_mode = {
-        ["<C-h>"] = "<LEFT>",
-        ["<C-j>"] = "<DOWN>",
-        ["<C-k>"] = "<UP>",
-        ["<C-l>"] = "<RIGHT>",
+        ["<LEFT>"] = "<LEFT>",
+        ["<DOWN>"] = "<DOWN>",
+        ["<UP>"] = "<UP>",
+        ["<RIGHT>"] = "<RIGHT>",
     },
 
     -- TERMINAL MAP --
     termnl_mode = {
         ["<ESC>"]  =  "<C-\\><C-n>",
-        ["<C-h>"]  =  "<LEFT>",
-        ["<C-j>"]  =  "<DOWN>",
-        ["<C-k>"]  =  "<UP>",
-        ["<C-l>"]  =  "<RIGHT>",
+        ["<LEFT>"]  =  "<LEFT>",
+        ["<DOWN>"]  =  "<DOWN>",
+        ["<UP>"]  =  "<UP>",
+        ["<RIGHT>"]  =  "<RIGHT>",
     },
 }
 

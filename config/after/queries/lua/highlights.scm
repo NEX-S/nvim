@@ -1,5 +1,0 @@
-(todo
-[
-  "TODO"
-  "todo"
-] @todo)

@@ -68,6 +68,7 @@ local treesitter_hl = {
     ["@type"]           = { bg = "NONE", fg = "#555555" }, -- C: int float ..
     ["@property"]       = { bg = "NONE", fg = "#9D7CD8" }, -- C: ->xxx
     ["@include"]        = { bg = "NONE", fg = "#C3E88D" }, -- C: include
+    ["@text.todo"]        = { bg = "NONE", fg = "#C3E88D" }, -- C: include
 
     ["@constant.builtin"]    = { bg = "NONE", fg = "#FF43BA" }, -- nil
     ["@function.builtin"]    = { bg = "NONE", fg = "#A7C080" }, -- print

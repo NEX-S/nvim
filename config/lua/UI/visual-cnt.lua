@@ -27,7 +27,6 @@ local function set_visual_cnt (mode)
         return "V"
     end
 
-    -- local au_id = api.nvim_create_augroup("VisualCntAutocmdGroup", { clear = true })
     local au_id = api.nvim_create_autocmd("CursorMoved", {
         pattern = "*",
         callback = function ()
@@ -62,7 +61,6 @@ local function set_visual_cnt (mode)
         callback = function ()
             api.nvim_buf_del_extmark(bufnr, ns_id, 1)
             pcall(api.nvim_del_autocmd, au_id)
-            -- api.nvim_del_augroup_by_name("VisualCntAutocmdGroup")
         end
     })
 

@@ -10,12 +10,8 @@
 -- vim.cmd [[ packadd impatient.nvim.git ]]
 -- require "impatient"
 
-
 require "UI"                -- ~/.config/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
-
--- vim.defer_fn(function ()
--- end, 5)
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/config/lua/core/options.lua
@@ -23,7 +19,7 @@ vim.defer_fn(function ()
     require "core.autocmd"     -- ~/nvim/config/lua/core/autocmd.lua
     require "plugins"          -- ~/nvim/config/lua/plugins/init.lua
 
-    require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
+    -- require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
 
     vim.o.shadafile = ""
 
@@ -34,6 +30,13 @@ vim.defer_fn(function ()
     ]]
 
     require "matchparen".setup()
+
+    vim.cmd [[
+        " set foldmethod=indent
+        " set foldexpr=nvim_treesitter#foldexpr()
+        " set nofoldenable
+    ]]
+
 end, 106)
 
 vim.defer_fn(function ()
