@@ -4,46 +4,26 @@ local opt = vim.opt
 
 opt.showtabline = 2
 
-function _G.get_ft_icon ()
-    local ft_icons = {
-        lua = "%#LuaIcon# ",
+function _G.get_ft_icon (status)
+    local ft_icons_a = {
+        lua = "%#LuaIconA# %#ActiveTab#",
     }
-    return ft_icons[vim.bo.ft] or ""
+    local ft_icons_i = {
+        lua = "%#LuaIconI# %#InactiveTab#",
+    }
+
+    local ft = vim.bo.ft
+    return status == "a" and ft_icons_a[ft] or ft_icons_i[ft]
 end
 
 local FileTypeIconHL = {
-    LuaIcon = { bg = "#262626", fg = "#51a0cf" },
+    LuaIconA = { bg = "#232323", fg = "#51a0cf" },
+    LuaIconI = { bg = "#202020", fg = "#444444" },
 }
 
 for key, value in pairs(FileTypeIconHL) do
     api.nvim_set_hl(0, key, value)
 end
-
-local TabLineHL = {
-
-    TabLine   = { bg = "#191919", fg = "#666666" },
-    TabLineP  = { bg = "#191919", fg = "#C53B82" },
-    TabLineX  = { bg = "#191919", fg = "#C53B82" },
-
-    InactiveTab     = { bg = "#202020", fg = "#444444" },
-    InactiveTabX    = { bg = "#202020", fg = "#444444" },
-    InactiveTabMod  = { bg = "#202020", fg = "#444444" },
-
-    InactiveTabSepL  = { bg = "#191919", fg = "#202020" },
-    InactiveTabSepR  = { bg = "#191919", fg = "#202020" },
-
-    ActiveTab      = { bg = "#242424", fg = "#777777" },
-    ActiveTabX     = { bg = "#242424", fg = "#777777" },
-    ActiveTabMod   = { bg = "#242424", fg = "#AFC460" },
-
-    ActiveTabSepL  = { bg = "#191919", fg = "#242424" },
-    ActiveTabSepR  = { bg = "#191919", fg = "#242424" },
-}
-
-for key, value in pairs(TabLineHL) do
-    api.nvim_set_hl(0, key, value)
-end
-
 
 local fn = vim.fn
 local function GenInactiveTab (tabnr)
@@ -52,7 +32,7 @@ local function GenInactiveTab (tabnr)
     local tabname    = api.nvim_buf_get_name(tabbuflist[tabwinnr]):gsub(".*/", '')
 
     -- local InactiveTabIndicator = "%{% &mod ? '%#InactiveTabMod# ' : '%#InactiveTabX# ' %}"
-    local InactiveTabContent = "%#InactiveTab#  %" .. tabnr .. "T" .. tabname .. "%#InactiveTabX# %1X%X"
+    local InactiveTabContent = "%#InactiveTab#  %" .. tabnr .. "T" .. "%{% v:lua.get_ft_icon('i') %}" .. tabname .. "%#InactiveTabX# %1X%X"
     -- return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
     return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
 end
@@ -63,7 +43,7 @@ local function GenActiveTab ()
 
     ActiveTabFileName = ActiveTabFileName == "" and "[  UNKNOWN  ]" or ActiveTabFileName:gsub(".*/", '') .. ActiveTabIndicator
 
-    local ActiveTabContent   = "%#ActiveTab# %{% v:lua.get_ft_icon() %}%#ActiveTab#" .. ActiveTabFileName
+    local ActiveTabContent   = "%#ActiveTab# %{% v:lua.get_ft_icon('a') %}" .. ActiveTabFileName
 
     -- return "%#ActiveTabSepL# " .. ActiveTabContent .. " %#ActiveTabSepR#"
     return "%#ActiveTabSepL#" .. ActiveTabContent .. " %#ActiveTabSepR#"
@@ -98,4 +78,29 @@ opt.tabline = "%!v:lua.nvim_tabline()"
 -- ~/.config/nvim/init.lua
 -- ~/.config/nvim/colors.md
 -- ~/.config/nvim/api.md
+
+local TabLineHL = {
+
+    TabLine   = { bg = "#242424", fg = "#666666" },
+    TabLineP  = { bg = "#242424", fg = "#C53B82" },
+    TabLineX  = { bg = "#242424", fg = "#C53B82" },
+
+    InactiveTab     = { bg = "#202020", fg = "#444444" },
+    InactiveTabX    = { bg = "#202020", fg = "#444444" },
+    InactiveTabMod  = { bg = "#202020", fg = "#444444" },
+
+    InactiveTabSepL  = { bg = "#242424", fg = "#202020" },
+    InactiveTabSepR  = { bg = "#242424", fg = "#202020" },
+
+    ActiveTab      = { bg = "#232323", fg = "#777777" },
+    ActiveTabX     = { bg = "#232323", fg = "#777777" },
+    ActiveTabMod   = { bg = "#232323", fg = "#AFC460" },
+
+    ActiveTabSepL  = { bg = "#242424", fg = "#232323" },
+    ActiveTabSepR  = { bg = "#242424", fg = "#232323" },
+}
+
+for key, value in pairs(TabLineHL) do
+    api.nvim_set_hl(0, key, value)
+end
 
