@@ -4,6 +4,7 @@ local cms_tbl = {
     lua  = "--",
     c    = "//",
     fish = "#",
+    conf = "#",
     vim  = '"',
 }
 
@@ -16,6 +17,7 @@ local reg_tbl = {
     lua  = "%-%-",
     c    = "//",
     fish = "#",
+    conf = "#",
     vim  = '"',
 }
 

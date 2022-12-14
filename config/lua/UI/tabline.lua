@@ -21,20 +21,22 @@ end
 
 local TabLineHL = {
 
-    TabLine   = { bg = "#191918", fg = "#666666" },
+    TabLine   = { bg = "#191919", fg = "#666666" },
     TabLineP  = { bg = "#191919", fg = "#C53B82" },
     TabLineX  = { bg = "#191919", fg = "#C53B82" },
 
     InactiveTab     = { bg = "#202020", fg = "#444444" },
     InactiveTabX    = { bg = "#202020", fg = "#444444" },
     InactiveTabMod  = { bg = "#202020", fg = "#444444" },
-    InactiveTabSepL  = { bg = "#202020", fg = "#191919" },
+
+    InactiveTabSepL  = { bg = "#191919", fg = "#202020" },
     InactiveTabSepR  = { bg = "#191919", fg = "#202020" },
 
     ActiveTab      = { bg = "#242424", fg = "#777777" },
     ActiveTabX     = { bg = "#242424", fg = "#777777" },
     ActiveTabMod   = { bg = "#242424", fg = "#AFC460" },
-    ActiveTabSepL  = { bg = "#242424", fg = "#191919" },
+
+    ActiveTabSepL  = { bg = "#191919", fg = "#242424" },
     ActiveTabSepR  = { bg = "#191919", fg = "#242424" },
 }
 
@@ -50,8 +52,9 @@ local function GenInactiveTab (tabnr)
     local tabname    = api.nvim_buf_get_name(tabbuflist[tabwinnr]):gsub(".*/", '')
 
     -- local InactiveTabIndicator = "%{% &mod ? '%#InactiveTabMod# ' : '%#InactiveTabX# ' %}"
-    local InactiveTabContent = "%" .. tabnr .. "T" .. "%#InactiveTab#" .. tabname .. "%#InactiveTabX# %1X%X"
-    return "%#InactiveTabSepL#  " .. InactiveTabContent .. " %#InactiveTabSepR#"
+    local InactiveTabContent = "%#InactiveTab#  %" .. tabnr .. "T" .. tabname .. "%#InactiveTabX# %1X%X"
+    -- return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
+    return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
 end
 
 local function GenActiveTab ()
@@ -60,10 +63,12 @@ local function GenActiveTab ()
 
     ActiveTabFileName = ActiveTabFileName == "" and "[  UNKNOWN  ]" or ActiveTabFileName:gsub(".*/", '') .. ActiveTabIndicator
 
-    local ActiveTabContent   = "%{% v:lua.get_ft_icon() %}%#ActiveTab#" .. ActiveTabFileName
+    local ActiveTabContent   = "%#ActiveTab# %{% v:lua.get_ft_icon() %}%#ActiveTab#" .. ActiveTabFileName
 
-    return "%#ActiveTabSepL# " .. ActiveTabContent .. " %#ActiveTabSepR#"
+    -- return "%#ActiveTabSepL# " .. ActiveTabContent .. " %#ActiveTabSepR#"
+    return "%#ActiveTabSepL#" .. ActiveTabContent .. " %#ActiveTabSepR#"
 end
+
 
 function _G.nvim_tabline ()
 

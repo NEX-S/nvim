@@ -2,11 +2,13 @@
 local api = vim.api
 
 local ft_dict = {
-    lua  = "lua",
     c    = "c",
+    lua  = "lua",
     py   = "python",
-    fish = "fish",
     vim  = "vim",
+    fish = "fish",
+    conf = "conf",
+
     vifmrc = "vim",
 }
 
