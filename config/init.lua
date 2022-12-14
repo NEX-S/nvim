@@ -9,6 +9,7 @@
 
 -- vim.cmd [[ packadd impatient.nvim.git ]]
 -- require "impatient"
+-- TODO: ctrl+;
 
 require "UI"                -- ~/.config/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
