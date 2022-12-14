@@ -50,7 +50,7 @@ local builtin_syntax_hl = {
 local treesitter_hl = {
     ["@variable"]       = { bg = "NONE", fg = "#888888" }, -- var name
     ["@string"]         = { bg = "NONE", fg = "#585858" }, -- string
-    ["@comment"]        = { bg = "NONE", fg = "#484848" }, -- comment
+    ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
     ["@keyword"]        = { bg = "NONE", fg = "#777777" }, -- local return function
     ["@function"]       = { bg = "NONE", fg = "#9C8FDC", bold = true }, -- function
     ["@parameter"]      = { bg = "NONE", fg = "#9C8FDC" }, -- func args

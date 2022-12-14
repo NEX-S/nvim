@@ -6,7 +6,6 @@
 --                                                                  --
 
 -- TODO: h operatorfunc
--- TODO: gg=G
 
 -- vim.cmd [[ packadd impatient.nvim.git ]]
 -- require "impatient"

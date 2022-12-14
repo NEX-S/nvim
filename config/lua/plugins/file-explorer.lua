@@ -45,12 +45,12 @@ end
 local function VIFM (opts)
 
     local vifm_action = {
-        ["<C-v>"] = function ()
-            M.action = "vsp"
-            return "l"
-        end,
+        -- ["<C-v>"] = function ()
+        --     M.action = "vsp"
+        --     return "l"
+        -- end,
         ["<C-s>"] = function ()
-            M.action = "sp"
+            M.action = "vsp"
             return "l"
         end,
     }
@@ -85,12 +85,12 @@ local function FZF (opts)
     end
 
     local fzf_action = {
-        ["<C-v>"] = function ()
-            M.action = "vsp "
-            return "<C-l>"
-        end,
+        -- ["<C-v>"] = function ()
+        --     M.action = "vsp "
+        --     return "<C-l>"
+        -- end,
         ["<C-s>"] = function ()
-            M.action = "sp "
+            M.action = "vsp "
             return "<C-l>"
         end,
         ["<C-l>"] = function ()
