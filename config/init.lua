@@ -50,3 +50,4 @@ vim.defer_fn(function ()
 end, 20)
 
 require "colorizer".setup({ "*" }, { mode = "foreground" })
+
