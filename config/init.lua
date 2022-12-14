@@ -28,7 +28,7 @@ vim.defer_fn(function ()
         rshada!
         packadd matchparen.nvim
         packadd nvim-colorizer.lua.git
-    ]]
+        ]]
 
     require "matchparen".setup()
 
@@ -36,7 +36,7 @@ vim.defer_fn(function ()
         " set foldmethod=indent
         " set foldexpr=nvim_treesitter#foldexpr()
         " set nofoldenable
-    ]]
+        ]]
 
 end, 106)
 

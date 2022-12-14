@@ -33,12 +33,16 @@ local multi_mode_tbl = {
         ["<A-h>"]  =  "<C-w>h",
         ["<A-l>"]  =  "<C-w>l",
 
-        ["<C-s>"]  =  "<CMD>source %<CR>",
+        ["<F12>"]  =  "<CMD>source %<CR>",
 
         ["<C-i>"]  =  function ()
-            local c_pos = api.nvim_win_get_cursor(0)
+
+            local view = vim.fn.winsaveview()
             vim.cmd "normal!gg=G"
-            api.nvim_win_set_cursor(0, c_pos)
+            vim.fn.winrestview(view)
+
+            -- local c_pos = api.nvim_win_get_cursor(0)
+            -- api.nvim_win_set_cursor(0, c_pos)
         end,
 
         -- ["<C-i>"]  =  "<C-a>",
