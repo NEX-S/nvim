@@ -6,6 +6,7 @@
 --                                                                  --
 
 -- TODO: h operatorfunc
+-- TODO: gg=G
 
 -- vim.cmd [[ packadd impatient.nvim.git ]]
 -- require "impatient"
@@ -19,7 +20,7 @@ vim.defer_fn(function ()
     require "core.autocmd"     -- ~/nvim/config/lua/core/autocmd.lua
     require "plugins"          -- ~/nvim/config/lua/plugins/init.lua
 
-    -- require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
+    require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
 
     vim.o.shadafile = ""
 

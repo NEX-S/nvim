@@ -5,6 +5,7 @@ local file_action = {
     [";s"] = "sp",
     [";v"] = "vsp",
     ["gf"] = "tabedit",
+    ["<C-s>"] = "vsp",
 }
 
 for lhs, rhs in pairs(file_action) do

@@ -1,11 +1,11 @@
 
+local api = vim.api
+
 local multi_mode_tbl = {
     -- NORMAL MAP --
     normal_mode = {
-
-
-        ["j"]  =  "gj",
-        ["k"]  =  "gk",
+        -- ["j"]  =  "gj",
+        -- ["k"]  =  "gk",
 
         ["J"]  =  "8j",
         ["U"]  =  "<C-r>",
@@ -35,6 +35,11 @@ local multi_mode_tbl = {
 
         ["<C-s>"]  =  "<CMD>source %<CR>",
 
+        ["<C-i>"]  =  function ()
+            local c_pos = api.nvim_win_get_cursor(0)
+            vim.cmd "normal!gg=G"
+            api.nvim_win_set_cursor(0, c_pos)
+        end,
 
         -- ["<C-i>"]  =  "<C-a>",
         -- ["<C-d>"]  =  "<C-x>",
@@ -91,8 +96,8 @@ local multi_mode_tbl = {
 
     -- VISUAL MAP --
     visual_mode = {
-        ["j"] = "gj",
-        ["k"] = "gk",
+        -- ["j"] = "gj",
+        -- ["k"] = "gk",
 
         ["J"] = "8j",
         ["K"] = "8k",
@@ -115,20 +120,22 @@ local multi_mode_tbl = {
         ["aq"] = 'a"',
         ["iq"] = 'i"',
 
-        ["<LEFT>"] = "=gv",
-        ["<RIGHT>"] = "=gv",
-        -- AUTOINDENT
+        -- ["<LEFT>"] = "=gv",
+        -- ["<RIGHT>"] = "=gv",
+
         ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv=gv",
         ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv=gv",
-        -- NOINDENT
+
         -- ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
         -- ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",
+
+        ["<C-i>"]  =  "=gv",
     },
 
     -- OPTRATOR MAP --
     operat_mode = {
-        ["j"] = "gj",
-        ["k"] = "gk",
+        -- ["j"] = "gj",
+        -- ["k"] = "gk",
 
         ["J"] = "8j",
         ["K"] = "8k",
