@@ -28,7 +28,7 @@ vim.defer_fn(function ()
         rshada!
         packadd matchparen.nvim
         packadd nvim-colorizer.lua.git
-    ]]
+        ]]
 
     require "matchparen".setup()
 

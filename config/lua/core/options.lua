@@ -5,7 +5,6 @@ local opts_bool = {
     smartcase      = true,
     ignorecase     = true,
     incsearch      = true,
-    wrap           = true,
     hidden         = true,
     magic          = true,
     smarttab       = true,
@@ -19,7 +18,6 @@ local opts_bool = {
     writebackup   = false,
     confirm       = false,
     autoread      = false,
-    wrap          = false,
     warn          = false,
     loadplugins   = false,
 }

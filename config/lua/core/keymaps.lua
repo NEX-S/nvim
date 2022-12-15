@@ -35,7 +35,7 @@ local multi_mode_tbl = {
 
         ["<F12>"]  =  "<CMD>source %<CR>",
 
-        ["<C-i>"]  =  function ()
+        ["<C-=>"]  =  function ()
 
             local view = vim.fn.winsaveview()
             vim.cmd "normal!gg=G"
@@ -45,22 +45,21 @@ local multi_mode_tbl = {
             -- api.nvim_win_set_cursor(0, c_pos)
         end,
 
-        -- ["<C-i>"]  =  "<C-a>",
-        -- ["<C-d>"]  =  "<C-x>",
-        -- ["<C-i>"]  =  "g<C-a>",
-        -- ["<C-d>"]  =  "g<C-x>",
+        ["<C-i>"]  =  "<C-a>",
+        ["<C-d>"]  =  "<C-x>",
+
         ["<C-u>"]  =  "viw~",
 
+        ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
-        ["<UP>"]   =  "<C-o>",
-        ["<LEFT>"]   =  "<CMD>tabprevious<CR>",
-        ["<RIGHT>"]   =  "<CMD>tabnext<CR>",
+        ["<LEFT>"]   =  "<C-w>h",
+        ["<RIGHT>"]  =  "<C-w>l",
+
+        ["<C-,>"]  =  "<CMD>tabprevious<CR>",
+        ["<C-.>"]  =  "<CMD>tabnext<CR>",
 
         ["<TAB>"]   = "<C-w><C-w>",
         ["<S-TAB>"] = "<C-w>p",
-
-        ["<F10>"]  =  "<CMD>bp<CR>",
-        ["<F11>"]  =  "<CMD>bn<CR>",
 
         -- LEADER MAP --
         [";f"] = "/",
@@ -124,6 +123,9 @@ local multi_mode_tbl = {
         ["aq"] = 'a"',
         ["iq"] = 'i"',
 
+        ["<C-i>"]  =  "g<C-a>",
+        ["<C-d>"]  =  "g<C-x>",
+
         -- ["<LEFT>"] = "=gv",
         -- ["<RIGHT>"] = "=gv",
 
@@ -165,10 +167,10 @@ local multi_mode_tbl = {
 
     -- COMMAND MAP --
     commnd_mode = {
-        ["<LEFT>"] = "<LEFT>",
-        ["<DOWN>"] = "<DOWN>",
-        ["<UP>"] = "<UP>",
-        ["<RIGHT>"] = "<RIGHT>",
+        -- ["<LEFT>"] = "<LEFT>",
+        -- ["<DOWN>"] = "<DOWN>",
+        -- ["<UP>"] = "<UP>",
+        -- ["<RIGHT>"] = "<RIGHT>",
     },
 
     -- TERMINAL MAP --

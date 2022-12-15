@@ -10,6 +10,7 @@ local ui_opts = {
     splitbelow     = true,
     splitright     = true,
     termguicolors  = true,
+    wrap           = false,
     modeline       = false,
     showmode       = false,
     ruler          = false,
@@ -36,7 +37,8 @@ local ui_opts = {
     -- shortmess    = "WAICOTFcsao",
     shortmess    = "filmnrwxaoOstTWAIcCqFS",
 
-    titlestring  = "[   UNEXPECTED NVIM   ]",
+    -- titlestring  = "[   UNEXPECTED NVIM   ]",
+    titlestring  = " nvim ",
 
     -- rulerformat = "[ %c  0𝙭%B ]",
     listchars = "eol:⸥,space:·,trail:,tab:,multispace:····,nbsp:,extends:e,precedes:+",
