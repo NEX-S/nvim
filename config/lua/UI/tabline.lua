@@ -1,4 +1,6 @@
 
+local fn  = vim.fn
+
 local api = vim.api
 local opt = vim.opt
 
@@ -25,13 +27,12 @@ for key, value in pairs(FileTypeIconHL) do
     api.nvim_set_hl(0, key, value)
 end
 
-local fn = vim.fn
 local function GenInactiveTab (tabnr)
     local tabwinnr   = fn.tabpagewinnr(tabnr)
     local tabbuflist = fn.tabpagebuflist(tabnr)
     local tabname    = api.nvim_buf_get_name(tabbuflist[tabwinnr]):gsub(".*/", '')
 
-    local InactiveTabName = tabname == "" and "UNKNOWN " or tabname:gsub(".*/", '') .. "%#InactiveTabX# %1X%X"
+    local InactiveTabName = tabname == "" and "UNKNOWN " or tabname:gsub(".*/", '') .. "%#InactiveTabX# %" .. tabnr .. "X%X" 
 
     -- local InactiveTabIndicator = "%{% &mod ? '%#InactiveTabMod# ' : '%#InactiveTabX# ' %}"
     local InactiveTabContent = "%#InactiveTab# %" .. tabnr .. "T" .. "%{% v:lua.get_ft_icon('i') %}" .. InactiveTabName
@@ -41,7 +42,7 @@ end
 
 local function GenActiveTab ()
     local ActiveTabFileName  = api.nvim_buf_get_name(0)
-    local ActiveTabIndicator = "%{% &mod ? '%#ActiveTabMod# ' : '%#ActiveTabX# %1X%X' %}"
+    local ActiveTabIndicator = "%{% &mod ? '%#ActiveTabMod# ' : '%#ActiveTabX# %1@v:lua._nvim_tabline_close@%X' %}"
 
     ActiveTabFileName = ActiveTabFileName == "" and "[ UNKNOWN ] " or ActiveTabFileName:gsub(".*/", '') .. ActiveTabIndicator
 
@@ -88,11 +89,6 @@ function _G._nvim_tabline_close ()
 end
 
 opt.tabline = "%!v:lua.nvim_tabline()"
-
--- /etc/passwd
--- ~/.config/nvim/init.lua
--- ~/.config/nvim/colors.md
--- ~/.config/nvim/api.md
 
 local TabLineHL = {
 
