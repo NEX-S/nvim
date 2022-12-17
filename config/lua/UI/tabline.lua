@@ -80,9 +80,8 @@ end
 
 function _G._nvim_tabline_close ()
     if fn.tabpagenr("$") == 1 then
-        -- vim.cmd "quitall!"
-        -- vim.cmd "quitall!"
-        os.execute("kitty @ --to unix:/tmp/kitty.sock close-tab")
+        vim.cmd "quitall!"
+        -- os.execute("kitty @ --to unix:/tmp/kitty.sock close-tab")
     else
         vim.cmd "tabclose"
     end
@@ -101,14 +100,14 @@ local TabLineHL = {
     TabLineP  = { bg = "#242424", fg = "#C53B82" },
     TabLineX  = { bg = "#242424", fg = "#C53B82" },
     
-    InactiveTab     = { bg = "#202020", fg = "#444444" },
+    InactiveTab     = { bg = "#202020", fg = "#444444", italic =  true },
     InactiveTabX    = { bg = "#202020", fg = "#444444" },
     InactiveTabMod  = { bg = "#202020", fg = "#444444" },
     
     InactiveTabSepL  = { bg = "#242424", fg = "#202020" },
     InactiveTabSepR  = { bg = "#242424", fg = "#202020" },
     
-    ActiveTab      = { bg = "#232323", fg = "#777777" },
+    ActiveTab      = { bg = "#232323", fg = "#777777", bold = true, italic = true },
     ActiveTabX     = { bg = "#232323", fg = "#777777" },
     ActiveTabMod   = { bg = "#232323", fg = "#AFC460" },
     

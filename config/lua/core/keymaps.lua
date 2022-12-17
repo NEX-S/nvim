@@ -33,7 +33,7 @@ local multi_mode_tbl = {
         ["<A-h>"]  =  "<C-w>h",
         ["<A-l>"]  =  "<C-w>l",
 
-        ["<F12>"]  =  "<CMD>source %<CR>",
+        ["<F1>"]  =  "<CMD>source %<CR>",
 
         ["<C-=>"]  =  function ()
 
@@ -52,11 +52,11 @@ local multi_mode_tbl = {
 
         ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
-        ["<LEFT>"]   =  "<C-w>h",
-        ["<RIGHT>"]  =  "<C-w>l",
+        ["<LEFT>"]   =  "<CMD>tabprevious<CR>",
+        ["<RIGHT>"]  =  "<CMD>tabnext<CR>",
 
-        ["<C-,>"]  =  "<CMD>tabprevious<CR>",
-        ["<C-.>"]  =  "<CMD>tabnext<CR>",
+        -- ["<C-,>"]  =  "<CMD>tabprevious<CR>",
+        -- ["<C-.>"]  =  "<CMD>tabnext<CR>",
 
         ["<TAB>"]   = "<C-w><C-w>",
         ["<S-TAB>"] = "<C-w>p",
@@ -123,8 +123,8 @@ local multi_mode_tbl = {
         ["aq"] = 'a"',
         ["iq"] = 'i"',
 
-        ["<C-i>"]  =  "g<C-a>",
-        ["<C-d>"]  =  "g<C-x>",
+        ["<C-i>"]  =  "g<C-a>gv",
+        ["<C-d>"]  =  "g<C-x>gv",
 
         -- ["<LEFT>"] = "=gv",
         -- ["<RIGHT>"] = "=gv",
@@ -134,8 +134,6 @@ local multi_mode_tbl = {
 
         -- ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
         -- ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",
-
-        ["<C-i>"]  =  "=gv",
     },
 
     -- OPTRATOR MAP --
@@ -194,6 +192,6 @@ local mode_map = {
 
 for mode, mode_tbl in pairs(multi_mode_tbl) do
     for lhs, rhs in pairs(mode_tbl) do
-        vim.keymap.set(mode_map[mode], lhs, rhs, { silent = false })
+        vim.keymap.set(mode_map[mode], lhs, rhs, { silent = true })
     end
 end

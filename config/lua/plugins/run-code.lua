@@ -8,6 +8,7 @@ local term = require "plugins.terminal"
 
 local ft_cmd = {
     c      = [[ cd $fileDir && clang -Wall $fileName -o ./bin/$fileNoExt && bash -c 'echo;echo  ; time ./bin/$fileNoExt' ]],
+    bash   = [[ cd $fileDir && chmod +x $fileName && bash -c "echo;echo  ; time ./$fileName" ]],
     lua    = [[ cd $fileDir && lua $fileName ]],
     php    = [[ cd $fileDir && php $fileName && php -S 127.0.0.1:4444 ]],
     python = [[ cd $fileDir && python -u $fileName ]],

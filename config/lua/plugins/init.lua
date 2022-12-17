@@ -11,5 +11,5 @@ vim.defer_fn(function ()
     require "plugins.file-explorer"
 
     require "plugins.surround"
-end, 200)
+end, 150)
 

@@ -2,8 +2,8 @@ local api = vim.api
 local utils = require "utils"
 
 local file_action = {
-    [";s"] = "sp",
-    [";v"] = "vsp",
+    [";v"] = "sp",
+    [";s"] = "vsp",
     ["gf"] = "tabedit",
     ["<C-s>"] = "vsp",
 }

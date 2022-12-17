@@ -31,35 +31,35 @@ keymap({ 'n', 'v', 'o' }, "<SPACE>", ";", { silent = true })
 -- vim.o.updatetime = 50
 -- api.nvim_create_autocmd("CursorHold", {
 --     callback = function ()
---
---
+-- 
+-- 
 --         local char = utils.get_cursor_content(1,1)
---
+-- 
 --         -- local skip_contents = [[!empty(filter(map(synstack(line("."), col(".")), synIDattr(v:val, "name")), v:val =~? "string\\|character\\|singlequote\\|escape\\|symbol\\|comment"))]]
---
+-- 
 --         local pair_tbl = {
 --             ["("] = ")",
 --             [")"] = "(",
---
+-- 
 --             ["["] = "]",
 --             ["]"] = "[",
---
+-- 
 --             ["{"] = "}",
 --             ["}"] = "{",
---
+-- 
 --             ["<"] = ">",
 --             [">"] = "<",
 --         }
---
+-- 
 --         if char:match("[%(%{%[]") then
 --             _p(vim.fn.searchpairpos(char, "", pair_tbl[char], "nW"))
 --         elseif char:match("[%)%}%]]") then
 --             _p(vim.fn.searchpairpos(char, "", pair_tbl[char], "bnW"))
 --         end
---
+-- 
 --     end
 -- })
-
+-- 
 -- TODO: TREESITTER HL MATCHPAREN
 -- local function setHL ()
 --     local cursor_pos = api.nvim_win_get_cursor(0)

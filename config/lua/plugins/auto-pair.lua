@@ -54,13 +54,16 @@ api.nvim_create_autocmd("InsertEnter", {
                 local input_char_cnt = utils.get_char_num(line_str, char)
                 local match_char_cnt = utils.get_char_num(line_str, match_char)
 
+                -- local match_char_pos = vim.fn.searchpairpos("(", "", ")", "nW")
+                -- if match_char_pos[1] == 0 and match_char_pos[2] == 0 then
+                --     return "("
+                -- end
+
                 if match_char_cnt > input_char_cnt or right_char:match("[%a|\"'`%(%[%{]") then
                     return char
                 elseif input_char_cnt >= match_char_cnt then
                     return char .. match_char .. "<LEFT>"
                 end
-
-                print("Here")
 
                 return char
             end, { expr = true })
@@ -125,5 +128,4 @@ api.nvim_create_autocmd("InsertEnter", {
 
     end
 })
-
 

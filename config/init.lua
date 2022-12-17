@@ -20,15 +20,15 @@ vim.defer_fn(function ()
     require "core.autocmd"     -- ~/nvim/config/lua/core/autocmd.lua
     require "plugins"          -- ~/nvim/config/lua/plugins/init.lua
 
-    require "plug-manager"  -- ~/nvim/config/lua/plug-manager/init.lua
+    -- require "plug-manager"     -- ~/nvim/config/lua/plug-manager/init.lua
 
     vim.o.shadafile = ""
 
     vim.cmd [[
         rshada!
         packadd matchparen.nvim
-        packadd nvim-colorizer.lua.git
-        ]]
+        packadd nvim-colorizer.lua
+    ]]
 
     require "matchparen".setup()
 
@@ -36,7 +36,7 @@ vim.defer_fn(function ()
         " set foldmethod=indent
         " set foldexpr=nvim_treesitter#foldexpr()
         " set nofoldenable
-        ]]
+    ]]
 
 end, 106)
 
@@ -49,5 +49,4 @@ vim.defer_fn(function ()
 
 end, 20)
 
-require "colorizer".setup({ "*" }, { mode = "foreground" })
-
+-- require "colorizer".setup({ "*" }, { mode = "foreground" })

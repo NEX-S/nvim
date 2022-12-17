@@ -1,8 +1,8 @@
 
 vim.cmd [[
-    packadd nvim-treesitter.git
-    packadd nvim-treesitter-context.git
-    packadd nvim-treesitter-textobjects.git
+    packadd nvim-treesitter
+    packadd nvim-treesitter-context
+    packadd nvim-treesitter-textobjects
 ]]
 
 require "nvim-treesitter.configs".setup {
@@ -30,17 +30,18 @@ require "nvim-treesitter.configs".setup {
             enable = true,
             set_jumps = true,
             goto_next_start = {
+                ["<C-.>"] = "@function.outer"
+            },
+            goto_next_end = {
                 ["<C-]>"] = "@function.outer"
             },
-            -- goto_next_end = {
-            --     ["]"] = "@function.outer"
-            -- },
             goto_previous_start = {
-                ["<C-[>"] = "@function.outer"
+                -- ["<F1>"] = "@function.outer"
+                ["<C-,>"] = "@function.outer"
             },
-            -- goto_previous_end = {
-            --     ["["] = "@function.outer"
-            -- },
+            goto_previous_end = {
+                ["<F1>"] = "@function.outer"
+            },
         },
         select = {
             enable = true,
