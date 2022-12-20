@@ -8,20 +8,23 @@ opt.showtabline = 2
 
 function _G.get_ft_icon (status, tabnr)
     local ft_icons_a = {
-        lua = "%#LuaIconA#  %#ActiveTab#",
+        lua  = "%#LuaIconA#  %#ActiveTab#",
+        terminal = "%#LuaIconA# T %#ActiveTab#",
     }
     local ft_icons_i = {
         lua = "%#LuaIconI#  %#InactiveTab#",
+        terminal = "%#LuaIconI# T %#InactiveTab#",
     }
 
+    --  TODO: get tab icon is so fuctking hard :O
     local bufnr_list = vim.fn.tabpagebuflist(tabnr)
-    local ft = nil
-    -- for i = 1, #bufnr_list do
-    --     ft = vim.fn.bufgetvar(i, "&ft")
-    -- end
-    ft = vim.fn.getbufvar(1, "&ft")
 
-    return status == "a" and (ft_icons_a[ft] or "  ") or (ft_icons_i[ft] or " ") or "     "
+    local ft = nil
+    for i = 1, #bufnr_list do
+        ft = vim.fn.getbufvar(bufnr_list[i], "&ft")
+    end
+
+    return status == "a" and (ft_icons_a[ft] or "") or (ft_icons_i[ft] or "") or ""
 end
 
 local FileTypeIconHL = {
@@ -40,7 +43,7 @@ local function GenInactiveTab (tabnr)
 
     local InactiveTabIndicator = "%{% v:lua._tabline_get_mod_status(" .. tabnr .. ") == 1 ? '%#InactiveTabMod# ' : '%#InactiveTabX# %" .. tabnr .."X%X' %}"
     -- local InactiveTabName = tabname == "" and "UNKNOWN " or tabname:gsub(".*/", '') .. "%#InactiveTabX# %" .. tabnr .. "X%X"
-    local InactiveTabName = (tabname == "" and "  UNKNOWN" or _G.get_ft_icon("i", tabnr) .. tabname:gsub(".*/", '')) .. InactiveTabIndicator
+    local InactiveTabName = (tabname == "" and "  [ UNKNOWN ] " or _G.get_ft_icon("i", tabnr) .. tabname:gsub(".*/", '') .. InactiveTabIndicator)
 
     local InactiveTabContent = "%#InactiveTab#%" .. tabnr .. "T" .. InactiveTabName
     -- return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
