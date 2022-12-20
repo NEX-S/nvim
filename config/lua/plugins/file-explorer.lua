@@ -2,8 +2,8 @@ local api = vim.api
 local utils = require "utils"
 
 local file_action = {
-    [";v"] = "sp",
-    [";s"] = "vsp",
+    [";v"] = "vsp",
+    [";s"] = "sp",
     ["gf"] = "tabedit",
     ["<C-s>"] = "vsp",
 }
@@ -45,12 +45,12 @@ end
 local function VIFM (opts)
 
     local vifm_action = {
-        -- ["<C-v>"] = function ()
-        --     M.action = "vsp"
-        --     return "l"
-        -- end,
-        ["<C-s>"] = function ()
+        ["<C-v>"] = function ()
             M.action = "vsp"
+            return "l"
+        end,
+        ["<C-s>"] = function ()
+            M.action = "sp"
             return "l"
         end,
     }
@@ -85,17 +85,17 @@ local function FZF (opts)
     end
 
     local fzf_action = {
-        -- ["<C-v>"] = function ()
-        --     M.action = "vsp "
-        --     return "<C-l>"
-        -- end,
-        ["<C-s>"] = function ()
+        ["<C-v>"] = function ()
             M.action = "vsp "
-            return "<C-l>"
+            return "<RIGHT>"
+        end,
+        ["<C-s>"] = function ()
+            M.action = "sp "
+            return "<RIGHT>"
         end,
         ["<C-l>"] = function ()
             M.action = "tabedit "
-            return "<C-l>"
+            return "<RIGHT>"
         end,
     }
 

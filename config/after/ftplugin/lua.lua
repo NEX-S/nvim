@@ -1,7 +1,7 @@
 local api = vim.api
 local utils = require "utils"
 
-local opt = vim.o
+local bo = vim.bo
 
 -- require "UI.x-color".set_hl {
 --     LuaFunc    = { bg = "NONE", fg = "#9C8FDC" },
@@ -23,7 +23,8 @@ local opt = vim.o
 
 vim.defer_fn(function ()
 
-    opt.formatoptions = "tcqjr"
+    bo.comments = ":--"
+    bo.formatoptions = "tcqjr"
 
     local lua_keymap = {
         ["gh"] = function ()
@@ -40,7 +41,7 @@ vim.defer_fn(function ()
             local bufnr = api.nvim_create_buf(false, false)
             local winid = utils.open_win_float(bufnr, opts)
 
-            vim.cmd "edit ~/test/test.lua"
+            vim.cmd.edit("~/test/test.lua")
 
             vim.wo.number = true
             vim.wo.numberwidth = 3
@@ -104,8 +105,8 @@ vim.defer_fn(function ()
         end
     end
 
-    vim.bo.completefunc = "v:lua.lua_completefunc"
-    vim.bo.dictionary = "~/.config/nvim/dict/lua.dict"
+    bo.completefunc = "v:lua.lua_completefunc"
+    bo.dictionary = "~/.config/nvim/dict/lua.dict"
 
     -- vim.cmd [[
     --     syntax keyword LuaReturn  "return"
@@ -132,4 +133,4 @@ vim.defer_fn(function ()
         vim.pretty_print(data) 
     end
 
-end, 25)
+end, 150)

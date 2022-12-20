@@ -3,13 +3,13 @@ local api = vim.api
 
 local filetype_dict = {
     c    = "c",
-    lua  = "lua",
-    py   = "python",
-    vim  = "vim",
     sh   = "bash",
+    py   = "python",
+    md   = "markdown",
+    lua  = "lua",
+    vim  = "vim",
     fish = "fish",
     conf = "conf",
-
 }
 
 local filename_dict = {
@@ -23,9 +23,13 @@ local function ft_detect ()
     local fileExt  = vim.fn.expand("%:e")
     local fileName = vim.fn.expand("%:t")
 
+    -- vim.bo.ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
     vim.bo.ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
+    -- vim.cmd.setf(vim.bo.ft)
 
     vim.defer_fn(function()
+        -- vim.cmd "filetype plugin on"
+        -- vim.cmd "filetype off"
         pcall(vim.cmd, "luafile ~/nvim/config/after/ftplugin/" .. vim.bo.ft .. ".lua")
     end, 150)
 end

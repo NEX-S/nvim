@@ -1,5 +1,6 @@
 
 local api = vim.api
+local cmd = vim.cmd
 
 local multi_mode_tbl = {
     -- NORMAL MAP --
@@ -15,18 +16,20 @@ local multi_mode_tbl = {
         ["K"]  =  "8k",
         ["H"]  =  "^",
         ["L"]  =  "$",
-        ["+"]  =  "J",
-        ["Y"]  =  "<CMD>silent!%y+<CR>",
+        ["+"]  =  "m0J`0",
 
-        ["d"]  =  '"dd',
-        ["y"]  =  '"+y',
-        ["p"]  =  '"+p',
-        ["P"]  =  '"+P',
+        -- ["Y"]  =  "<CMD>silent!%y+<CR>",
 
-        ["dd"]  =  '"ddd',
-        ["yy"]  =  '"+yy',
-        ["dp"]  =  '"dp',
-        ["dP"]  =  '"dP',
+        ["Y"]  =  "\"+y$",
+        ["d"]  =  "\"dd",
+        ["y"]  =  "\"+y",
+        ["p"]  =  "\"+p",
+        ["P"]  =  "\"+P",
+
+        ["dd"]  =  "\"ddd",
+        ["yy"]  =  "\"+yy",
+        ["dp"]  =  "\"dp",
+        ["dP"]  =  "\"dP",
 
         ["<A-k>"]  =  "<C-w>k",
         ["<A-j>"]  =  "<C-w>j",
@@ -50,10 +53,16 @@ local multi_mode_tbl = {
 
         ["<C-u>"]  =  "viw~",
 
+        ["<C-a>"]  =  "ggvG$",
+
         ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
-        ["<LEFT>"]   =  "<CMD>tabprevious<CR>",
-        ["<RIGHT>"]  =  "<CMD>tabnext<CR>",
+        -- ["<LEFT>"]   =  "<CMD>tabprevious<CR>",
+        -- ["<RIGHT>"]  =  "<CMD>tabnext<CR>",
+        -- ["<LEFT>"]   =  "gT",
+        -- ["<RIGHT>"]  =  "gt",
+        ["<LEFT>"]   =  vim.cmd.tabprevious,
+        ["<RIGHT>"]  =  vim.cmd.tabnext,
 
         -- ["<C-,>"]  =  "<CMD>tabprevious<CR>",
         -- ["<C-.>"]  =  "<CMD>tabnext<CR>",
@@ -63,11 +72,12 @@ local multi_mode_tbl = {
 
         -- LEADER MAP --
         [";f"] = "/",
-        [";a"] = "ggvG$",
+        -- [";a"] = "ggvG$",
 
         [";q"] = "<CMD>quit!<CR>",
-        [";w"] = "<CMD>write ++p<CR>", -- dont add !
-        [";r"] = "<CMD>R<CR>",
+        -- [";w"] = "<CMD>write ++p<CR>", -- dont add !
+        [";w"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
+        [";r"] = vim.cmd.R,
 
         [";x"] = function ()
             local opts = {
@@ -78,9 +88,9 @@ local multi_mode_tbl = {
             }
             -- TODO rewrite terminal
             require "plugins.terminal".open_term_float("fish", opts, { title = " [ TERMINAL ] ", title_pos = "right", on_exit = function ()
-                vim.cmd "quit"
+                vim.cmd.quit()
                 for line in io.lines("/tmp/nvim-vifm") do
-                    vim.cmd("tabnew " .. line)
+                    vim.cmd.tabnew(line)
                 end
             end})
         end,
@@ -110,12 +120,12 @@ local multi_mode_tbl = {
         [">"] = ">gv",
         ["<"] = "<gv",
 
-        ["p"] = '"+p',
-        ["P"] = '"+P',
-        ["y"] = '"+y',
-        ["d"] = '"dd',
+        ["p"] = "\"+p",
+        ["P"] = "\"+P",
+        ["y"] = "\"+y",
+        ["d"] = "\"dd",
 
-        [";w"] = "<CMD>write<CR>",
+        [";w"] = "<CMD>write ++p<CR>", -- dont add !
         [";q"] = "<CMD>quit!<CR>",
 
         [";t"] = require "plugins.translate".translate,
@@ -129,8 +139,8 @@ local multi_mode_tbl = {
         -- ["<LEFT>"] = "=gv",
         -- ["<RIGHT>"] = "=gv",
 
-        ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv=gv",
-        ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv=gv",
+        ["<A-k>"] = ":<C-u>silent!'<,'>move-2<CR>gv=gv",
+        ["<A-j>"] = ":<C-u>silent!'<,'>move'>+<CR>gv=gv",
 
         -- ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
         -- ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",

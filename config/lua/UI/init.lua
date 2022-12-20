@@ -10,6 +10,7 @@ local ui_opts = {
     splitbelow     = true,
     splitright     = true,
     termguicolors  = true,
+    wildmenu       = true,
     wrap           = false,
     modeline       = false,
     showmode       = false,
@@ -32,7 +33,7 @@ local ui_opts = {
 
     -- syntax       = "off",
 
-    colorcolumn  = "140",
+    -- colorcolumn  = "140",
     signcolumn   = "auto:1",
     -- shortmess    = "WAICOTFcsao",
     shortmess    = "filmnrwxaoOstTWAIcCqFS",
@@ -60,5 +61,6 @@ vim.defer_fn(function ()
     require "UI.visual-cnt"
     require "UI.search-cnt"
     require "UI.cmdline"
+    -- require "UI.saved"
 end, 200)
 

@@ -1,6 +1,18 @@
 
 local api = vim.api
 
+local function testasetaset()
+
+    print("asdfsadfasdf")
+    print("asdfsadfasdf")
+    print("asdfsadfasdf")
+    print("asdfsadfasdf")
+    print("asdfsadfasdf")
+
+    local function sadf() end
+
+end
+
 local L1 = "%#statusLineL1#[ %Y ] "
 local L2 = "%#statusLineL2#[ %#statusLineL2#%F  %p%% ] "
 local L3 = "%#statusLineL3#%{% &modified ? '%#statusLineR2#' : '%#statusLineL2#%r' %}"

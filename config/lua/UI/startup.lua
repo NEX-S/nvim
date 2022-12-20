@@ -34,7 +34,7 @@ loop.read_start(stdout, vim.schedule_wrap(
                 hl_group = "StartTime"
             })
 
-            vim.keymap.set("n", "<F1>", function ()
+            vim.keymap.set("n", "<C-1>", function ()
                 local opts = {
                     exit_key = "<ESC>",
                     start_ins = false,
@@ -56,7 +56,7 @@ loop.read_start(stdout, vim.schedule_wrap(
                         handle:close()
                     end
                 )
-            end, 5000)
+            end, 3000)
         end
     end)
 )
