@@ -41,7 +41,7 @@ end
 local function prompt_callback (text)
     -- api.nvim_win_hide(M.winid)
     close_float_cmdline()
-    vim.cmd(text)
+    api.nvim_command(text)
 end
 
 function _G._cmdline_complete (findstart, base)
@@ -73,7 +73,7 @@ vim.keymap.set("n", ":", function ()
 
     M.cursor_pos = api.nvim_win_get_cursor(0)
 
-    vim.cmd [[ keeppatterns %s/\s\+$//e ]]
+    api.nvim_command [[ keeppatterns %s/\s\+$//e ]]
 
     local n_lines = api.nvim_buf_line_count(0)
     local last_nonblank = vim.fn.prevnonblank(n_lines)
@@ -87,7 +87,7 @@ vim.keymap.set("n", ":", function ()
     open_float_cmdline({
         border = "none"
     })
-    vim.cmd "startinsert"
+    api.nvim_command "startinsert"
     vim.bo.ft = "CMDLINE"
     api.nvim_buf_set_option(M.bufnr, "buftype", "prompt")
     vim.fn.prompt_setprompt(M.bufnr, "  ")

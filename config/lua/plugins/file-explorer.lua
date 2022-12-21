@@ -12,9 +12,9 @@ for lhs, rhs in pairs(file_action) do
     vim.keymap.set("n", lhs, function ()
         local cfile = vim.fn.expand("<cfile>")
         if cfile:match("/[-_a-zA-Z]") then
-            vim.cmd(rhs .. " " .. cfile)
+            api.nvim_command(rhs .. " " .. cfile)
         else
-            vim.cmd(rhs)
+            api.nvim_command(rhs)
         end
     end)
 end
@@ -31,7 +31,7 @@ local function open_file ()
     api.nvim_win_close(M.winnr, true)
 
     for line in io.lines("/tmp/nvim-vifm") do
-        vim.cmd(M.action .. line)
+        api.nvim_command(M.action .. line)
     end
 
     api.nvim_buf_delete(M.bufnr, { force = true })
@@ -63,7 +63,7 @@ local function VIFM (opts)
     M.bufnr = api.nvim_create_buf(false, true)
     M.winnr = utils.open_win_float(M.bufnr, { border = "none" })
 
-    vim.cmd "startinsert"
+    api.nvim_command "startinsert"
     vim.fn.termopen("vifm " .. dir .. " --choose-files /tmp/nvim-vifm", { on_exit = open_file })
 
     M.action = "tabnew "
@@ -107,7 +107,7 @@ local function FZF (opts)
         "| fzf --preview 'highlight -O ansi {} 2> /dev/null' --preview-window 'right,border-left,nowrap,nofollow,nocycle,' > /tmp/nvim-vifm",
         { on_exit = open_file }
     )
-    vim.cmd "startinsert"
+    api.nvim_command "startinsert"
 
     M.action = "tabnew "
 
@@ -137,7 +137,7 @@ api.nvim_create_user_command("FZF", FZF, {
 --     M.bufnr = api.nvim_create_buf(false, true)
 --     M.winnr = utils.open_win_float(M.bufnr, {})
 --
---     vim.cmd "startinsert"
+--     api.nvim_command "startinsert"
 --     local cmd = [[
 --         function nvim
 --             echo $argv > /tmp/nvim-vifm

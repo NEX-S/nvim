@@ -38,8 +38,8 @@ local function line_comment ()
     if str:gsub("^%s*", '') == "" then
         -- api.nvim_buf_set_text(0, row, 0, row, 0, { cms .. " " })
         -- api.nvim_win_set_cursor(0, { row + 1, #cms + 2 })
-        vim.cmd("normal!S" .. cms .. "  ")
-        vim.cmd "startinsert"
+        api.nvim_command("normal!S" .. cms .. "  ")
+        api.nvim_command "startinsert"
     elseif str:match("^%s*(" .. cms_reg .. ")") == cms then
         str = str:gsub(cms_reg .. "%s?", '', 1)
         set_line(0, row, row + 1, false, { str })

@@ -101,19 +101,19 @@ function _G.nvim_tabline ()
 end
 
 function _G._nvim_tabline_prefix ()
-    vim.cmd.tabnext()
+    api.nvim_command("tabnext")
 end
 
 function _G._nvim_tabline_plus ()
-    vim.cmd.tabnew()
+    api.nvim_command("tabnew")
 end
 
 function _G._nvim_tabline_close ()
     if fn.tabpagenr("$") == 1 then
-        vim.cmd "quitall!"
+        api.nvim_command "quitall!"
         -- os.execute("kitty @ --to unix:/tmp/kitty.sock close-tab")
     else
-        vim.cmd "tabclose"
+        api.nvim_command "tabclose"
     end
 end
 

@@ -17,7 +17,7 @@ local ft_cmd = {
 
 local function run_cmd (args_table)
 
-    vim.cmd "silent write!"
+    api.nvim_command "silent write!"
 
     local ft = args_table.args
 

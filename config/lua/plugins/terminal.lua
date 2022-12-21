@@ -10,11 +10,11 @@ local M = {}
 
 -- VERT TERM --
 function M.open_term_vert (shell_cmd, opts)
-    vim.cmd("vs term://" .. shell_cmd)
-    vim.cmd("vert resize " .. opts.vert_size .. " || set nonu")
+    api.nvim_command("vs term://" .. shell_cmd)
+    api.nvim_command("vert resize " .. opts.vert_size .. " || set nonu")
 
     if opts.start_ins == true then
-        vim.cmd "startinsert"
+        api.nvim_command "startinsert"
     end
 
     vim.keymap.set("n", opts.exit_key, "<CMD>quit!<CR>", { buffer = true })
@@ -70,7 +70,7 @@ function M.open_term_float (shell_cmd, opts, ...)
     end
 
     if opts.start_ins == true then
-        vim.cmd "startinsert"
+        api.nvim_command "startinsert"
     end
 
     vim.keymap.set({ "t", "n" }, opts.exit_key, function ()

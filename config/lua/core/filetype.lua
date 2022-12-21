@@ -25,12 +25,12 @@ local function ft_detect ()
 
     -- vim.bo.ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
     vim.bo.ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
-    -- vim.cmd.setf(vim.bo.ft)
+    -- api.nvim_command.setf(vim.bo.ft)
 
     vim.defer_fn(function()
-        -- vim.cmd "filetype plugin on"
-        -- vim.cmd "filetype off"
-        pcall(vim.cmd, "luafile ~/nvim/config/after/ftplugin/" .. vim.bo.ft .. ".lua")
+        -- api.nvim_command "filetype plugin on"
+        -- api.nvim_command "filetype off"
+        pcall(api.nvim_command, "luafile ~/nvim/config/after/ftplugin/" .. vim.bo.ft .. ".lua")
     end, 150)
 end
 

@@ -66,8 +66,8 @@ local multi_mode_tbl = {
 
         ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
-        ["<LEFT>"]   =  vim.cmd.tabprevious,
-        ["<RIGHT>"]  =  vim.cmd.tabnext,
+        ["<LEFT>"]   =  "gT",
+        ["<RIGHT>"]  =  "gt",
 
         ["<TAB>"]   = "<C-w><C-w>",
         ["<S-TAB>"] = "<C-w>p",

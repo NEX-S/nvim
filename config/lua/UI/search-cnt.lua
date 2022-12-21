@@ -38,17 +38,17 @@ end
 
 local search_keymap = {
     ["<ESC>"] = function ()
-        vim.cmd "set hls!"
+        api.nvim_command "set hls!"
         if _G.search_virt_ns_id ~= nil then
             api.nvim_buf_del_extmark(0, _G.search_virt_ns_id, 1)
         end
     end,
     ["n"] = function ()
-        pcall(vim.cmd, "normal!n")
+        pcall(api.nvim_command, "normal!n")
         search_cnt_virt()
     end,
     ["N"] = function ()
-        pcall(vim.cmd, "normal!N")
+        pcall(api.nvim_command, "normal!N")
         search_cnt_virt()
     end,
 }

@@ -63,7 +63,7 @@ M.set_opts(opts_num)
 M.set_opts(opts_str)
 
 vim.defer_fn(function ()
-    -- vim.cmd "filetype on"
+    -- api.nvim_command "filetype on"
     opt.undofile = true -- Bad Startup performance
 end, 300)
 

@@ -4,7 +4,7 @@ local api = vim.api
 local utils = require "utils"
 
 function CHECK_ASM ()
-    vim.cmd "silent write!"
+    api.nvim_command "silent write!"
 
     local expand = vim.fn.expand
     local fileName      = expand("%:t")
@@ -17,7 +17,7 @@ function CHECK_ASM ()
         vim.schedule_wrap (
             function ()
                 handle:close()
-                vim.cmd("vsplit ./bin/" .. fileNameNoExt .. ".asm || vert resize 60")
+                api.nvim_command("vsplit ./bin/" .. fileNameNoExt .. ".asm || vert resize 60")
             end
         )
     )
@@ -28,7 +28,7 @@ function LLDB_DEBUG ()
 
     local term  = require "plugins.terminal"
 
-    vim.cmd "silent write!"
+    api.nvim_command "silent write!"
 
     local expand = vim.fn.expand
     local fileName      = expand("%:t")
