@@ -6,7 +6,6 @@ local M = {}
 local opts_bool = {
     smartcase      = true,
     ignorecase     = true,
-    incsearch      = true,
     hidden         = true,
     magic          = true,
     smarttab       = true,

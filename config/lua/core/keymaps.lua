@@ -47,16 +47,6 @@ local multi_mode_tbl = {
 
         ["<F1>"]  =  "<CMD>source %<CR>",
 
-        ["<C-=>"]  =  function ()
-
-            local view = vim.fn.winsaveview()
-            vim.cmd "normal!gg=G"
-            vim.fn.winrestview(view)
-
-            -- local c_pos = api.nvim_win_get_cursor(0)
-            -- api.nvim_win_set_cursor(0, c_pos)
-        end,
-
         ["<C-i>"]  =  "<C-a>",
         ["<C-d>"]  =  "<C-x>",
 
@@ -79,26 +69,6 @@ local multi_mode_tbl = {
         [";q"] = "<CMD>quit!<CR>",
         -- [";w"] = "<CMD>write ++p<CR>", -- dont add !
         [";w"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
-        [";r"] = vim.cmd.R,
-
-        [";x"] = function ()
-            local opts = {
-                start_ins = true,
-                resume    = true,
-                term_name = "fish_shell",
-                exit_key  = "<ESC>",
-            }
-            -- TODO rewrite terminal
-            require "plugins.terminal".open_term_float("fish", opts, { title = " [ TERMINAL ] ", title_pos = "right", on_exit = function ()
-                vim.cmd.quit()
-                for line in io.lines("/tmp/nvim-vifm") do
-                    vim.cmd.tabnew(line)
-                end
-            end})
-        end,
-
-
-        [";t"] = require "plugins.translate".translate,
 
         -- GX MAP --
 
@@ -130,7 +100,6 @@ local multi_mode_tbl = {
         [";w"] = "<CMD>write ++p<CR>", -- dont add !
         [";q"] = "<CMD>quit!<CR>",
 
-        [";t"] = require "plugins.translate".translate,
 
         ["aq"] = 'a"',
         ["iq"] = 'i"',
@@ -204,8 +173,47 @@ local mode_map = {
 
 for mode, mode_tbl in pairs(multi_mode_tbl) do
     for lhs, rhs in pairs(mode_tbl) do
+        -- TODO 
+        -- api.nvim_set_keymap(mode_map[mode], lhs, rhs, { silent = true })
         vim.keymap.set(mode_map[mode], lhs, rhs, { silent = true })
     end
+end
+
+local function_map = {
+    ["<C-=>"]  =  function ()
+
+        local view = vim.fn.winsaveview()
+        vim.cmd "normal!gg=G"
+        vim.fn.winrestview(view)
+
+        -- local c_pos = api.nvim_win_get_cursor(0)
+        -- api.nvim_win_set_cursor(0, c_pos)
+    end,
+
+    [";r"] = vim.cmd.R,
+
+    [";x"] = function ()
+        local opts = {
+            start_ins = true,
+            resume    = true,
+            term_name = "fish_shell",
+            exit_key  = "<ESC>",
+        }
+        -- TODO rewrite terminal
+        require "plugins.terminal".open_term_float("fish", opts, { title = " [ TERMINAL ] ", title_pos = "right", on_exit = function ()
+            vim.cmd.quit()
+            for line in io.lines("/tmp/nvim-vifm") do
+                vim.cmd.tabnew(line)
+            end
+        end})
+    end,
+
+    [";t"] = require "plugins.translate".translate,
+}
+
+
+for lhs, rhs in pairs(function_map) do
+    vim.keymap.set("n", lhs, rhs, { silent = true })
 end
 
 -- api.nvim_create_user_command("X", function() vim.cmd "normal!<C-w>H" end, {})

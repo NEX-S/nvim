@@ -5,6 +5,7 @@ local ui_opts = {
     cursorline     = true,
     title          = true,
     hlsearch       = true,
+    incsearch      = true,
     list           = true,
     lazyredraw     = true,
     splitbelow     = true,

@@ -60,6 +60,8 @@ end, 19)
 require "colorizer".setup({ "*" }, { mode = "foreground" })
 
 -- USE LOCAL VAR!!!
--- VIML SPEED : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx
--- VIMFUNC SPEED : vim.call("xxx") = vim.fn.xxx = vim.fn['xxx'] = api.nvim_call_function
--- KEYMAP SET : gt < vim.cmd.xxx < <cmd>xxx<CR>
+-- VIML SPEED    : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx
+-- VIMFUNC SPEED : vim.call("xxx")  = vim.fn.xxx = vim.fn['xxx'] = api.nvim_call_function
+-- KEYMAP rhs    : gt < vim.cmd.xxx < <cmd>xxx<CR>
+-- OPTION set    : vim.o.xxx < map + true < api.nvim_command < map + ipairs
+-- KEYMAP set    : api.nvim_set_keymap + table
