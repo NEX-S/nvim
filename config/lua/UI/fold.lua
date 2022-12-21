@@ -15,6 +15,8 @@ local fold_opts = {
     foldtext     = "v:lua._fold_text()",
 }
 
+require "core.options".set_opts(fold_opts)
+
 function _G._fold_text ()
     local fold_spos = vim.v.foldstart
     -- local s_str = vim.fn.getline(fold_spos)

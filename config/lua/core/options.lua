@@ -1,6 +1,8 @@
 
 local opt = vim.o
 
+local M = {}
+
 local opts_bool = {
     smartcase      = true,
     ignorecase     = true,
@@ -49,19 +51,20 @@ local opts_str = {
     -- spelloptions = "camel",
 }
 
-local function set_opt (table)
+function M.set_opts (table)
     local opt = vim.o
     for key, value in pairs(table) do
         opt[key] = value
     end
 end
 
-set_opt(opts_bool)
-set_opt(opts_num)
-set_opt(opts_str)
+M.set_opts(opts_bool)
+M.set_opts(opts_num)
+M.set_opts(opts_str)
 
 vim.defer_fn(function ()
     -- vim.cmd "filetype on"
     opt.undofile = true -- Bad Startup performance
 end, 300)
 
+return M

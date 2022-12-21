@@ -12,11 +12,11 @@ local multi_mode_tbl = {
         ["U"]  =  "<C-r>",
         [">"]  =  ">>",
         ["<"]  =  "<<",
-        -- ["q"]  =  "<CMD>silent!normal!za | <CR>",
-        ["q"]  =  function ()
-            vim.cmd "silent!normal!za"
-            vim.cmd.redrawstatus()
-        end,
+        ["q"]  =  "za",
+        -- ["q"]  =  function ()
+        --     vim.cmd "silent!normal!za"
+        --     vim.cmd.redrawstatus()
+        -- end,
         ["K"]  =  "8k",
         ["H"]  =  "^",
         ["L"]  =  "$",
