@@ -30,7 +30,9 @@ local basic_hl = {
 
     ErrorMsg     =  { bg = "NONE",    fg = "#666666" },
 
-    StartTime       = { bg = "NONE",    fg = "#C53B82" },
+    StartTime    = { bg = "NONE",    fg = "#C53B82" },
+
+    Folded       = { bg = "#232323", fg = "#BB9AF7", bold = true },
 }
 
 local builtin_syntax_hl = {

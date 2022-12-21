@@ -58,6 +58,7 @@ require "UI.tabline"
 require "UI.startup"
 
 vim.defer_fn(function ()
+    require "UI.fold"
     require "UI.visual-cnt"
     require "UI.search-cnt"
     require "UI.cmdline"

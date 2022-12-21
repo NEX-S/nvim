@@ -19,13 +19,17 @@ local function search_cnt_virt (offset)
     local current = search_info.current + 0
     local incomplete = search_info.incomplete
 
-    if incomplete == 0 then
+    if total ~= 0 and incomplete == 0 then
         local search_virt = "[ " .. current + offset .. " / " .. total .. " ] "
 
         _G.search_virt_ns_id = utils.set_virt_buf (0, "search_count_ns", search_virt,
             { line = vim.fn.getpos("w0")[2], col = 0, pos = "right_align", hl_group = "SearchCnt" }
         )
-    elseif incomplete == 2 then
+    elseif total == 0 and incomplete == 0 then
+        _G.search_virt_ns_id = utils.set_virt_buf (0, "search_count_ns", "[ 0 / 0 ] ",
+            { line = vim.fn.getpos("w0")[2], col = 0, pos = "right_align", hl_group = "SearchCnt" }
+        )
+    elseif total ~= 0 and incomplete == 2 then
         _G.search_virt_ns_id = utils.set_virt_buf (0, "search_count_ns", "[" .. current .. " / MAX ] ",
             { line = vim.fn.getpos("w0")[2], col = 0, pos = "right_align", hl_group = "SearchCnt" }
         )

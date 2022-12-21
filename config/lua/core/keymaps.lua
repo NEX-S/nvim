@@ -12,7 +12,11 @@ local multi_mode_tbl = {
         ["U"]  =  "<C-r>",
         [">"]  =  ">>",
         ["<"]  =  "<<",
-        ["q"]  =  "<NOP>",
+        -- ["q"]  =  "<CMD>silent!normal!za | <CR>",
+        ["q"]  =  function ()
+            vim.cmd "silent!normal!za"
+            vim.cmd.redrawstatus()
+        end,
         ["K"]  =  "8k",
         ["H"]  =  "^",
         ["L"]  =  "$",
@@ -36,6 +40,11 @@ local multi_mode_tbl = {
         ["<A-h>"]  =  "<C-w>h",
         ["<A-l>"]  =  "<C-w>l",
 
+        ["<A-LEFT>"]   =  "<C-w>H",
+        ["<A-DOWN>"]   =  "<C-w>J",
+        ["<A-UP>"]     =  "<C-w>K",
+        ["<A-RIGHT>"]  =  "<C-w>L",
+
         ["<F1>"]  =  "<CMD>source %<CR>",
 
         ["<C-=>"]  =  function ()
@@ -57,15 +66,8 @@ local multi_mode_tbl = {
 
         ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
-        -- ["<LEFT>"]   =  "<CMD>tabprevious<CR>",
-        -- ["<RIGHT>"]  =  "<CMD>tabnext<CR>",
-        -- ["<LEFT>"]   =  "gT",
-        -- ["<RIGHT>"]  =  "gt",
         ["<LEFT>"]   =  vim.cmd.tabprevious,
         ["<RIGHT>"]  =  vim.cmd.tabnext,
-
-        -- ["<C-,>"]  =  "<CMD>tabprevious<CR>",
-        -- ["<C-.>"]  =  "<CMD>tabnext<CR>",
 
         ["<TAB>"]   = "<C-w><C-w>",
         ["<S-TAB>"] = "<C-w>p",
@@ -205,3 +207,8 @@ for mode, mode_tbl in pairs(multi_mode_tbl) do
         vim.keymap.set(mode_map[mode], lhs, rhs, { silent = true })
     end
 end
+
+-- api.nvim_create_user_command("X", function() vim.cmd "normal!<C-w>H" end, {})
+-- api.nvim_create_user_command("J", function() vim.cmd "normal!<C-w>J" end, {})
+-- api.nvim_create_user_command("K", function() vim.cmd "normal!<C-w>K" end, {})
+-- api.nvim_create_user_command("L", function() vim.cmd "normal!<C-w>L" end, {})

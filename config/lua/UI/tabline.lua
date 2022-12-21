@@ -16,15 +16,20 @@ function _G.get_ft_icon (status, tabnr)
         terminal = "%#LuaIconI# T %#InactiveTab#",
     }
 
-    --  TODO: get tab icon is so fuctking hard :O
-    local bufnr_list = vim.fn.tabpagebuflist(tabnr)
-
     local ft = nil
-    for i = 1, #bufnr_list do
-        ft = vim.fn.getbufvar(bufnr_list[i], "&ft")
+    if fn.tabpagenr("$") == 1 then
+        ft = vim.bo.ft
+    else
+        --  TODO: get tab icon is so fuctking hard :O
+        local bufnr_list = vim.fn.tabpagebuflist(tabnr)
+
+        for i = 1, #bufnr_list do
+            ft = vim.fn.getbufvar(bufnr_list[i], "&ft")
+        end
     end
 
-    return status == "a" and (ft_icons_a[ft] or "") or (ft_icons_i[ft] or "") or ""
+
+    return status == "a" and (ft_icons_a[ft] or "") or (ft_icons_i[ft] or "") or "  "
 end
 
 local FileTypeIconHL = {
@@ -92,7 +97,7 @@ function _G.nvim_tabline ()
     end
 
     -- return tabLine .. "%T %#TabLine# %= %#TabLineX# %1X%X "
-    return tabLine .. "%T%2@v:lua._nvim_tabline_plus@+ %#TabLine# %= %#TabLineX#%3@v:lua._nvim_tabline_close@  %X"
+    return tabLine .. "%T%2@v:lua._nvim_tabline_plus@%#TabNew#+ %#TabLine# %= %#TabLineX#%3@v:lua._nvim_tabline_close@  %X"
 end
 
 function _G._nvim_tabline_prefix ()
@@ -116,23 +121,24 @@ opt.tabline = "%!v:lua.nvim_tabline()"
 
 local TabLineHL = {
 
-    TabLine   = { bg = "#242424", fg = "#666666" },
-    TabLineP  = { bg = "#242424", fg = "#C53B82" },
-    TabLineX  = { bg = "#242424", fg = "#C53B82" },
+    TabLine   = { bg = "#111111", fg = "#666666" },
+    TabLineP  = { bg = "#111111", fg = "#C53B82" },
+    TabLineX  = { bg = "#111111", fg = "#C53B82" },
+    TabNew    = { bg = "#111111", fg = "#202020" },
 
     InactiveTab     = { bg = "#202020", fg = "#444444", italic =  true },
     InactiveTabX    = { bg = "#202020", fg = "#444444" },
     InactiveTabMod  = { bg = "#202020", fg = "#444444" },
 
-    InactiveTabSepL  = { bg = "#242424", fg = "#202020" },
-    InactiveTabSepR  = { bg = "#242424", fg = "#202020" },
+    InactiveTabSepL  = { bg = "#111111", fg = "#202020" },
+    InactiveTabSepR  = { bg = "#111111", fg = "#202020" },
 
     ActiveTab      = { bg = "#232323", fg = "#777777", bold = true, italic = true },
     ActiveTabX     = { bg = "#232323", fg = "#777777" },
     ActiveTabMod   = { bg = "#232323", fg = "#AFC460" },
 
-    ActiveTabSepL  = { bg = "#242424", fg = "#232323" },
-    ActiveTabSepR  = { bg = "#242424", fg = "#232323" },
+    ActiveTabSepL  = { bg = "#111111", fg = "#232323" },
+    ActiveTabSepR  = { bg = "#111111", fg = "#232323" },
 }
 
 for key, value in pairs(TabLineHL) do

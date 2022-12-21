@@ -64,7 +64,7 @@ api.nvim_create_autocmd("CmdlineEnter", {
 -- })
 
 -- RESUME CURSOR
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "*",
     callback = function ()
         local fn = vim.fn

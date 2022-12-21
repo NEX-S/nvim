@@ -1,4 +1,5 @@
---     __  ___   _________  __ ____  ____________________________   -- / / / / | / / ____/ |/ // __ \/ ____/ ____/_  __/ ____/ __ \  --
+--     __  ___   _________  __ ____  ____________________________   --
+--    / / / / | / / ____/ |/ // __ \/ ____/ ____/_  __/ ____/ __ \  --
 --   / / / /  |/ / __/  |   // /_/ / __/ / /     / / / __/ / / / /  --
 --  / /_/ / /|  / /___ /   |/ ____/ /___/ /___  / / / /___/ /_/ /   --
 --  \____/_/ |_/_____//_/|_/_/   /_____/\____/ /_/ /_____/_____/    --
@@ -6,8 +7,8 @@
 
 -- TODO: h operatorfunc
 
-vim.cmd.packadd("impatient.nvim")
-require "impatient"
+vim.cmd.packadd "impatient.nvim"
+require         "impatient"
 
 require "UI"                -- ~/.config/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
@@ -38,22 +39,14 @@ vim.defer_fn(function ()
     ]]
 
     require "matchparen".setup()
-
-    vim.cmd [[
-        " set foldmethod=indent
-        " set foldexpr=nvim_treesitter#foldexpr()
-        " set nofoldenable
-    ]]
-
 end, 106)
 
 vim.defer_fn(function ()
 
     -- vim.o.shadafile = "~/.cache/nvim/shada"
     -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
-
     require "plug-manager.treesitter"  -- ~/.config/nvim/lua/plug-manager/treesitter.lua
 
 end, 20)
 
--- require "colorizer".setup({ "*" }, { mode = "foreground" })
+require "colorizer".setup({ "*" }, { mode = "foreground" })
