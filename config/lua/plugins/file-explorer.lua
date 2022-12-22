@@ -1,24 +1,6 @@
 local api = vim.api
 local utils = require "utils"
 
-local file_action = {
-    [";v"] = "vsp",
-    [";s"] = "sp",
-    ["gf"] = "tabedit",
-    ["<C-s>"] = "vsp",
-}
-
-for lhs, rhs in pairs(file_action) do
-    vim.keymap.set("n", lhs, function ()
-        local cfile = vim.fn.expand("<cfile>")
-        if cfile:match("/[-_a-zA-Z]") then
-            api.nvim_command(rhs .. " " .. cfile)
-        else
-            api.nvim_command(rhs)
-        end
-    end)
-end
-
 local M = {
     bufnr = nil,
     winnr = nil,

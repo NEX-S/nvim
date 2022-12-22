@@ -209,6 +209,7 @@ local function_map = {
     end,
 
     [";t"] = require "plugins.translate".translate,
+    -- [";q"] = _G._bufline_close,
 }
 
 
@@ -220,4 +221,22 @@ end
 -- api.nvim_create_user_command("J", function() vim.cmd "normal!<C-w>J" end, {})
 -- api.nvim_create_user_command("K", function() vim.cmd "normal!<C-w>K" end, {})
 -- api.nvim_create_user_command("L", function() vim.cmd "normal!<C-w>L" end, {})
+
+local file_action = {
+    [";v"] = "vsp",
+    [";s"] = "sp",
+    ["gf"] = "tabnew",
+    ["<C-s>"] = "vsp",
+}
+
+for lhs, rhs in pairs(file_action) do
+    vim.keymap.set("n", lhs, function ()
+        local cfile = vim.fn.expand("<cfile>")
+        if cfile:match("/[-_a-zA-Z]") then
+            api.nvim_command(rhs .. " " .. cfile)
+        else
+            api.nvim_command(rhs)
+        end
+    end)
+end
 

@@ -36,19 +36,21 @@ function _G._bufline_create ()
     api.nvim_command("tabnew")
 end
 
-function _G._bufline_change (bufnr)
+function _G._bufline_switch (bufnr)
     api.nvim_command("buffer " .. bufnr)
 end
 
 function _G._bufline_close (bufnr)
     local bufcnt = 0
-    for bufnr = 1, fn.bufnr("$") do
-        if fn.buflisted(bufnr) == 1 then
+
+    for i = 1, fn.bufnr("$") do
+        if fn.buflisted(i) == 1 then
             bufcnt = bufcnt + 1
         end
     end
 
     if bufcnt > 1 then
+        local bufnr = bufnr or api.nvim_get_current_buf()
         pcall(api.nvim_command, "bd!" .. bufnr)
         api.nvim_command("redrawtabline")
     else
@@ -66,7 +68,6 @@ local function buf_ft_icon (bufnr)
     local ft = api.nvim_buf_get_option(bufnr, "ft")
 
     return ft_icons[ft] or "%#InactiveBufName#  "
-
 end
 
 local function buf_mod_status (bufnr)
@@ -90,7 +91,7 @@ local function GenTabs(bufnr, active)
         ret = ret:gsub("Inactive", "Active")
     end
 
-    return "%" .. bufnr .. "@v:lua._bufline_change@" .. ret
+    return "%" .. bufnr .. "@v:lua._bufline_switch@" .. ret
 end
 
 function _G.NVIM_BUFLINE ()
@@ -109,7 +110,7 @@ function _G.NVIM_BUFLINE ()
     end
 
     local bufnew   = "%#BufLineN#%@v:lua._bufline_create@+ %= %<"
-    local bufclose = "%#BufLineX#%" .. current .. "@v:lua._bufline_close@  %X"
+    local bufclose = "%#BufLineX#%" .. current .. "@v:lua._bufline_close@  "
 
     return bufline .. bufnew .. bufclose
 end

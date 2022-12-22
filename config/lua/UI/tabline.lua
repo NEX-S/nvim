@@ -1,146 +1,111 @@
 
 local fn  = vim.fn
-
 local api = vim.api
-local opt = vim.o
 
-opt.showtabline = 2
+require "UI.x-color".set_hl {
 
-function _G.get_ft_icon (status, tabnr)
-    local ft_icons_a = {
-        lua  = "%#LuaIconA#  %#ActiveTab#",
-        terminal = "%#LuaIconA# T %#ActiveTab#",
-    }
-    local ft_icons_i = {
-        lua = "%#LuaIconI#  %#InactiveTab#",
-        terminal = "%#LuaIconI# T %#InactiveTab#",
-    }
+    TabLine  = { bg = "#111111", fg = "#ffffff" },
+    TabLineP = { bg = "#111111", fg = "#C53B82" },
+    TabLineN = { bg = "#111111", fg = "#424242" },
+    TabLineX = { bg = "#111111", fg = "#C53B82" },
 
-    local ft = nil
-    if fn.tabpagenr("$") == 1 then
-        ft = vim.bo.ft
-    else
-        --  TODO: get tab icon is so fuctking hard :O
-        local bufnr_list = vim.fn.tabpagebuflist(tabnr)
+    ActiveTabSepL  = { bg = "#111111", fg = "#252525" },
+    ActiveTabName  = { bg = "#252525", fg = "#777777", italic = true },
+    ActiveTabX     = { bg = "#252525", fg = "#606060" },
+    ActiveTabMod   = { bg = "#252525", fg = "#AFC460" },
+    ActiveTabSepR  = { bg = "#111111", fg = "#252525" },
+    ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
 
-        for i = 1, #bufnr_list do
-            ft = vim.fn.getbufvar(bufnr_list[i], "&ft")
-        end
-    end
-
-
-    return status == "a" and (ft_icons_a[ft] or "") or (ft_icons_i[ft] or "") or "  "
-end
-
-local FileTypeIconHL = {
-    LuaIconA = { bg = "#232323", fg = "#51a0cf" },
-    LuaIconI = { bg = "#202020", fg = "#333333" },
+    InactiveTabSepL  = { bg = "#111111", fg = "#212121" },
+    InactiveTabName  = { bg = "#202020", fg = "#444444", italic = true },
+    InactiveTabX     = { bg = "#202020", fg = "#444444" },
+    InactiveTabMod   = { bg = "#202020", fg = "#444444" },
+    InactiveTabSepR  = { bg = "#111111", fg = "#212121" },
+    InactiveFileIcon = { bg = "#202020", fg = "#444444" },
 }
 
-for key, value in pairs(FileTypeIconHL) do
-    api.nvim_set_hl(0, key, value)
-end
-
-local function GenInactiveTab (tabnr)
-    local tabwinnr   = fn.tabpagewinnr(tabnr)
-    local tabbuflist = fn.tabpagebuflist(tabnr)
-    local tabname    = api.nvim_buf_get_name(tabbuflist[tabwinnr]):gsub(".*/", '')
-
-    local InactiveTabIndicator = "%{% v:lua._tabline_get_mod_status(" .. tabnr .. ") == 1 ? '%#InactiveTabMod# ' : '%#InactiveTabX# %" .. tabnr .."X%X' %}"
-    -- local InactiveTabName = tabname == "" and "UNKNOWN " or tabname:gsub(".*/", '') .. "%#InactiveTabX# %" .. tabnr .. "X%X"
-    local InactiveTabName = (tabname == "" and "  [ UNKNOWN ] " or _G.get_ft_icon("i", tabnr) .. tabname:gsub(".*/", '') .. InactiveTabIndicator)
-
-    local InactiveTabContent = "%#InactiveTab#%" .. tabnr .. "T" .. InactiveTabName
-    -- return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
-    return "%#InactiveTabSepL#" .. InactiveTabContent .. " %#InactiveTabSepR#"
-end
-
-local function GenActiveTab (tabnr)
-    local ActiveTabFileName  = api.nvim_buf_get_name(0)
-    local ActiveTabIndicator = "%{% v:lua._tabline_get_mod_status(" .. tabnr .. ") == 1 ? '%#ActiveTabMod# ' : '%#ActiveTabX# %1@v:lua._nvim_tabline_close@𝘹%X' %}"
-
-    ActiveTabFileName = ActiveTabFileName == "" and "  [ UNKNOWN ] " or "%{% v:lua.get_ft_icon('a', " .. tabnr .. ") %}" .. ActiveTabFileName:gsub(".*/", '') .. ActiveTabIndicator
-
-    local ActiveTabContent   = "%#ActiveTab#" .. ActiveTabFileName
-
-    -- return "%#ActiveTabSepL# " .. ActiveTabContent .. " %#ActiveTabSepR#"
-    return "%#ActiveTabSepL#" .. ActiveTabContent .. " %#ActiveTabSepR#"
-end
-
-function _G._tabline_get_mod_status (tabnr)
-    local bufnr_list = vim.fn.tabpagebuflist(tabnr)
-    for i = 1, #bufnr_list do
-        if vim.fn.getbufvar(bufnr_list[i], '&mod') == 1 then
-            return 1
-        end
-    end
-    return 0
-end
-
-
-function _G.nvim_tabline ()
-
-    local tabLine = "%#TabLineP#%3@v:lua._nvim_tabline_prefix@  "
-
-    local tabtotal = fn.tabpagenr("$")
-
-    if tabtotal == 1 then
-        tabLine = tabLine .. GenActiveTab(1)
-    else
-        for i = 1, tabtotal do
-            if i == api.nvim_tabpage_get_number(0) then
-                tabLine = tabLine .. GenActiveTab(i)
-            else
-                tabLine = tabLine .. GenInactiveTab(i)
-            end
-        end
-    end
-
-    -- return tabLine .. "%T %#TabLine# %= %#TabLineX# %1X%X "
-    return tabLine .. "%T%2@v:lua._nvim_tabline_plus@%#TabNew#+ %#TabLine# %= %#TabLineX#%3@v:lua._nvim_tabline_close@  %X"
-end
-
-function _G._nvim_tabline_prefix ()
+function _G._tabline_prefix ()
     api.nvim_command("tabnext")
 end
 
-function _G._nvim_tabline_plus ()
+function _G._tabline_create ()
     api.nvim_command("tabnew")
 end
 
-function _G._nvim_tabline_close ()
+-- function _G._tabline_switch (tabnr)
+--     api.nvim_command("tab " .. tabnr)
+-- end
+
+function _G._tabline_close (tabnr)
     if fn.tabpagenr("$") == 1 then
-        api.nvim_command "quitall!"
-        -- os.execute("kitty @ --to unix:/tmp/kitty.sock close-tab")
+        api.nvim_command("quitall!")
     else
-        api.nvim_command "tabclose"
+        api.nvim_command("tabclose!" .. tabnr)
     end
 end
 
-opt.tabline = "%!v:lua.nvim_tabline()"
 
-local TabLineHL = {
+local function tab_ft_icon (tabnr, buflist)
 
-    TabLine   = { bg = "#111111", fg = "#666666" },
-    TabLineP  = { bg = "#111111", fg = "#C53B82" },
-    TabLineX  = { bg = "#111111", fg = "#C53B82" },
-    TabNew    = { bg = "#111111", fg = "#202020" },
+    local ft_icons = {
+        lua  = "  ",
+    }
 
-    InactiveTab     = { bg = "#202020", fg = "#444444", italic =  true },
-    InactiveTabX    = { bg = "#202020", fg = "#444444" },
-    InactiveTabMod  = { bg = "#202020", fg = "#444444" },
+    local ft = api.nvim_buf_get_option(buflist[1], "filetype")
 
-    InactiveTabSepL  = { bg = "#111111", fg = "#202020" },
-    InactiveTabSepR  = { bg = "#111111", fg = "#202020" },
-
-    ActiveTab      = { bg = "#232323", fg = "#777777", bold = true, italic = true },
-    ActiveTabX     = { bg = "#232323", fg = "#777777" },
-    ActiveTabMod   = { bg = "#232323", fg = "#AFC460" },
-
-    ActiveTabSepL  = { bg = "#111111", fg = "#232323" },
-    ActiveTabSepR  = { bg = "#111111", fg = "#232323" },
-}
-
-for key, value in pairs(TabLineHL) do
-    api.nvim_set_hl(0, key, value)
+    return "%#InactiveFileIcon#" .. ( ft_icons[ft] or "  " )
 end
+
+local function tab_mod_status (tabnr, buflist)
+
+    for i = 1, #buflist do
+        if api.nvim_buf_get_option(buflist[i], "mod") == true then
+            return  "%#InactiveTabMod#  "
+        end
+    end
+
+    return "%#InactiveTabX#%" .. tabnr .. "@v:lua._tabline_close@  %X"
+end
+
+local function GenTabs(tabnr, active)
+
+    local buflist   = fn.tabpagebuflist(tabnr)
+
+    local tabicon   = tab_ft_icon   (tabnr, buflist)
+    local modstatus = tab_mod_status(tabnr, buflist)
+
+    local tabname   = api.nvim_buf_get_name(buflist[1])
+    tabname = "%#InactiveTabName#" .. ( tabname ~= "" and tabname:gsub(".*/", "") or "UNKNOWN" )
+
+    local res = "%#InactiveTabSepL#" .. tabicon .. tabname .. modstatus.. "%#InactiveTabSepR#"
+
+    if active == true then
+        res = res:gsub("Inactive", "Active")
+    end
+
+    return "%" .. tabnr .. "T" .. res
+end
+
+function _G.NVIM_TABLINE ()
+
+    local tabline = "%#TabLineP#%@v:lua._tabline_prefix@  "
+    -- local current = api.nvim_tabpage_get_number(0)
+
+    for tabnr = 1, fn.tabpagenr("$") do
+    -- for tabnr = 1, api.nvim_get_current_tabpage() do
+        -- if tabnr == api.nvim_get_current_tabpage() then
+        if tabnr == api.nvim_tabpage_get_number(0) then
+            tabline = tabline .. GenTabs(tabnr, true)
+        else
+            tabline = tabline .. GenTabs(tabnr, false)
+        end
+    end
+
+    local tabnew = "%#TabLineN#%@v:lua._tabline_create@+ %= %<"
+
+    return tabline .. tabnew .. "%#TabLineX#%@v:lua._tabline_close@  "
+end
+
+api.nvim_set_option("showtabline", 2)
+api.nvim_set_option("tabline",  "%!v:lua.NVIM_TABLINE()")
+

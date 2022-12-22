@@ -56,8 +56,7 @@ end
 require "UI.x-color" -- ~/.config/nvim/lua/UI/x-color.lua
 
 require "UI.statusline"
--- require "UI.tabline"
-require "UI.bufline"
+require "UI.tabline"
 require "UI.startup"
 
 vim.defer_fn(function ()
