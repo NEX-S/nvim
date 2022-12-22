@@ -173,9 +173,9 @@ local mode_map = {
 
 for mode, mode_tbl in pairs(multi_mode_tbl) do
     for lhs, rhs in pairs(mode_tbl) do
-        -- TODO 
-        -- api.nvim_set_keymap(mode_map[mode], lhs, rhs, { silent = true })
-        vim.keymap.set(mode_map[mode], lhs, rhs, { silent = true })
+        -- TODO
+        api.nvim_set_keymap(mode_map[mode], lhs, rhs, { noremap = true, silent = false })
+        -- vim.keymap.set(mode_map[mode], lhs, rhs, { silent = true })
     end
 end
 
@@ -220,3 +220,4 @@ end
 -- api.nvim_create_user_command("J", function() vim.cmd "normal!<C-w>J" end, {})
 -- api.nvim_create_user_command("K", function() vim.cmd "normal!<C-w>K" end, {})
 -- api.nvim_create_user_command("L", function() vim.cmd "normal!<C-w>L" end, {})
+

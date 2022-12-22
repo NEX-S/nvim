@@ -6,6 +6,7 @@
 --                                                                  --
 
 -- TODO: h operatorfunc
+-- TODO: bufferline -> enew
 
 local api = vim.api
 
@@ -60,8 +61,18 @@ end, 19)
 require "colorizer".setup({ "*" }, { mode = "foreground" })
 
 -- USE LOCAL VAR!!!
--- VIML SPEED    : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx
+-- VIML SPEED    : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx < others
 -- VIMFUNC SPEED : vim.call("xxx")  = vim.fn.xxx = vim.fn['xxx'] = api.nvim_call_function
 -- KEYMAP rhs    : gt < vim.cmd.xxx < <cmd>xxx<CR>
 -- OPTION set    : vim.o.xxx < map + true < api.nvim_command < map + ipairs
--- KEYMAP set    : api.nvim_set_keymap + table
+-- KEYMAP set    : api.nvim_set_keymap + table !!! termcode can't use in nvim_set_keymap
+-- var           : api.nvim_buf_get_option < vim.bo.xxx
+
+-- vim.keymap.set("n", ";d", function ()
+--     local time = os.clock()
+-- 
+--     for i = 1, 1000000 do
+--     end
+-- 
+--     print((os.clock() - time) * 100)
+-- end)

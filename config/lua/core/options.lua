@@ -1,9 +1,7 @@
 
-local opt = vim.o
-
 local M = {}
 
-local opts_bool = {
+local bool_opts = {
     smartcase      = true,
     ignorecase     = true,
     hidden         = true,
@@ -23,7 +21,7 @@ local opts_bool = {
     loadplugins   = false,
 }
 
-local opts_num = {
+local num_opts = {
     tabstop       = 4,
     softtabstop   = 4,
     shiftwidth    = 4,
@@ -33,7 +31,7 @@ local opts_num = {
     -- updatetime    = 4000,
 }
 
-local opts_str = {
+local str_opts = {
 
     shell           = "/bin/bash",
     mouse           = "a",
@@ -51,19 +49,19 @@ local opts_str = {
 }
 
 function M.set_opts (table)
-    local opt = vim.o
+    local api = vim.api
     for key, value in pairs(table) do
-        opt[key] = value
+        api.nvim_set_option_value(key, value, {})
     end
 end
 
-M.set_opts(opts_bool)
-M.set_opts(opts_num)
-M.set_opts(opts_str)
+M.set_opts(bool_opts)
+M.set_opts(num_opts)
+M.set_opts(str_opts)
 
 vim.defer_fn(function ()
     -- api.nvim_command "filetype on"
-    opt.undofile = true -- Bad Startup performance
+    vim.o.undofile = true -- Bad Startup performance
 end, 300)
 
 return M

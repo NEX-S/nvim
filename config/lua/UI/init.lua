@@ -47,15 +47,17 @@ local ui_opts = {
 }
 
 
-local opt = vim.o
+local api = vim.api
 for key, value in pairs(ui_opts) do
-    opt[key] = value
+    -- can't use global?
+    api.nvim_set_option_value(key, value, {})
 end
 
 require "UI.x-color" -- ~/.config/nvim/lua/UI/x-color.lua
 
 require "UI.statusline"
-require "UI.tabline"
+-- require "UI.tabline"
+require "UI.bufline"
 require "UI.startup"
 
 vim.defer_fn(function ()

@@ -66,10 +66,15 @@ api.nvim_create_autocmd("CmdlineEnter", {
 -- RESUME CURSOR
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = "*",
-    callback = function ()
-        local fn = vim.fn
-        if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
-            fn.setpos(".", fn.getpos("'\""))
-        end
-    end,
+    command = [[
+        execute "normal! g`\""
+    ]]
+    -- callback = function ()
+    --     local cursor_pos = api.nvim_buf_get_mark(0, [["]])
+    --     api.nvim_win_set_cursor(0, cursor_pos)
+    --     -- local fn = vim.fn
+    --     -- if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
+    --     --     fn.setpos(".", fn.getpos("'\""))
+    --     -- end
+    -- end,
 })

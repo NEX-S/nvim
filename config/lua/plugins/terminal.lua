@@ -89,6 +89,7 @@ function M.open_term_float (shell_cmd, opts, ...)
 
     vim.bo.ft = "TERMINAL"
     api.nvim_buf_set_name(0, opts.term_name or "  TERMINAL")
+    api.nvim_buf_set_option(0, "buflisted", false)
 end
 
 return M
