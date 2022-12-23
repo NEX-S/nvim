@@ -4,9 +4,9 @@ local api = vim.api
 
 require "UI.x-color".set_hl {
 
-    TabLine  = { bg = "#111111", fg = "#ffffff" },
+    TabLine  = { bg = "#111111", fg = "#424242" },
     TabLineP = { bg = "#111111", fg = "#C53B82" },
-    TabLineN = { bg = "#111111", fg = "#424242" },
+    -- TabLineN = { bg = "#111111", fg = "#424242" },
     TabLineX = { bg = "#111111", fg = "#C53B82" },
 
     ActiveTabSepL  = { bg = "#111111", fg = "#252525" },
@@ -31,10 +31,6 @@ end
 function _G._tabline_create ()
     api.nvim_command("tabnew")
 end
-
--- function _G._tabline_switch (tabnr)
---     api.nvim_command("tab " .. tabnr)
--- end
 
 function _G._tabline_close (tabnr)
     if fn.tabpagenr("$") == 1 then
@@ -61,7 +57,7 @@ local function tab_mod_status (tabnr, buflist)
         end
     end
 
-    return "%#InactiveTabX#%" .. tabnr .. "@v:lua._tabline_close@  %X"
+    return "%#InactiveTabX#%" .. tabnr .. "@v:lua._tabline_close@ %X"
 end
 
 local function GenTabs(tabnr, active)
@@ -70,14 +66,14 @@ local function GenTabs(tabnr, active)
     local tabicon   = tab_ft_icon   (tabnr, buflist)
     local modstatus = tab_mod_status(tabnr, buflist)
 
-    local tabname   = api.nvim_buf_get_name(buflist[1])
-    tabname = "%#InactiveTabName#" .. ( tabname ~= "" and tabname:gsub(".*/", "") or "UNKNOWN" )
+    local tabname   = api.nvim_buf_get_name(buflist[1]) .. " "
+    tabname = "%#InactiveTabName#" .. ( tabname ~= " " and tabname:gsub(".*/", "") or "UNKNOWN " )
 
     local res = "%#InactiveTabSepL#" .. tabicon .. tabname .. modstatus.. "%#InactiveTabSepR#"
 
     if active == true then
         res = res:gsub("Inactive", "Active")
-        res = res:gsub("", "")
+        res = res:gsub("", "", 1)
     end
 
     return "%" .. tabnr .. "T" .. res
@@ -94,7 +90,7 @@ function _G.NVIM_TABLINE ()
         end
     end
 
-    local tabnew = "%#TabLineN#%@v:lua._tabline_create@+ %= %<"
+    local tabnew = "%#TabLine#%@v:lua._tabline_create@+ %T %= %<"
 
     return tabline .. tabnew .. "%#TabLineX#%@v:lua._tabline_close@  "
 end
