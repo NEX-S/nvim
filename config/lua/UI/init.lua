@@ -96,8 +96,8 @@ if vim.g.neovide == true then
     vim.g.neovide_cursor_vfx_particle_density = 5
     vim.g.neovide_cursor_vfx_particle_speed = 20
 
-    vim.g.neovide_floating_blur_amount_x = 0.7
-    vim.g.neovide_floating_blur_amount_y = 0.7
+    vim.g.neovide_floating_blur_amount_x = 0.6
+    vim.g.neovide_floating_blur_amount_y = 0.6
 
     api.nvim_set_hl(0, "CursorLine", { bg = "NONE" })
     api.nvim_set_keymap("n", "<C-w>", "<CMD>qa!<CR>", {})

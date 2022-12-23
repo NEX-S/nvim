@@ -9,13 +9,13 @@
 
 local api = vim.api
 
-vim.defer_fn(function ()
+-- vim.defer_fn(function ()
     api.nvim_command("packadd impatient.nvim")
     require          "impatient"
 
     require "UI"                -- ~/.config/nvim/lua/UI/init.lua
     require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
-end, 5)
+-- end, 5)
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/config/lua/core/options.lua
@@ -31,14 +31,14 @@ vim.defer_fn(function ()
         packadd matchparen.nvim
         packadd nvim-colorizer.lua
 
-        packadd matchit
-        let b:match_ignorecase = 0
-        let b:match_words =
-            \ '\<\%(do\|function\|if\)\>:' ..
-            \ '\<\%(return\|else\|elseif\)\>:' ..
-            \ '\<end\>,' ..
-            \ '\<repeat\>:\<until\>,' ..
-            \ '\%(--\)\=\[\(=*\)\[:]\1]'
+        " packadd matchit
+        " let b:match_ignorecase = 0
+        " let b:match_words =
+        "     \ '\<\%(do\|function\|if\)\>:' ..
+        "     \ '\<\%(return\|else\|elseif\)\>:' ..
+        "     \ '\<end\>,' ..
+        "     \ '\<repeat\>:\<until\>,' ..
+        "     \ '\%(--\)\=\[\(=*\)\[:]\1]'
     ]], false)
 
     require "matchparen".setup()
@@ -54,7 +54,6 @@ vim.defer_fn(function ()
 
 end, 19)
 
-
 -- USE LOCAL VAR!!!
 -- VIML SPEED    : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx < others
 -- VIMFUNC SPEED : vim.call("xxx")  = vim.fn.xxx = vim.fn['xxx'] = api.nvim_call_function
@@ -68,7 +67,7 @@ end, 19)
 --
 --     for i = 1, 1000000 do
 --
---     end
+--     enda
 --
 --     print((os.clock() - time) * 100)
 -- end)
