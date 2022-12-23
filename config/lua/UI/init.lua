@@ -32,18 +32,16 @@ local ui_opts = {
     synmaxcol     = 140,
     redrawtime    = 100,
 
-    -- syntax       = "off",
-
     -- colorcolumn  = "140",
     signcolumn   = "auto:1",
-    -- shortmess    = "WAICOTFcsao",
-    shortmess    = "filmnrwxaoOstTWAIcCqFS",
+    shortmess    = "WAICOTFcsao",
+    -- shortmess    = "filmnrwxaoOstTWAIcCqFS",
 
     -- titlestring  = "[   UNEXPECTED NVIM   ]",
     titlestring  = " nvim ",
 
     -- rulerformat = "[ %c  0𝙭%B ]",
-    listchars = "eol:⸥,space:·,trail:,tab:,multispace:····,nbsp:,extends:e,precedes:+",
+    listchars = "eol:⸥,space:·,trail:,tab:,nbsp:n,extends:e,precedes:+",
 }
 
 
@@ -66,4 +64,22 @@ vim.defer_fn(function ()
     require "UI.cmdline"
     -- require "UI.saved"
 end, 200)
+
+if vim.g.neovide == true then
+    vim.o.listchars = "eol:⇂,space:･,trail:,tab:"
+    vim.o.guifont = "Fixedsys Excelsior:h14.3:#x-subpixelantialias"
+    vim.g.neovide_refresh_rate_idle       = 1
+    vim.g.neovide_refresh_rate            = 360
+    vim.g.neovide_transparency            = 0.95
+    vim.g.neovide_transparency            = 0.95
+    vim.g.neovide_cursor_animation_length = 0.02
+    vim.g.neovide_cursor_trail_size       = 0.6
+    vim.g.neovide_hide_mouse_when_typing  = true
+    vim.g.neovide_remember_window_size    = true
+    vim.g.neovide_confirm_quit            = false
+    vim.g.neovide_profiler                = false
+    -- vim.g.neovide_cursor_vfx_mode         = "torpedo"
+    api.nvim_set_hl(0, "CursorLine", { bg = "NONE" })
+    api.nvim_set_keymap("n", "<C-w>", "<CMD>qa!<CR>", {})
+end
 

@@ -6,21 +6,16 @@
 --                                                                  --
 
 -- TODO: h operatorfunc
--- TODO: bufferline -> enew
 
 local api = vim.api
 
-vim.keymap.set("n", ";d", function ()
-    local view = vim.fn.winsaveview()
-    api.nvim_command("%s/vim\\.cmd/api.nvim_command/g")
-    vim.fn.winrestview(view)
-end)
+vim.defer_fn(function ()
+    api.nvim_command("packadd impatient.nvim")
+    require          "impatient"
 
-api.nvim_command("packadd impatient.nvim")
-require          "impatient"
-
-require "UI"                -- ~/.config/nvim/lua/UI/init.lua
-require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
+    require "UI"                -- ~/.config/nvim/lua/UI/init.lua
+    require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
+end, 5)
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/config/lua/core/options.lua
@@ -48,6 +43,8 @@ vim.defer_fn(function ()
     ]], false)
 
     require "matchparen".setup()
+
+    require "colorizer".setup({ "*" }, { mode = "foreground" })
 end, 106)
 
 vim.defer_fn(function ()
@@ -58,7 +55,6 @@ vim.defer_fn(function ()
 
 end, 19)
 
-require "colorizer".setup({ "*" }, { mode = "foreground" })
 
 -- USE LOCAL VAR!!!
 -- VIML SPEED    : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx < others
@@ -70,9 +66,10 @@ require "colorizer".setup({ "*" }, { mode = "foreground" })
 
 -- vim.keymap.set("n", ";d", function ()
 --     local time = os.clock()
--- 
+--
 --     for i = 1, 1000000 do
+--
 --     end
--- 
+--
 --     print((os.clock() - time) * 100)
 -- end)

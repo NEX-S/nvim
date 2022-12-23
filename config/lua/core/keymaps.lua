@@ -104,8 +104,12 @@ local multi_mode_tbl = {
         ["aq"] = 'a"',
         ["iq"] = 'i"',
 
-        ["<C-i>"]  =  "g<C-a>gv",
-        ["<C-d>"]  =  "g<C-x>gv",
+        ["<C-a>"]   =  "<NOP>",
+        ["<C-x>"]   =  "<NOP>",
+        ["<C-i>"]   =  "<C-a>gv",
+        ["<C-d>"]   =  "<C-x>gv",
+        ["g<C-i>"]  =  "g<C-a>gv",
+        ["g<C-d>"]  =  "g<C-x>gv",
 
         -- ["<LEFT>"] = "=gv",
         -- ["<RIGHT>"] = "=gv",

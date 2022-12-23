@@ -3,7 +3,6 @@ local fn  = vim.fn
 local api = vim.api
 
 require "UI.x-color".set_hl {
-
     TabLine  = { bg = "#111111", fg = "#232323" },
     TabLineP = { bg = "#111111", fg = "#C53B82" },
     TabLineX = { bg = "#111111", fg = "#C53B82" },
@@ -15,13 +14,35 @@ require "UI.x-color".set_hl {
     ActiveTabX     = { bg = "#252525", fg = "#707070" },
     ActiveTabMod   = { bg = "#252525", fg = "#AFC459" },
 
-    InactiveTabSepL  = { bg = "#111111", fg = "#191919" },
-    InactiveTabSepR  = { bg = "#111111", fg = "#191919" },
-    InactiveFileIcon = { bg = "#191919", fg = "#404040" },
-    InactiveTabName  = { bg = "#191919", fg = "#404040", italic = true },
-    InactiveTabX     = { bg = "#191919", fg = "#404040" },
-    InactiveTabMod   = { bg = "#191919", fg = "#404040" },
+    InactiveTabSepL  = { bg = "#111111", fg = "#202020" },
+    InactiveTabSepR  = { bg = "#111111", fg = "#202020" },
+    InactiveFileIcon = { bg = "#202020", fg = "#404040" },
+    InactiveTabName  = { bg = "#202020", fg = "#404040", italic = true },
+    InactiveTabX     = { bg = "#202020", fg = "#404040" },
+    InactiveTabMod   = { bg = "#202020", fg = "#404040" },
 }
+
+if vim.g.neovide == true then
+    require "UI.x-color".set_hl {
+        TabLine  = { bg = "#191919", fg = "#232323" },
+        TabLineP = { bg = "#191919", fg = "#C53B82" },
+        TabLineX = { bg = "#191919", fg = "#C53B82" },
+
+        ActiveTabSepL  = { bg = "#191919", fg = "#252525" },
+        ActiveTabSepR  = { bg = "#191919", fg = "#252525" },
+        ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
+        ActiveTabName  = { bg = "#252525", fg = "#777777", italic = true },
+        ActiveTabX     = { bg = "#252525", fg = "#707070" },
+        ActiveTabMod   = { bg = "#252525", fg = "#AFC459" },
+
+        InactiveTabSepL  = { bg = "#191919", fg = "#202020" },
+        InactiveTabSepR  = { bg = "#191919", fg = "#202020" },
+        InactiveFileIcon = { bg = "#202020", fg = "#404040" },
+        InactiveTabName  = { bg = "#202020", fg = "#404040", italic = true },
+        InactiveTabX     = { bg = "#202020", fg = "#404040" },
+        InactiveTabMod   = { bg = "#202020", fg = "#404040" },
+    }
+end
 
 function _G._tabline_prefix ()
     api.nvim_command("tabnext")

@@ -21,9 +21,9 @@ local basic_hl = {
     PmenuSbar    =  { bg = "#383838", fg = "NONE" },
     PmenuThumb   =  { bg = "#505050", fg = "NONE" },
     Pmenu        =  { bg = "#282828", fg = "#757575" },
-    PmenuSel     =  { bg = "#383838", fg = "#888888", bold = true },
-    CursorLineNr =  { bg = "NONE",    fg = "#505050", bold = true },
-    Visual       =  { bg = "NONE",    fg = "#9C8FDC", bold = true },
+    PmenuSel     =  { bg = "#383838", fg = "#888888", bold = false },
+    CursorLineNr =  { bg = "NONE",    fg = "#505050", bold = false },
+    Visual       =  { bg = "NONE",    fg = "#9C8FDC", bold = false },
     ColorColumn  =  { bg = "#222222", fg = "NONE" },
     SignColumn   =  { bg = "NONE",    fg = "NONE" },
     NonText      =  { bg = "NONE",    fg = "#333333" },
@@ -32,7 +32,7 @@ local basic_hl = {
 
     StartTime    = { bg = "NONE",    fg = "#C53B82" },
 
-    Folded       = { bg = "#232323", fg = "#BB9AF7", bold = true },
+    Folded       = { bg = "#252525", fg = "#BB9AF7", bold = false },
 }
 
 local builtin_syntax_hl = {
@@ -54,7 +54,7 @@ local treesitter_hl = {
     ["@string"]         = { bg = "NONE", fg = "#585858" }, -- string
     ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
     ["@keyword"]        = { bg = "NONE", fg = "#777777" }, -- local return function
-    ["@function"]       = { bg = "NONE", fg = "#9C8FDC", bold = true }, -- function
+    ["@function"]       = { bg = "NONE", fg = "#9C8FDC", bold = false }, -- function
     ["@parameter"]      = { bg = "NONE", fg = "#9C8FDC" }, -- func args
     ["@number"]         = { bg = "NONE", fg = "#555555" }, -- number
     ["@constant"]       = { bg = "NONE", fg = "#C53B82" }, -- M.
