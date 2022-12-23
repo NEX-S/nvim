@@ -24,7 +24,7 @@ require "UI.x-color".set_hl {
 
 if vim.g.neovide == true then
     require "UI.x-color".set_hl {
-        TabLine  = { bg = "#191919", fg = "#232323" },
+        TabLine  = { bg = "#191919", fg = "#404040" },
         TabLineP = { bg = "#191919", fg = "#C53B82" },
         TabLineX = { bg = "#191919", fg = "#C53B82" },
 
@@ -77,7 +77,7 @@ end
 local function tab_mod_status (tabnr, buflist)
     for i = 1, #buflist do
         if api.nvim_buf_get_option(buflist[i], "mod") == true then
-            return  "%#InactiveTabMod#  "
+            return  "%#InactiveTabMod# "
         end
     end
 

@@ -28,7 +28,6 @@ vim.defer_fn(function ()
     vim.o.shadafile = ""
 
     api.nvim_exec ([[
-        rshada!
         packadd matchparen.nvim
         packadd nvim-colorizer.lua
 
