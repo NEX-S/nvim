@@ -6,22 +6,21 @@ require "UI.x-color".set_hl {
 
     TabLine  = { bg = "#111111", fg = "#232323" },
     TabLineP = { bg = "#111111", fg = "#C53B82" },
-    -- TabLineN = { bg = "#111111", fg = "#424242" },
     TabLineX = { bg = "#111111", fg = "#C53B82" },
 
     ActiveTabSepL  = { bg = "#111111", fg = "#252525" },
+    ActiveTabSepR  = { bg = "#111111", fg = "#252525" },
+    ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
     ActiveTabName  = { bg = "#252525", fg = "#777777", italic = true },
     ActiveTabX     = { bg = "#252525", fg = "#707070" },
     ActiveTabMod   = { bg = "#252525", fg = "#AFC459" },
-    ActiveTabSepR  = { bg = "#111111", fg = "#252525" },
-    ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
 
     InactiveTabSepL  = { bg = "#111111", fg = "#191919" },
+    InactiveTabSepR  = { bg = "#111111", fg = "#191919" },
+    InactiveFileIcon = { bg = "#191919", fg = "#404040" },
     InactiveTabName  = { bg = "#191919", fg = "#404040", italic = true },
     InactiveTabX     = { bg = "#191919", fg = "#404040" },
     InactiveTabMod   = { bg = "#191919", fg = "#404040" },
-    InactiveTabSepR  = { bg = "#111111", fg = "#191919" },
-    InactiveFileIcon = { bg = "#191919", fg = "#404040" },
 }
 
 function _G._tabline_prefix ()
@@ -41,13 +40,17 @@ function _G._tabline_close (tabnr)
 end
 
 local function tab_ft_icon (tabnr, buflist)
-    local ft_icons = {
+    local icons = {
         lua  = "  ",
+        vim  = "  ",
+        markdown = "  ",
+        html = "  ",
+        c    = "  "
     }
 
     local ft = api.nvim_buf_get_option(buflist[1], "filetype")
 
-    return "%#InactiveFileIcon#" .. ( ft_icons[ft] or "  " )
+    return "%#InactiveFileIcon#" .. ( icons[ft] or "  " )
 end
 
 local function tab_mod_status (tabnr, buflist)
@@ -72,10 +75,7 @@ local function GenTabs(tabnr, active)
 
     local res = "%#InactiveTabSepL#" .. tabicon .. tabname .. modstatus.. "%#InactiveTabSepR#"
 
-    if active == true then
-        res = res:gsub("Inactive", "Active")
-        res = res:gsub("", "", 1)
-    end
+    res = active ~= true and res or res:gsub("Inactive", "Active"):gsub("", "", 1)
 
     return "%" .. tabnr .. "T" .. res
 end
