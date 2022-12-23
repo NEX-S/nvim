@@ -11,8 +11,8 @@ require "UI.x-color".set_hl {
 
     ActiveTabSepL  = { bg = "#111111", fg = "#252525" },
     ActiveTabName  = { bg = "#252525", fg = "#777777", italic = true },
-    ActiveTabX     = { bg = "#252525", fg = "#606060" },
-    ActiveTabMod   = { bg = "#252525", fg = "#AFC460" },
+    ActiveTabX     = { bg = "#252525", fg = "#707070" },
+    ActiveTabMod   = { bg = "#252525", fg = "#AFC459" },
     ActiveTabSepR  = { bg = "#111111", fg = "#252525" },
     ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
 
@@ -44,9 +44,7 @@ function _G._tabline_close (tabnr)
     end
 end
 
-
 local function tab_ft_icon (tabnr, buflist)
-
     local ft_icons = {
         lua  = "  ",
     }
@@ -57,7 +55,6 @@ local function tab_ft_icon (tabnr, buflist)
 end
 
 local function tab_mod_status (tabnr, buflist)
-
     for i = 1, #buflist do
         if api.nvim_buf_get_option(buflist[i], "mod") == true then
             return  "%#InactiveTabMod#  "
@@ -68,7 +65,6 @@ local function tab_mod_status (tabnr, buflist)
 end
 
 local function GenTabs(tabnr, active)
-
     local buflist   = fn.tabpagebuflist(tabnr)
 
     local tabicon   = tab_ft_icon   (tabnr, buflist)
@@ -81,19 +77,16 @@ local function GenTabs(tabnr, active)
 
     if active == true then
         res = res:gsub("Inactive", "Active")
+        res = res:gsub("", "")
     end
 
     return "%" .. tabnr .. "T" .. res
 end
 
 function _G.NVIM_TABLINE ()
-
     local tabline = "%#TabLineP#%@v:lua._tabline_prefix@  "
-    -- local current = api.nvim_tabpage_get_number(0)
 
     for tabnr = 1, fn.tabpagenr("$") do
-    -- for tabnr = 1, api.nvim_get_current_tabpage() do
-        -- if tabnr == api.nvim_get_current_tabpage() then
         if tabnr == api.nvim_tabpage_get_number(0) then
             tabline = tabline .. GenTabs(tabnr, true)
         else
