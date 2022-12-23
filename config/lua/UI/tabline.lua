@@ -4,7 +4,7 @@ local api = vim.api
 
 require "UI.x-color".set_hl {
 
-    TabLine  = { bg = "#111111", fg = "#424242" },
+    TabLine  = { bg = "#111111", fg = "#232323" },
     TabLineP = { bg = "#111111", fg = "#C53B82" },
     -- TabLineN = { bg = "#111111", fg = "#424242" },
     TabLineX = { bg = "#111111", fg = "#C53B82" },
@@ -16,12 +16,12 @@ require "UI.x-color".set_hl {
     ActiveTabSepR  = { bg = "#111111", fg = "#252525" },
     ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
 
-    InactiveTabSepL  = { bg = "#111111", fg = "#212121" },
-    InactiveTabName  = { bg = "#202020", fg = "#444444", italic = true },
-    InactiveTabX     = { bg = "#202020", fg = "#444444" },
-    InactiveTabMod   = { bg = "#202020", fg = "#444444" },
-    InactiveTabSepR  = { bg = "#111111", fg = "#212121" },
-    InactiveFileIcon = { bg = "#202020", fg = "#444444" },
+    InactiveTabSepL  = { bg = "#111111", fg = "#191919" },
+    InactiveTabName  = { bg = "#191919", fg = "#404040", italic = true },
+    InactiveTabX     = { bg = "#191919", fg = "#404040" },
+    InactiveTabMod   = { bg = "#191919", fg = "#404040" },
+    InactiveTabSepR  = { bg = "#111111", fg = "#191919" },
+    InactiveFileIcon = { bg = "#191919", fg = "#404040" },
 }
 
 function _G._tabline_prefix ()
@@ -57,7 +57,8 @@ local function tab_mod_status (tabnr, buflist)
         end
     end
 
-    return "%#InactiveTabX#%" .. tabnr .. "@v:lua._tabline_close@ %X"
+    -- return "%#InactiveTabX#%" .. tabnr .. "@v:lua._tabline_close@ %X"
+    return "%#InactiveTabX#%" .. tabnr .. "X %X"
 end
 
 local function GenTabs(tabnr, active)
