@@ -70,7 +70,7 @@ if vim.g.neovide == true then
     vim.o.guifont = "Fixedsys Excelsior:h14.3:#x-subpixelantialias"
     vim.g.neovide_refresh_rate_idle       = 1
     vim.g.neovide_refresh_rate            = 360
-    vim.g.neovide_transparency            = 0.9
+    vim.g.neovide_transparency            = 0.95
     vim.g.neovide_cursor_animation_length = 0.02
     vim.g.neovide_scroll_animation_length = 0.07
     vim.g.neovide_cursor_trail_size       = 0.6
@@ -95,19 +95,19 @@ if vim.g.neovide == true then
     require "UI.x-color".set_hl {
         CursorLine = { bg = "NONE" },
 
-        TabLine  = { bg = "NONE", fg = "#404040" },
-        TabLineP = { bg = "NONE", fg = "#C53B82" },
-        TabLineX = { bg = "NONE", fg = "#C53B82" },
+        TabLine  = { bg = "#191919", fg = "#404040" },
+        TabLineP = { bg = "#191919", fg = "#C53B82" },
+        TabLineX = { bg = "#191919", fg = "#C53B82" },
 
-        ActiveTabSepL  = { bg = "NONE", fg = "#252525" },
-        ActiveTabSepR  = { bg = "NONE", fg = "#252525" },
+        ActiveTabSepL  = { bg = "#191919", fg = "#252525" },
+        ActiveTabSepR  = { bg = "#191919", fg = "#252525" },
         ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
         ActiveTabName  = { bg = "#252525", fg = "#777777", italic = true },
         ActiveTabX     = { bg = "#252525", fg = "#707070" },
         ActiveTabMod   = { bg = "#252525", fg = "#AFC459" },
 
-        InactiveTabSepL  = { bg = "NONE", fg = "#202020" },
-        InactiveTabSepR  = { bg = "NONE", fg = "#202020" },
+        InactiveTabSepL  = { bg = "#191919", fg = "#202020" },
+        InactiveTabSepR  = { bg = "#191919", fg = "#202020" },
         InactiveFileIcon = { bg = "#202020", fg = "#404040" },
         InactiveTabName  = { bg = "#202020", fg = "#404040", italic = true },
         InactiveTabX     = { bg = "#202020", fg = "#404040" },

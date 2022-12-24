@@ -34,7 +34,7 @@ local num_opts = {
 
 local str_opts = {
 
-    shell           = "/bin/bash",
+    shell           = "fish",
     mouse           = "a",
     virtualedit     = "block",
 

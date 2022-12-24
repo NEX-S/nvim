@@ -13,7 +13,11 @@ local function open_file ()
     api.nvim_win_close(M.winnr, true)
 
     for line in io.lines("/tmp/nvim-vifm") do
-        api.nvim_command(M.action .. line)
+        if M.action == "tabnew " and api.nvim_buf_get_name(0) == "" then
+            api.nvim_command("edit " .. line)
+        else
+            api.nvim_command(M.action .. line)
+        end
     end
 
     api.nvim_buf_delete(M.bufnr, { force = true })

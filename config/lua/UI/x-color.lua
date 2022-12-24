@@ -4,104 +4,69 @@ local M = {}
 local api = vim.api
 
 local basic_hl = {
-    FloatTitle   =  { bg = "NONE",    fg = "#AD475F" },
-    VertSplit    =  { bg = "NONE",    fg = "#333333" },
-    LineNr       =  { bg = "NONE",    fg = "#383838" },
-    -- Search       =  { bg = "NONE",    fg = "#AE91E8" },
-    -- IncSearch    =  { bg = "NONE",    fg = "#AE91E8" },
-    Search       =  { bg = "NONE",    fg = "#D0EE7A" },
-    IncSearch    =  { bg = "NONE",    fg = "#D0EE7A" },
-    MatchParen   =  { bg = "NONE",    fg = "#C53B82" },
-    Error        =  { bg = "NONE",    fg = "NONE" },
+    FloatTitle   =  { bg = "#232323",    fg = "#AD475F" },
+    VertSplit    =  { bg = "#232323",    fg = "#333333" },
+    LineNr       =  { bg = "#232323",    fg = "#383838" },
+    Search       =  { bg = "#232323",    fg = "#D0EE7A" },
+    IncSearch    =  { bg = "#232323",    fg = "#D0EE7A" },
+    MatchParen   =  { bg = "#232323",    fg = "#C53B82" },
+    Error        =  { bg = "#232323",     },
 
-    Normal       =  { bg = "#232323", fg = "#707070"},
-    CursorLine   =  { bg = "#252525", fg = "NONE" },
-    PmenuSbar    =  { bg = "#383838", fg = "NONE" },
-    PmenuThumb   =  { bg = "#505050", fg = "NONE" },
-    Pmenu        =  { bg = "#282828", fg = "#757575" },
-    PmenuSel     =  { bg = "#383838", fg = "#888888", bold = false },
-    CursorLineNr =  { bg = "NONE",    fg = "#505050", bold = false },
-    Visual       =  { bg = "NONE",    fg = "#9C8FDC", bold = false },
-    ColorColumn  =  { bg = "#222222", fg = "NONE" },
-    SignColumn   =  { bg = "NONE",    fg = "NONE" },
-    NonText      =  { bg = "NONE",    fg = "#333333" },
+    Normal       =  { bg = "#232323",    fg = "#707070"},
+    CursorLine   =  { bg = "#252525",     },
+    PmenuSbar    =  { bg = "#383838",     },
+    PmenuThumb   =  { bg = "#505050",     },
+    Pmenu        =  { bg = "#282828",    fg = "#757575" },
+    PmenuSel     =  { bg = "#383838",    fg = "#888888", bold = false },
+    CursorLineNr =  { bg = "#232323",    fg = "#505050", bold = false },
+    Visual       =  { bg = "#232323",    fg = "#9C8FDC", bold = false },
+    ColorColumn  =  { bg = "#222222",     },
+    SignColumn   =  { bg = "#232323",     },
+    NonText      =  { bg = "#232323",    fg = "#333333" },
 
-    ErrorMsg     =  { bg = "NONE",    fg = "#666666" },
+    ErrorMsg     =  { bg = "#232323",    fg = "#666666" },
 
-    StartTime    = { bg = "NONE",    fg = "#C53B82" },
+    StartTime    =  { bg = "#232323",     fg = "#C53B82" },
 
-    Folded       = { bg = "#252525", fg = "#BB9AF7", bold = false },
+    Folded       =  { bg = "#252525",     fg = "#BB9AF7", bold = false },
 }
 
-local builtin_syntax_hl = {
-    String      =  { bg = "NONE", fg = "#585858" },
-    Comment     =  { bg = "NONE", fg = "#484848" },
-    Number      =  { bg = "NONE", fg = "#555555" },
-    Function    =  { bg = "NONE", fg = "#9C8FDC" },
-    Statement   =  { bg = "NONE", fg = "#777777" },
-    Constant    =  { bg = "NONE", fg = "#C53B82" },
-    Luatable    =  { bg = "NONE", fg = "#777777" },
-    Todo        =  { bg = "NONE", fg = "#FF9164" },
-    Type        =  { bg = "NONE", fg = "#6a70ac" },
-    Structure   =  { bg = "NONE", fg = "#7a70ac" },
-    SpecialChar =  { bg = "NONE", fg = "#9C8FDC" },
-}
-
-local treesitter_hl = {
-    ["@variable"]       = { bg = "NONE", fg = "#888888" }, -- var name
-    ["@string"]         = { bg = "NONE", fg = "#585858" }, -- string
-    ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
-    ["@keyword"]        = { bg = "NONE", fg = "#777777" }, -- local return function
-    ["@function"]       = { bg = "NONE", fg = "#9C8FDC", bold = false }, -- function
-    ["@parameter"]      = { bg = "NONE", fg = "#9C8FDC" }, -- func args
-    ["@number"]         = { bg = "NONE", fg = "#555555" }, -- number
-    ["@constant"]       = { bg = "NONE", fg = "#C53B82" }, -- M.
-    ["@boolean"]        = { bg = "NONE", fg = "#C53B82" }, -- true false
-    ["@conditional"]    = { bg = "NONE", fg = "#9C8FDC" }, -- if then
-    ["@repeat"]         = { bg = "NONE", fg = "#999999" }, -- for while
-    ["@operator"]       = { bg = "NONE", fg = "#666666" }, -- =
-    ["@punctuation"]    = { bg = "NONE", fg = "#444443" }, -- [] ,
-    ["@constructor"]    = { bg = "NONE", fg = "#555555" }, -- { }
-    ["@field"]          = { bg = "NONE", fg = "#666666" }, -- table key
-    ["@method"]         = { bg = "NONE", fg = "#C53B82" }, -- :match :gsub
-
-    ["@type"]           = { bg = "NONE", fg = "#555555" }, -- C: int float ..
-    ["@property"]       = { bg = "NONE", fg = "#9D7CD8" }, -- C: ->xxx
-    ["@include"]        = { bg = "NONE", fg = "#C3E88D" }, -- C: include
-    ["@text.todo"]        = { bg = "NONE", fg = "#C3E88D" }, -- C: include
-
-    ["@constant.builtin"]    = { bg = "NONE", fg = "#FF43BA" }, -- nil
-    ["@function.builtin"]    = { bg = "NONE", fg = "#A7C080" }, -- print
-    ["@type.definition"]     = { bg = "NONE", fg = "#9C8FDC" }, -- print
-    ["@string.escape"]       = { bg = "NONE", fg = "#FF43BA" }, -- \n
-
-    ["@keyword.return"]      = { bg = "NONE", fg = "#FF43BA" }, -- return
-    ["@keyword.function"]    = { bg = "NONE", fg = "#FF43BA" }, -- function end
-    ["@keyword.operator"]    = { bg = "NONE", fg = "#C53B82" }, -- and or not
-}
+-- local builtin_syntax_hl = {
+--     String      =  { bg = "#232323", fg = "#585858" },
+--     Comment     =  { bg = "#232323", fg = "#484848" },
+--     Number      =  { bg = "#232323", fg = "#555555" },
+--     Function    =  { bg = "#232323", fg = "#9C8FDC" },
+--     Statement   =  { bg = "#232323", fg = "#777777" },
+--     Constant    =  { bg = "#232323", fg = "#C53B82" },
+--     Luatable    =  { bg = "#232323", fg = "#777777" },
+--     Todo        =  { bg = "#232323", fg = "#FF9164" },
+--     Type        =  { bg = "#232323", fg = "#6a70ac" },
+--     Structure   =  { bg = "#232323", fg = "#7a70ac" },
+--     SpecialChar =  { bg = "#232323", fg = "#9C8FDC" },
+-- }
 
 local plugin_hl = {
-    FloatTermNormal = { bg = "#232323", fg = "NONE" },
-    CmdlinePrompt   = { bg = "NONE",    fg = "#C53B82" },
-    CmdlineNormal   = { bg = "NONE",    fg = "#9C8FDC" },
-    VisualCnt       = { bg = "NONE",    fg = "#444444" },
-    SearchCnt       = { bg = "NONE",    fg = "#9C8FDC" },
+    FloatTermNormal = { bg = "#232323" },
+    CmdlinePrompt   = { bg = "#232323",    fg = "#C53B82" },
+    CmdlineNormal   = { bg = "#232323",    fg = "#9C8FDC" },
+    VisualCnt       = { bg = "#232323",    fg = "#444444" },
+    SearchCnt       = { bg = "#232323",    fg = "#9C8FDC" },
 }
 
 function M.set_hl (tbl)
-    for index, value in pairs(tbl) do
-        api.nvim_set_hl(0, index, value)
+    for group, value in pairs(tbl) do
+        api.nvim_set_hl(0, group, value)
     end
 
-    return nil
+    -- return nil
 end
 
 M.set_hl(basic_hl)
--- M.set_hl(builtin_syntax_hl)
-M.set_hl(treesitter_hl)
 
-vim.defer_fn(function ()
-    M.set_hl(plugin_hl)
-end, 200)
+-- M.set_hl(builtin_syntax_hl)
+
+-- vim.defer_fn(function ()
+--     M.set_hl(plugin_hl)
+-- end, 200)
 
 return M

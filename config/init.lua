@@ -28,7 +28,7 @@ vim.defer_fn(function ()
     api.nvim_exec ([[
         packadd matchparen.nvim
         packadd nvim-colorizer.lua
-        packadd nvim-treesitter-context
+
         packadd nvim-treesitter-textobjects
 
         packadd matchit
@@ -47,6 +47,9 @@ vim.defer_fn(function ()
 end, 150)
 
 vim.defer_fn(function ()
+    -- api.nvim_command [[
+    --     " packadd nvim-treesitter-context
+    -- ]]
 
     -- vim.o.shadafile = "~/.cache/nvim/shada"
     -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
