@@ -7,7 +7,9 @@
 
 -- TODO: h operatorfunc
 
-vim.o.rtp = "/usr/share/nvim/runtime,/home/nex/nvim"
+vim.o.rtp = "/home/nex/.local/share/nvim/lazy/lazy.nvim,/home/nex/nvim,/usr/share/nvim/runtime"
+
+require "plugins.lazy"
 
 local api = vim.api
 
@@ -51,11 +53,11 @@ end, 150)
 --     -- api.nvim_command [[
 --     --     " packadd nvim-treesitter-context
 --     -- ]]
--- 
+--
 --     -- vim.o.shadafile = "~/.cache/nvim/shada"
 --     -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
---     -- require "plug-manager.treesitter"  -- ~/.config/nvim/lua/plug-manager/treesitter.lua
--- 
+--     -- require "plug-manager.treesitter"  -- ~/nvim/lua/plug-manager/treesitter.lua
+--
 -- end, 10)
 
 -- USE LOCAL VAR!!!

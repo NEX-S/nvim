@@ -55,7 +55,8 @@ local function set_visual_cnt (mode)
         pattern = { "v:n", "V:n" },
         once = true,
         callback = function ()
-            pcall(api.nvim_buf_del_extmark, { bufnr, ns_id, 1 })
+            -- pcall(api.nvim_buf_del_extmark, { bufnr, ns_id, 1 })
+            api.nvim_buf_del_extmark(bufnr, ns_id, 1)
             pcall(api.nvim_del_autocmd, au_id)
         end
     })

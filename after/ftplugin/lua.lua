@@ -47,8 +47,8 @@ vim.defer_fn(function ()
             vim.wo.numberwidth = 3
 
             local lua_test_map = {
-                [";q"] = "<CMD>source ~/nvim/config/init.lua | quit!<CR>",
-                [";;"] = "<CMD>source ~/nvim/config/init.lua | quit!<CR>",
+                [";q"] = "<CMD>source ~/nvim/init.lua | quit!<CR>",
+                [";;"] = "<CMD>source ~/nvim/init.lua | quit!<CR>",
                 [";r"] = "<CMD>write! | source %<CR>",
             }
 
@@ -106,7 +106,7 @@ vim.defer_fn(function ()
     end
 
     bo.completefunc = "v:lua.lua_completefunc"
-    bo.dictionary = "~/.config/nvim/dict/lua.dict"
+    bo.dictionary = "~/nvim/dict/lua.dict"
 
     -- vim.cmd [[
     --     syntax keyword LuaReturn  "return"

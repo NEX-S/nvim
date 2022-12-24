@@ -46,9 +46,9 @@ local basic_hl = {
 -- }
 
 local plugin_hl = {
-    FloatTermNormal = { bg = "NONE" },
-    CmdlinePrompt   = { bg = "NONE",    fg = "#C53B82" },
-    CmdlineNormal   = { bg = "NONE",    fg = "#9C8FDC" },
+    FloatTermNormal = { bg = "#232323" },
+    CmdlinePrompt   = { bg = "NONE",    fg = "#C48B82" },
+    CmdlineNormal   = { bg = "#202020",    fg = "#9C8FDC" },
     VisualCnt       = { bg = "NONE",    fg = "#444444" },
     SearchCnt       = { bg = "NONE",    fg = "#9C8FDC" },
 }
@@ -65,8 +65,8 @@ M.set_hl(basic_hl)
 
 -- M.set_hl(builtin_syntax_hl)
 
--- vim.defer_fn(function ()
---     M.set_hl(plugin_hl)
--- end, 200)
+vim.defer_fn(function ()
+    M.set_hl(plugin_hl)
+end, 200)
 
 return M

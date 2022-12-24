@@ -30,7 +30,7 @@ local function ft_detect ()
     vim.defer_fn(function()
         -- api.nvim_command "filetype plugin on"
         -- api.nvim_command "filetype off"
-        pcall(api.nvim_command, "luafile ~/nvim/config/after/ftplugin/" .. vim.bo.ft .. ".lua")
+        pcall(api.nvim_command, "luafile ~/nvim/after/ftplugin/" .. vim.bo.ft .. ".lua")
     end, 150)
 end
 

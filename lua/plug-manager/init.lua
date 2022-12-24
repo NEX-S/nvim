@@ -1,26 +1,166 @@
 
-local api = vim.api
+-- require "lazy".setup("plug-manager.lazy-plugins", {
+--   root = "/home/nex/.local/share/nvim/lazy",
+--   defaults = {
+--     lazy = true,
+--   },
+--   lockfile = "/home/nex/.cache/nvim/lazy-lock.json",
+--   ui = {
+--     size = { width = 0.75, height = 0.75 },
+--     border = "rounded",
+--     icons = {
+--       cmd     = " ",
+--       config  = " ",
+--       event   = " ",
+--       ft      = " ",
+--       init    = " ",
+--       keys    = " ",
+--       plugin  = " ",
+--       runtime = " ",
+--       source  = " ",
+--       start   = " ",
+--       task    = "✔ ",
+--     },
+--     custom_keys = {
+--       ["<C-l>"] = function (plugin)
+--         require("lazy.util").open_cmd({ "lazygit", "log" }, {
+--           cwd = plugin.dir,
+--           terminal = true,
+--           close_on_exit = true,
+--           enter = true,
+--         })
+--       end,
+-- 
+--       [";x"] = function (plugin)
+--         require("lazy.util").open_cmd({ vim.go.shell }, {
+--           cwd = plugin.dir,
+--           terminal = true,
+--           close_on_exit = true,
+--           enter = true,
+--         })
+--       end,
+--     },
+--   },
+--   checker = {
+--     enabled = false,
+--     notify = false,
+--     frequency = 3600,
+--   },
+--   change_detection = {
+--     enabled = false,
+--     notify = false,
+--   },
+--   performance = {
+--     cache = {
+--       enabled = true,
+--       path = "/hone/nex/.cache/nvim/lazy/cache",
+--       disable_events = { "VimEnter", "BufReadPre" },
+--     },
+--     reset_packpath = true,
+--     rtp = {
+--       reset = false,
+--       -- paths = {
+--       -- "/home/nex/nvim",
+--       -- },
+--       disabled_plugins = {
+--         -- "gzip",
+--         -- "matchit",
+--         -- "matchparen",
+--         -- "netrwPlugin",
+--         -- "tarPlugin",
+--         -- "tohtml",
+--         -- "tutor",
+--         -- "zipPlugin",
+--       },
+--     },
+--   },
+--   readme = {
+--     root = vim.fn.stdpath("state") .. "/lazy/readme",
+--     files = { "README.md" },
+--     skip_if_doc_exists = true,
+--   },
+-- })
 
-local term = require "plugins.terminal"
+require "lazy".setup({
+  root = "/home/nex/.local/share/nvim/lazy",
+  defaults = {
+    lazy = true,
+  },
+  lockfile = "/home/nex/.cache/nvim/lazy-lock.json",
+  ui = {
+    size = { width = 0.75, height = 0.75 },
+    border = "rounded",
+    icons = {
+      cmd     = " ",
+      config  = " ",
+      event   = " ",
+      ft      = " ",
+      init    = " ",
+      keys    = " ",
+      plugin  = " ",
+      runtime = " ",
+      source  = " ",
+      start   = " ",
+      task    = "✔ ",
+    },
+    custom_keys = {
+      ["<C-l>"] = function (plugin)
+        require("lazy.util").open_cmd({ "lazygit", "log" }, {
+          cwd = plugin.dir,
+          terminal = true,
+          close_on_exit = true,
+          enter = true,
+        })
+      end,
 
-function _G.plugin_manager (args)
+      [";x"] = function (plugin)
+        require("lazy.util").open_cmd({ vim.go.shell }, {
+          cwd = plugin.dir,
+          terminal = true,
+          close_on_exit = true,
+          enter = true,
+        })
+      end,
+    },
+  },
+  checker = {
+    enabled = false,
+    notify = false,
+    frequency = 3600,
+  },
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
+  performance = {
+    cache = {
+      enabled = true,
+      path = "/hone/nex/.cache/nvim/lazy/cache",
+      disable_events = { "VimEnter", "BufReadPre" },
+    },
+    reset_packpath = true,
+    rtp = {
+      reset = false,
+      -- paths = {
+      -- "/home/nex/nvim",
+      -- },
+      disabled_plugins = {
+        -- "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        -- "tarPlugin",
+        -- "tohtml",
+        -- "tutor",
+        -- "zipPlugin",
+      },
+    },
+  },
+  readme = {
+    root = vim.fn.stdpath("state") .. "/lazy/readme",
+    files = { "README.md" },
+    skip_if_doc_exists = true,
+  },
+})
 
-    local term_opts = {
-        start_ins = false,
-        resume    = true,
-        term_name = "plugin-manager",
-        exit_key  = "<ESC>",
-    }
-
-    local plugin_manager_script = "/home/nex/nvim/config/lua/plug-manager/plugin-manager.lua "
-
-    term.open_term_float("lua " .. plugin_manager_script .. args,  term_opts, { title = " [ PLUGIN ] ",  title_pos = "right" })
-
-    -- term.open_term_float("lua " .. plugin_manager_script .. " remove",  term_opts, { title = " [ REMOVE PLUGIN ] ",  title_pos = "right" })
-    -- term.open_term_float("lua " .. plugin_manager_script .. " install", term_opts, { title = " [ INSTALL PLUGIN ] ", title_pos = "right" })
-end
-
-api.nvim_create_user_command("PlugUpdate",  "lua plugin_manager('update')",  {})
-api.nvim_create_user_command("PlugRemove",  "lua plugin_manager('remove')",  {})
-api.nvim_create_user_command("PlugInstall", "lua plugin_manager('install')", {})
-
+-- require "lazy".setup ("plug-manager.lazy-plugins", )

@@ -96,8 +96,10 @@ vim.keymap.set("n", ":", function ()
     vim.bo.omnifunc = "v:lua._cmdline_complete"
 
     vim.keymap.set("i", "<ESC>", function ()
-        api.nvim_input("<C-x>")
-        close_float_cmdline()
+        if vim.fn.pumvisible() == 1 then
+            api.nvim_input("<C-u>")
+            close_float_cmdline()
+        end
     end, { buffer = true })
 
     local cmdline_keymap = {

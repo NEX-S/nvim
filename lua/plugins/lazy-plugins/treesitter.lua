@@ -1,7 +1,37 @@
 
-vim.api.nvim_command [[
-    packadd nvim-treesitter
-]]
+require "UI.x-color".set_hl {
+    ["@variable"]       = { bg = "NONE", fg = "#888888" },  -- var name
+    ["@string"]         = { bg = "NONE", fg = "#585858" },  -- string
+    ["@keyword"]        = { bg = "NONE", fg = "#777777" },  -- local return function
+    ["@function"]       = { bg = "NONE", fg = "#9C8FDC" },  -- function
+    ["@parameter"]      = { bg = "NONE", fg = "#9C8FDC" },  -- func args
+    ["@number"]         = { bg = "NONE", fg = "#555555" },  -- number
+    ["@constant"]       = { bg = "NONE", fg = "#C53B82" },  -- M.
+    ["@boolean"]        = { bg = "NONE", fg = "#C53B82" },  -- true false
+    ["@conditional"]    = { bg = "NONE", fg = "#9C8FDC" },  -- if then
+    ["@repeat"]         = { bg = "NONE", fg = "#999999" },  -- for while
+    ["@operator"]       = { bg = "NONE", fg = "#666666" },  -- =
+    ["@punctuation"]    = { bg = "NONE", fg = "#444443" },  -- [] ,
+    ["@constructor"]    = { bg = "NONE", fg = "#555555" },  -- { }
+    ["@field"]          = { bg = "NONE", fg = "#666666" },  -- table key
+    ["@method"]         = { bg = "NONE", fg = "#C53B82" },  -- :match :gsub
+
+    ["@type"]           = { bg = "NONE", fg = "#555555" },  -- C: int float ..
+    ["@property"]       = { bg = "NONE", fg = "#9D7CD8" },  -- C: ->xxx
+    ["@include"]        = { bg = "NONE", fg = "#C3E88D" },  -- C: include
+    ["@text.todo"]      = { bg = "NONE", fg = "#C3E88D" },  -- C: include
+
+    ["@constant.builtin"]    = { bg = "NONE", fg = "#FF43BA" },  -- nil
+    ["@function.builtin"]    = { bg = "NONE", fg = "#A7C080" },  -- print
+    ["@type.definition"]     = { bg = "NONE", fg = "#9C8FDC" },  -- print
+    ["@string.escape"]       = { bg = "NONE", fg = "#FF43BA" },  -- \n
+
+    ["@keyword.return"]      = { bg = "NONE", fg = "#FF43BA" },  -- return
+    ["@keyword.function"]    = { bg = "NONE", fg = "#FF43BA" },  -- function end
+    ["@keyword.operator"]    = { bg = "NONE", fg = "#C53B82" },  -- and or not
+
+    ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
+}
 
 require "nvim-treesitter.configs".setup {
     auto_install = false,
@@ -92,35 +122,3 @@ require "nvim-treesitter.configs".setup {
 --     }
 -- }
 
-require "UI.x-color".set_hl {
-    ["@variable"]       = { bg = "#232323", fg = "#888888" }, -- var name
-    ["@string"]         = { bg = "#232323", fg = "#585858" }, -- string
-    ["@comment"]        = { bg = "#232323", fg = "#484848", italic = true }, -- comment
-    ["@keyword"]        = { bg = "#232323", fg = "#777777" }, -- local return function
-    ["@function"]       = { bg = "#232323", fg = "#9C8FDC", bold = false }, -- function
-    ["@parameter"]      = { bg = "#232323", fg = "#9C8FDC" }, -- func args
-    ["@number"]         = { bg = "#232323", fg = "#555555" }, -- number
-    ["@constant"]       = { bg = "#232323", fg = "#C53B82" }, -- M.
-    ["@boolean"]        = { bg = "#232323", fg = "#C53B82" }, -- true false
-    ["@conditional"]    = { bg = "#232323", fg = "#9C8FDC" }, -- if then
-    ["@repeat"]         = { bg = "#232323", fg = "#999999" }, -- for while
-    ["@operator"]       = { bg = "#232323", fg = "#666666" }, -- =
-    ["@punctuation"]    = { bg = "#232323", fg = "#444443" }, -- [] ,
-    ["@constructor"]    = { bg = "#232323", fg = "#555555" }, -- { }
-    ["@field"]          = { bg = "#232323", fg = "#666666" }, -- table key
-    ["@method"]         = { bg = "#232323", fg = "#C53B82" }, -- :match :gsub
-
-    ["@type"]           = { bg = "#232323", fg = "#555555" }, -- C: int float ..
-    ["@property"]       = { bg = "#232323", fg = "#9D7CD8" }, -- C: ->xxx
-    ["@include"]        = { bg = "#232323", fg = "#C3E88D" }, -- C: include
-    ["@text.todo"]        = { bg = "#232323", fg = "#C3E88D" }, -- C: include
-
-    ["@constant.builtin"]    = { bg = "#232323", fg = "#FF43BA" }, -- nil
-    ["@function.builtin"]    = { bg = "#232323", fg = "#A7C080" }, -- print
-    ["@type.definition"]     = { bg = "#232323", fg = "#9C8FDC" }, -- print
-    ["@string.escape"]       = { bg = "#232323", fg = "#FF43BA" }, -- \n
-
-    ["@keyword.return"]      = { bg = "#232323", fg = "#FF43BA" }, -- return
-    ["@keyword.function"]    = { bg = "#232323", fg = "#FF43BA" }, -- function end
-    ["@keyword.operator"]    = { bg = "#232323", fg = "#C53B82" }, -- and or not
-}
