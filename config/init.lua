@@ -9,13 +9,11 @@
 
 local api = vim.api
 
--- vim.defer_fn(function ()
-    api.nvim_command("packadd impatient.nvim")
-    require          "impatient"
+api.nvim_command("packadd impatient.nvim")
+require          "impatient"
 
-    require "UI"                -- ~/.config/nvim/lua/UI/init.lua
-    require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
--- end, 5)
+require "UI"                -- ~/.config/nvim/lua/UI/init.lua
+require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/config/lua/core/options.lua
@@ -30,21 +28,23 @@ vim.defer_fn(function ()
     api.nvim_exec ([[
         packadd matchparen.nvim
         packadd nvim-colorizer.lua
+        packadd nvim-treesitter-context
+        packadd nvim-treesitter-textobjects
 
-        " packadd matchit
-        " let b:match_ignorecase = 0
-        " let b:match_words =
-        "     \ '\<\%(do\|function\|if\)\>:' ..
-        "     \ '\<\%(return\|else\|elseif\)\>:' ..
-        "     \ '\<end\>,' ..
-        "     \ '\<repeat\>:\<until\>,' ..
-        "     \ '\%(--\)\=\[\(=*\)\[:]\1]'
+        packadd matchit
+        let b:match_ignorecase = 0
+        let b:match_words =
+            \ '\<\%(do\|function\|if\)\>:' ..
+            \ '\<\%(return\|else\|elseif\)\>:' ..
+            \ '\<end\>,' ..
+            \ '\<repeat\>:\<until\>,' ..
+            \ '\%(--\)\=\[\(=*\)\[:]\1]'
     ]], false)
 
     require "matchparen".setup()
 
     require "colorizer".setup({ "*" }, { mode = "foreground" })
-end, 106)
+end, 150)
 
 vim.defer_fn(function ()
 
@@ -52,7 +52,7 @@ vim.defer_fn(function ()
     -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
     require "plug-manager.treesitter"  -- ~/.config/nvim/lua/plug-manager/treesitter.lua
 
-end, 19)
+end, 10)
 
 -- USE LOCAL VAR!!!
 -- VIML SPEED    : api.nvim_command < api.nvim_exec(xxx, false) < api.nvim_exec(xxx, true) < vim.cmd < vim.cmd.xxx < others

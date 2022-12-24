@@ -66,40 +66,53 @@ end, 200)
 
 if vim.g.neovide == true then
 
-    api.nvim_command [[
-        syntax off
-        filetype plugin indent off
-        filetype off
-    ]]
-
-    vim.o.swapfile = false
-    -- vim.o.loadplugins = false
-    -- vim.o.shadafile = "NONE"
-
     vim.o.listchars = "eol:⇂,space:･,trail:,tab:"
     vim.o.guifont = "Fixedsys Excelsior:h14.3:#x-subpixelantialias"
     vim.g.neovide_refresh_rate_idle       = 1
     vim.g.neovide_refresh_rate            = 360
-    -- vim.g.neovide_transparency            = 0.95
-    vim.g.neovide_transparency            = 0.98
+    vim.g.neovide_transparency            = 0.9
     vim.g.neovide_cursor_animation_length = 0.02
+    vim.g.neovide_scroll_animation_length = 0.07
     vim.g.neovide_cursor_trail_size       = 0.6
+
     vim.g.neovide_hide_mouse_when_typing  = true
     vim.g.neovide_cursor_antialiasing     = false
     vim.g.neovide_remember_window_size    = false
     vim.g.neovide_confirm_quit            = false
     vim.g.neovide_profiler                = false
 
-    vim.g.neovide_cursor_vfx_mode         = "torpedo"
-    vim.g.neovide_cursor_vfx_opacity = 100
     vim.g.neovide_cursor_vfx_particle_lifetime = 2
-    vim.g.neovide_cursor_vfx_particle_density = 5
-    vim.g.neovide_cursor_vfx_particle_speed = 20
+    vim.g.neovide_cursor_vfx_particle_density  = 5
+    vim.g.neovide_cursor_vfx_particle_speed    = 20
+    vim.g.neovide_cursor_vfx_opacity           = 100
+    vim.g.neovide_cursor_vfx_mode = "torpedo"
 
     vim.g.neovide_floating_blur_amount_x = 0.6
     vim.g.neovide_floating_blur_amount_y = 0.6
 
-    api.nvim_set_hl(0, "CursorLine", { bg = "NONE" })
-    api.nvim_set_keymap("n", "<C-w>", "<CMD>qa!<CR>", {})
+    api.nvim_set_keymap("n", "<C-w>", "<CMD>q!<CR>", { noremap = true })
+
+    require "UI.x-color".set_hl {
+        CursorLine = { bg = "NONE" },
+
+        TabLine  = { bg = "NONE", fg = "#404040" },
+        TabLineP = { bg = "NONE", fg = "#C53B82" },
+        TabLineX = { bg = "NONE", fg = "#C53B82" },
+
+        ActiveTabSepL  = { bg = "NONE", fg = "#252525" },
+        ActiveTabSepR  = { bg = "NONE", fg = "#252525" },
+        ActiveFileIcon = { bg = "#252525", fg = "#9D7CD8" },
+        ActiveTabName  = { bg = "#252525", fg = "#777777", italic = true },
+        ActiveTabX     = { bg = "#252525", fg = "#707070" },
+        ActiveTabMod   = { bg = "#252525", fg = "#AFC459" },
+
+        InactiveTabSepL  = { bg = "NONE", fg = "#202020" },
+        InactiveTabSepR  = { bg = "NONE", fg = "#202020" },
+        InactiveFileIcon = { bg = "#202020", fg = "#404040" },
+        InactiveTabName  = { bg = "#202020", fg = "#404040", italic = true },
+        InactiveTabX     = { bg = "#202020", fg = "#404040" },
+        InactiveTabMod   = { bg = "#202020", fg = "#404040" },
+    }
+
 end
 

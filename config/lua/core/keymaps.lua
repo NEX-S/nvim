@@ -5,25 +5,20 @@ local cmd = vim.cmd
 local multi_mode_tbl = {
     -- NORMAL MAP --
     normal_mode = {
-        -- ["j"]  =  "gj",
-        -- ["k"]  =  "gk",
 
         ["J"]  =  "8j",
         ["U"]  =  "<C-r>",
         [">"]  =  ">>",
         ["<"]  =  "<<",
         ["q"]  =  "za",
-        -- ["q"]  =  function ()
-        --     vim.cmd "silent!normal!za"
-        --     vim.cmd.redrawstatus()
-        -- end,
         ["K"]  =  "8k",
         ["H"]  =  "^",
         ["L"]  =  "$",
         ["+"]  =  "m0J`0",
 
-        -- ["Y"]  =  "<CMD>silent!%y+<CR>",
+        ["X"]  =  "<CMD>tabnew term://fish | startinsert<CR>",
 
+        -- ["Y"]  =  "<CMD>silent!%y+<CR>",
         ["Y"]  =  "\"+y$",
         ["d"]  =  "\"dd",
         ["y"]  =  "\"+y",
@@ -81,9 +76,6 @@ local multi_mode_tbl = {
 
     -- VISUAL MAP --
     visual_mode = {
-        -- ["j"] = "gj",
-        -- ["k"] = "gk",
-
         ["J"] = "8j",
         ["K"] = "8k",
         ["H"] = "^",
@@ -123,9 +115,6 @@ local multi_mode_tbl = {
 
     -- OPTRATOR MAP --
     operat_mode = {
-        -- ["j"] = "gj",
-        -- ["k"] = "gk",
-
         ["J"] = "8j",
         ["K"] = "8k",
         ["H"] = "^",
@@ -158,11 +147,7 @@ local multi_mode_tbl = {
 
     -- TERMINAL MAP --
     termnl_mode = {
-        ["<ESC>"]  =  "<C-\\><C-n>",
-        ["<LEFT>"]  =  "<LEFT>",
-        ["<DOWN>"]  =  "<DOWN>",
-        ["<UP>"]  =  "<UP>",
-        ["<RIGHT>"]  =  "<RIGHT>",
+        ["<ESC>"]    =  "<C-\\><C-n>",
     },
 }
 

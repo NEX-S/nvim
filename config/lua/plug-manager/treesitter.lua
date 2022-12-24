@@ -1,8 +1,6 @@
 
 vim.api.nvim_command [[
     packadd nvim-treesitter
-    packadd nvim-treesitter-context
-    packadd nvim-treesitter-textobjects
 ]]
 
 require "nvim-treesitter.configs".setup {

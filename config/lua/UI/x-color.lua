@@ -3,8 +3,6 @@ local M = {}
 
 local api = vim.api
 
--- vim.keymap.set("n", ";;", "<CMD>so %<CR>")
-
 local basic_hl = {
     FloatTitle   =  { bg = "NONE",    fg = "#AD475F" },
     VertSplit    =  { bg = "NONE",    fg = "#333333" },

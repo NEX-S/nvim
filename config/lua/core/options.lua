@@ -14,6 +14,7 @@ local bool_opts = {
     writeany       = true,
 
     backup        = false,
+    swapfile      = false,
     writebackup   = false,
     confirm       = false,
     autoread      = false,
