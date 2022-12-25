@@ -201,24 +201,27 @@ local function_map = {
     [";q"] = function ()
         local M = {}
 
-        local lastbuf = false
-        for i = 1, vim.fn.bufnr("$") do
-            if vim.fn.buflisted(i) then
-                lastbuf = true
-                break
-            end
-        end
+        -- local lastbuf = false
+        -- for i = 1, vim.fn.bufnr("$") do
+        --     if vim.fn.buflisted(i) then
+        --         lastbuf = true
+        --         break
+        --     end
+        -- end
 
         -- TODO
-        if api.nvim_buf_get_name(0):match("term://.*vifm") then
-            api.nvim_command("quit!")
-        elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true and api.nvim_buf_get_option(0, "modifiable") == true then
+        -- if api.nvim_buf_get_name(0):match("term://.*vifm") then
+        --     api.nvim_command("quit!")
+        -- -- elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true and api.nvim_buf_get_option(0, "modifiable") == true then
+        -- if vim.fn.tabpagenr("$") == 1 and api.nvim_win_get_number(0) == 1 then
+        if vim.fn.tabpagenr("$") == 1 and vim.fn.winnr("$") == 1 then
             api.nvim_set_option_value("laststatus", 0, {})
             vim.fn.termopen("vifm --choose-files /tmp/nvim-vifm", { on_exit = function ()
                 if M.action ~= nil then
                     api.nvim_set_option_value("laststatus", 3, {})
                     for line in io.lines("/tmp/nvim-vifm") do
-                        if M.action == "tabnew " and api.nvim_buf_get_name(0):match("term://.*vifm") then
+                        -- if M.action == "tabnew " and api.nvim_buf_get_name(0):match("term://.*vifm") then
+                        if api.nvim_buf_get_name(0):match("term://.*vifm") then
                             api.nvim_command("edit " .. line)
                         else
                             api.nvim_command(M.action .. line)
@@ -229,7 +232,7 @@ local function_map = {
                         os.remove("/tmp/nvim-vifm")
                     end)
                 else
-                    api.nvim_command("silent quitall!")
+                    api.nvim_command("quit!")
                 end
             end})
 
@@ -268,11 +271,6 @@ local function_map = {
 for lhs, rhs in pairs(function_map) do
     vim.keymap.set("n", lhs, rhs, { silent = true })
 end
-
--- api.nvim_create_user_command("X", function() vim.cmd "normal!<C-w>H" end, {})
--- api.nvim_create_user_command("J", function() vim.cmd "normal!<C-w>J" end, {})
--- api.nvim_create_user_command("K", function() vim.cmd "normal!<C-w>K" end, {})
--- api.nvim_create_user_command("L", function() vim.cmd "normal!<C-w>L" end, {})
 
 local file_action = {
     [";v"] = "vsp",

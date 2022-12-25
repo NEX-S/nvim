@@ -44,7 +44,7 @@ api.nvim_create_autocmd("CmdlineEnter", {
         -- PLUGIN cmdline also trim too (checkit out!) :)
         local cursor_pos = api.nvim_win_get_cursor(0)
         -- retab ?
-        api.nvim_command [[ keeppatterns %s/\s\+$//e | set hlsearch ]]
+        pcall(api.nvim_command, [[ keeppatterns %s/\s\+$//e | set hlsearch ]])
         api.nvim_win_set_cursor(0, cursor_pos)
 
         local n_lines = api.nvim_buf_line_count(0)

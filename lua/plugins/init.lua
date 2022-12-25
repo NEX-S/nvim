@@ -12,6 +12,5 @@ vim.defer_fn(function ()
 
     require "plugins.surround"
 
-    require "colorizer".setup({ "*" }, { mode = "foreground" })
 end, 150)
 

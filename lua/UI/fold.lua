@@ -5,9 +5,9 @@
 local api = vim.api
 
 local fold_opts = {
-    foldenable   = false,
+    foldenable   = true,
 
-    foldlevel    = 10,
+    foldlevel    = 0,
     foldnestmax  = 10,
     foldminlines = 4,
 
@@ -30,7 +30,11 @@ function _G._fold_text ()
 
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " " .. string.rep(" ", 1000)
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. "  " .. string.rep(" ", 1000)
-    return string.rep(" ", fold_indent - 1) .. " " .. s_str:gsub("^%s*", "") .. " //// " .. string.rep(" ", 1000)
+    -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ " .. string.rep("    ", 100)
+    -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)
+    -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)
+    return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ " .. string.rep("    ", 100)
+    -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)
     -- return string.rep(" ", fold_indent - 3) .. "  " .. s_str:gsub("^%s*", "") .. "  " .. string.rep(" ", 1000)
     -- return string.rep(" ", fold_indent - 2) .. "  " .. s_str:gsub("^%s*", "") .. "  " .. string.rep(" ", 1000)
     -- return s_str .. " //// " .. string.rep(" ", 1000)
