@@ -91,7 +91,6 @@ require "lazy".setup (
     }
 )
 
-
 vim.defer_fn(function ()
     require "plugins.lazy-plugins.treesitter"
 end, 10)

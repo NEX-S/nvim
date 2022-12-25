@@ -73,12 +73,14 @@ vim.keymap.set("n", ":", function ()
 
     M.cursor_pos = api.nvim_win_get_cursor(0)
 
-    api.nvim_command [[ keeppatterns %s/\s\+$//e ]]
+    if api.nvim_buf_get_option(0, "modifiable") == true then
+        api.nvim_command [[ keeppatterns %s/\s\+$//e ]]
 
-    local n_lines = api.nvim_buf_line_count(0)
-    local last_nonblank = vim.fn.prevnonblank(n_lines)
-    if last_nonblank < n_lines then
-        api.nvim_buf_set_lines(0, last_nonblank, n_lines - 1, true, {})
+        local n_lines = api.nvim_buf_line_count(0)
+        local last_nonblank = vim.fn.prevnonblank(n_lines)
+        if last_nonblank < n_lines then
+            api.nvim_buf_set_lines(0, last_nonblank, n_lines - 1, true, {})
+        end
     end
 
     -- open_float_cmdline({

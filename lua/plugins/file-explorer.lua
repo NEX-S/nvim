@@ -10,16 +10,17 @@ local M = {
 
 local function open_file ()
 
-    api.nvim_win_close(M.winnr, true)
-
-    for line in io.lines("/tmp/nvim-vifm") do
-        if M.action == "tabnew " and api.nvim_buf_get_name(0) == "" then
-            api.nvim_command("edit " .. line)
-        else
-            api.nvim_command(M.action .. line)
+    if M.action ~= nil then
+        for line in io.lines("/tmp/nvim-vifm") do
+            if M.action == "tabnew " and api.nvim_buf_get_name(0) == "" then
+                api.nvim_command("edit " .. line)
+            else
+                api.nvim_command(M.action .. line)
+            end
         end
     end
 
+    api.nvim_win_close(M.winnr, true)
     api.nvim_buf_delete(M.bufnr, { force = true })
 
     vim.loop.new_thread(function ()
@@ -39,6 +40,10 @@ local function VIFM (opts)
             M.action = "sp"
             return "l"
         end,
+        ["l"] = function ()
+            M.action = "tabnew "
+            return "l"
+        end,
     }
 
     local dir = vim.fn.expand("%:p:h")
@@ -52,14 +57,11 @@ local function VIFM (opts)
     api.nvim_command "startinsert"
     vim.fn.termopen("vifm " .. dir .. " --choose-files /tmp/nvim-vifm", { on_exit = open_file })
 
-    M.action = "tabnew "
-
     for lhs, rhs in pairs(vifm_action) do
         vim.keymap.set("t", lhs, rhs, { buffer = true, expr = true })
     end
 
     vim.keymap.set("t", "<ESC>", "<CMD>quit<CR>", { buffer = true })
-
 end
 
 local function FZF (opts)

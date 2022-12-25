@@ -198,7 +198,68 @@ local function_map = {
     end,
 
     [";t"] = require "plugins.translate".translate,
-    -- [";q"] = _G._bufline_close,
+    [";q"] = function ()
+        local M = {}
+
+        local lastbuf = false
+        for i = 1, vim.fn.bufnr("$") do
+            if vim.fn.buflisted(i) then
+                lastbuf = true
+                break
+            end
+        end
+
+        -- TODO
+        if api.nvim_buf_get_name(0):match("term://.*vifm") then
+            api.nvim_command("quit!")
+        elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true then
+
+            api.nvim_set_option_value("laststatus", 0, {})
+            vim.fn.termopen("vifm --choose-files /tmp/nvim-vifm", { on_exit = function ()
+                if M.action ~= nil then
+                    api.nvim_set_option_value("laststatus", 3, {})
+                    for line in io.lines("/tmp/nvim-vifm") do
+                        if M.action == "tabnew " and api.nvim_buf_get_name(0):match("term://.*vifm") then
+                            api.nvim_command("edit " .. line)
+                        else
+                            api.nvim_command(M.action .. line)
+                        end
+                    end
+
+                    vim.loop.new_thread(function ()
+                        os.remove("/tmp/nvim-vifm")
+                    end)
+                else
+                    api.nvim_command("silent quitall!")
+                end
+            end})
+
+            local vifm_action = {
+                ["<C-v>"] = function ()
+                    M.action = "vsp"
+                    return "l"
+                end,
+                ["<C-s>"] = function ()
+                    M.action = "sp"
+                    return "l"
+                end,
+                ["l"] = function ()
+                    M.action = "tabnew "
+                    return "l"
+                end,
+            }
+
+            for lhs, rhs in pairs(vifm_action) do
+                vim.keymap.set("t", lhs, rhs, { buffer = true, expr = true })
+            end
+
+            api.nvim_set_option_value("number", false, {})
+            api.nvim_set_option_value("filetype", "", {})
+            api.nvim_command("startinsert")
+        else
+            api.nvim_command("quit!")
+        end
+    end,
 }
 
 

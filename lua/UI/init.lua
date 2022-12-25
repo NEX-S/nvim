@@ -39,7 +39,7 @@ local ui_opts = {
     -- shortmess    = "filmnrwxaoOstTWAIcCqFS",
 
     -- titlestring  = "[   UNEXPECTED NVIM   ]",
-    titlestring  = " nvim ",
+    -- titlestring  = " nvim ",
 
     -- rulerformat = "[ %c  0𝙭%B ]",
     listchars = "eol:⸥,space:·,trail:,tab:,nbsp:n,extends:e,precedes:+",
@@ -91,6 +91,31 @@ if vim.g.neovide == true then
     vim.g.neovide_floating_blur_amount_y = 0.6
 
     api.nvim_set_keymap("n", "<C-w>", "<CMD>q!<CR>", { noremap = true })
+
+    local fn = vim.fn
+    -- vim.keymap.set("n", ";d", function ()
+    --     -- for i = 1, fn.bufnr("$") do
+    --     --     if fn.buflisted(i) == 1 and api.nvim_buf_get_name(0) ~= "" then
+    --     --         bufcnt = bufcnt + 1
+    --     --         break
+    --     --         return "<CMD>quit!<CR>"
+    --     --     end
+    --     -- end
+    --     -- if bufcnt == 1 then
+    --     -- 
+    --     -- end
+    --     if fn.tabpagenr("$") == 1 then
+    --         -- fn.termopen("vifm")
+    --         -- api.nvim_command("startinsert!")
+    --         -- api.nvim_command("redraw!")
+    --         api.nvim_command("e term://vifm")
+    --         api.nvim_command("startinsert!")
+    --         api.nvim_set_option_value("number", false, {})
+    --     else
+    --         api.nvim_command("quit!")
+    --     end
+    --     -- return "<CMD>F<CR>"
+    -- end, { expr = false })
 
 end
 

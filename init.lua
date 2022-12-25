@@ -9,6 +9,8 @@
 
 vim.o.rtp = "/home/nex/.local/share/nvim/lazy/lazy.nvim,/home/nex/nvim,/usr/share/nvim/runtime"
 
+-- ~/nvim/lua/plugins/lazy.lua
+vim.api.nvim_set_option_value("loadplugins", true, {})
 require "plugins.lazy"
 
 local api = vim.api
