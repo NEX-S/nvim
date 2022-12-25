@@ -1,14 +1,5 @@
-require "lazy".setup (
-    -- PLUGINS
-    {
-        "nvim-treesitter/nvim-treesitter",
-         build = ":TSUpdate",
-         dependencies = {
-             "nvim-treesitter/nvim-treesitter-textobjects",
-         },
-    }, 
-    -- LAZY CONFIG
-    {
+-- ~/nvim/lua/plugins/lazy-plugins.lua
+require "lazy".setup ("plugins.lazy-plugins", {
         root = "/home/nex/.local/share/nvim/lazy",
         defaults = {
             lazy = true,
@@ -18,20 +9,20 @@ require "lazy".setup (
             size = { width = 0.75, height = 0.75 },
             border = "rounded",
             icons = {
-                cmd     = " ",
+                cmd     = " ",
                 config  = " ",
                 event   = " ",
                 ft      = " ",
                 init    = " ",
-                keys    = " ",
-                plugin  = " ",
-                runtime = " ",
-                source  = " ",
-                start   = " ",
-                task    = "✔ ",
+                keys    = "ﱕ ",
+                plugin  = " ",
+                runtime = " ",
+                source  = " ",
+                start   = " ",
+                task    = " ",
             },
             custom_keys = {
-                ["<C-l>"] = function (plugin)
+                [";l"] = function (plugin)
                     require("lazy.util").open_cmd({ "lazygit", "log" }, {
                         cwd = plugin.dir,
                         terminal = true,
@@ -84,13 +75,9 @@ require "lazy".setup (
             },
         },
         readme = {
-            root = vim.fn.stdpath("state") .. "/lazy/readme",
+            root = "/home/nex/.local/state/lazy/readme",
             files = { "README.md" },
             skip_if_doc_exists = true,
         },
     }
 )
-
-vim.defer_fn(function ()
-    require "plugins.lazy-plugins.treesitter"
-end, 10)

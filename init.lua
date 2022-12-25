@@ -6,20 +6,19 @@
 --                                                                  --
 
 -- TODO: h operatorfunc
+local api = vim.api
 
 vim.o.rtp = "/home/nex/.local/share/nvim/lazy/lazy.nvim,/home/nex/nvim,/usr/share/nvim/runtime"
 
 -- ~/nvim/lua/plugins/lazy.lua
-vim.api.nvim_set_option_value("loadplugins", true, {})
-require "plugins.lazy"
-
-local api = vim.api
+api.nvim_set_option_value("loadplugins", true, {})
+require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 
 -- api.nvim_command("packadd impatient.nvim")
 -- require          "impatient"
 
 require "UI"                -- ~/nvim/lua/UI/init.lua
-require "core.filetype"     -- ~/nvim/config/lua/core/filetype.lua
+require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/lua/core/options.lua
@@ -27,7 +26,7 @@ vim.defer_fn(function ()
     require "core.autocmd"     -- ~/nvim/lua/core/autocmd.lua
     require "plugins"          -- ~/nvim/lua/plugins/init.lua
 
-    -- require "plug-manager"     -- ~/nvim/config/lua/plug-manager/init.lua
+    -- require "plug-manager"     -- ~/nvim/lua/plug-manager/init.lua
 
     vim.o.shadafile = ""
 
@@ -48,7 +47,6 @@ vim.defer_fn(function ()
     -- ]], false)
     -- require "matchparen".setup()
     -- require "colorizer".setup({ "*" }, { mode = "foreground" })
-
 end, 150)
 
 -- vim.defer_fn(function ()

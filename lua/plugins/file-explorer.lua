@@ -92,7 +92,8 @@ local function FZF (opts)
 
     vim.fn.termopen (
         "rg --files --ignore-vcs --hidden 2> /dev/null " .. dir ..
-        "| fzf --preview 'highlight -O ansi {} 2> /dev/null' --preview-window 'right,border-left,nowrap,nofollow,nocycle,' > /tmp/nvim-vifm",
+        -- "| fzf --preview 'highlight -O ansi {} 2> /dev/null' --preview-window 'right,border-left,nowrap,nofollow,nocycle,' > /tmp/nvim-vifm",
+        "| fzf --preview 'bat --theme=Nord --style=plain --color=always {} 2> /dev/null {} 2> /dev/null' --preview-window 'right,border-left,nowrap,nofollow,nocycle,' > /tmp/nvim-vifm",
         { on_exit = open_file }
     )
     api.nvim_command "startinsert"

@@ -33,6 +33,7 @@ require "UI.x-color".set_hl {
     ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
 }
 
+vim.defer_fn(function ()
 require "nvim-treesitter.configs".setup {
     auto_install = false,
     ensure_installed = { "lua", "c", "markdown", "vim" },
@@ -98,6 +99,7 @@ require "nvim-treesitter.configs".setup {
         }
     },
 }
+end, 10)
 
 -- require "treesitter-context".setup {
 --     enable = true,
@@ -122,3 +124,10 @@ require "nvim-treesitter.configs".setup {
 --     }
 -- }
 
+return {
+    "nvim-treesitter/nvim-treesitter",
+     build = ":TSUpdate",
+     dependencies = {
+         "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+}

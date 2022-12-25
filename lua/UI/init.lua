@@ -102,7 +102,7 @@ if vim.g.neovide == true then
     --     --     end
     --     -- end
     --     -- if bufcnt == 1 then
-    --     -- 
+    --     --
     --     -- end
     --     if fn.tabpagenr("$") == 1 then
     --         -- fn.termopen("vifm")

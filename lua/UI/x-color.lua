@@ -51,6 +51,11 @@ local plugin_hl = {
     CmdlineNormal   = { bg = "#202020",    fg = "#9C8FDC" },
     VisualCnt       = { bg = "NONE",    fg = "#444444" },
     SearchCnt       = { bg = "NONE",    fg = "#9C8FDC" },
+
+    LazyNormal = { bg = "#232323", fg = "#666666" },
+    LazyHandlerSource = { bg = "NONE", fg = "#444444" },
+    LazyHandlerPlugin = { bg = "NONE", fg = "#C53B82" },
+    LazyMuted = { bg = "NONE", fg = "#444444" },
 }
 
 function M.set_hl (tbl)

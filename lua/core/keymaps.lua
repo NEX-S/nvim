@@ -212,8 +212,7 @@ local function_map = {
         -- TODO
         if api.nvim_buf_get_name(0):match("term://.*vifm") then
             api.nvim_command("quit!")
-        elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true then
-
+        elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true and api.nvim_buf_get_option(0, "modifiable") == true then
             api.nvim_set_option_value("laststatus", 0, {})
             vim.fn.termopen("vifm --choose-files /tmp/nvim-vifm", { on_exit = function ()
                 if M.action ~= nil then
@@ -247,17 +246,20 @@ local function_map = {
                     M.action = "tabnew "
                     return "l"
                 end,
+                ["<ESC>"] = function ()
+                    return "<ESC>"
+                end,
             }
 
             for lhs, rhs in pairs(vifm_action) do
                 vim.keymap.set("t", lhs, rhs, { buffer = true, expr = true })
             end
 
-            api.nvim_set_option_value("number", false, {})
-            api.nvim_set_option_value("filetype", "", {})
+            api.nvim_set_option_value("number", false, { buf = 0 })
+            api.nvim_set_option_value("filetype", "", { buf = 0 })
             api.nvim_command("startinsert")
         else
-            api.nvim_command("quit!")
+            pcall(api.nvim_command, "quit!")
         end
     end,
 }

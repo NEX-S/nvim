@@ -11,5 +11,7 @@ vim.defer_fn(function ()
     require "plugins.file-explorer"
 
     require "plugins.surround"
+
+    require "colorizer".setup({ "*" }, { mode = "foreground" })
 end, 150)
 

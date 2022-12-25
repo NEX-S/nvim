@@ -100,8 +100,8 @@ vim.keymap.set("n", ":", function ()
     vim.keymap.set("i", "<ESC>", function ()
         if vim.fn.pumvisible() == 1 then
             api.nvim_input("<C-u>")
-            close_float_cmdline()
         end
+        close_float_cmdline()
     end, { buffer = true })
 
     local cmdline_keymap = {

@@ -12,9 +12,9 @@ local bo = vim.bo
 --     LuaPcall   = { bg = "NONE", fg = "#C53B82" },
 --     LuaParen   = { bg = "NONE", fg = "#9C8FDC" },
 --     LuaTODO    = { bg = "NONE", fg = "#9C8FDC" },
--- 
+--
 --     LuaParenError  = { bg = "NONE", fg = "#C53B82" },
--- 
+--
 --     NvimApi     = { bg = "NONE", fg = "#AFC460" },
 --     NvimApiCall = { bg = "NONE", fg = "#AFC460" },
 --     NvimFunc    = { bg = "NONE", fg = "#C53B82" },
@@ -32,6 +32,7 @@ vim.defer_fn(function ()
             vim.wo.sidescrolloff = 0
             vim.keymap.set("n", "<ESC>", "<CMD>quit!<CR>", { buffer = true })
         end,
+        [";r"] = "<CMD>source %<CR>",
         [";;"] = function ()
             local opts = {
                 title = " [ LUA TEST ] ",
@@ -114,7 +115,7 @@ vim.defer_fn(function ()
     --     syntax keyword LuaRequire "require"
     --     syntax keyword LuaPcall   "pcall"
     --     syntax keyword LuaTODO   "TODO"
-    -- 
+    --
     --     syntax match NvimApi       "vim\.api"
     --     syntax match NvimApiCall   "\v(vim\.)?api\.\h*(\(.*\))?"
     --     syntax match NvimFunc      "\v(vim\.)?fn\.\h*"
@@ -122,7 +123,9 @@ vim.defer_fn(function ()
     -- ]]
 
     -- TODO
-    vim.cmd "cabbrev H tab help"
+    api.nvim_command "cabbrev H tab help"
+    api.nvim_command "cabbrev s source %"
+
 
     api.nvim_create_autocmd("FileType", {
         pattern = "help",
@@ -130,7 +133,7 @@ vim.defer_fn(function ()
     })
 
     function _G._p(data)
-        vim.pretty_print(data) 
+        vim.pretty_print(data)
     end
 
 end, 150)
