@@ -10,6 +10,7 @@ local filetype_dict = {
     vim  = "vim",
     fish = "fish",
     conf = "conf",
+    html = "html",
 }
 
 local filename_dict = {

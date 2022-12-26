@@ -32,7 +32,7 @@ vim.defer_fn(function ()
             vim.wo.sidescrolloff = 0
             vim.keymap.set("n", "<ESC>", "<CMD>quit!<CR>", { buffer = true })
         end,
-        [";r"] = "<CMD>source %<CR>",
+        -- [";r"] = "<CMD>source %<CR>",
         [";;"] = function ()
             local opts = {
                 title = " [ LUA TEST ] ",

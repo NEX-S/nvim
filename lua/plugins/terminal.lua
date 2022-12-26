@@ -21,7 +21,6 @@ function M.open_term_vert (shell_cmd, opts)
 end
 
 local function win_cmd_exec (cmd, opts)
-
     bufnr = api.nvim_create_buf(true, true)
     winid = utils.open_win_float(bufnr, opts)
 
@@ -34,7 +33,6 @@ end
 -- FLOAT TERM --
 M.open_term_tbl = {}
 function M.open_term_float (shell_cmd, opts, ...)
-
     local args  = ...
 
     local winid = nil

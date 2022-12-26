@@ -215,7 +215,10 @@ local function_map = {
         -- -- elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true and api.nvim_buf_get_option(0, "modifiable") == true then
         -- if vim.fn.tabpagenr("$") == 1 and api.nvim_win_get_number(0) == 1 then
         if vim.fn.tabpagenr("$") == 1 and vim.fn.winnr("$") == 1 then
+
             api.nvim_set_option_value("laststatus", 0, {})
+
+            api.nvim_command("enew")
             vim.fn.termopen("vifm --choose-files /tmp/nvim-vifm", { on_exit = function ()
                 if M.action ~= nil then
                     api.nvim_set_option_value("laststatus", 3, {})
@@ -232,9 +235,11 @@ local function_map = {
                         os.remove("/tmp/nvim-vifm")
                     end)
                 else
-                    api.nvim_command("quit!")
+                    api.nvim_command("silent quitall!")
                 end
             end})
+
+            api.nvim_command("startinsert")
 
             local vifm_action = {
                 ["<C-v>"] = function ()
@@ -259,8 +264,7 @@ local function_map = {
             end
 
             api.nvim_set_option_value("number", false, { buf = 0 })
-            api.nvim_set_option_value("filetype", "", { buf = 0 })
-            api.nvim_command("startinsert")
+            -- api.nvim_set_option_value("filetype", "", { buf = 0 })
         else
             pcall(api.nvim_command, "quit!")
         end
