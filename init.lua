@@ -8,11 +8,10 @@
 -- TODO: h operatorfunc
 local api = vim.api
 
-vim.o.rtp = "/home/nex/.local/share/nvim/lazy/lazy.nvim,/home/nex/nvim,/usr/share/nvim/runtime"
 
--- ~/nvim/lua/plugins/lazy.lua
-api.nvim_set_option_value("loadplugins", true, {})
-require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
+vim.defer_fn(function ()
+    require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
+end, 10)
 
 -- api.nvim_command("packadd impatient.nvim")
 -- require          "impatient"
@@ -69,11 +68,17 @@ end, 150)
 -- var           : api.nvim_buf_get_option < vim.bo.xxx
 
 -- vim.keymap.set("n", ";d", function ()
---     local time = os.clock()
---
---     for i = 1, 1000000 do
---
---     enda
---
---     print((os.clock() - time) * 100)
+    -- local time = os.clock()
+    --
+    -- for i = 1, 10000000 do
+    --     -- 388
+    --     -- vim.go.loadplugins = true
+    --     -- 257
+    --     -- api.nvim_set_option("loadplugins", true)
+    --
+    --     api.nvim_set_option_value("loadplugins", true, {})
+    -- end
+    --
+    -- print((os.clock() - time) * 100)
 -- end)
+

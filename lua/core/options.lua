@@ -12,6 +12,7 @@ local bool_opts = {
     smartindent    = true,
     startofline    = true,
     writeany       = true,
+    undofile       = true,
 
     backup        = false,
     swapfile      = false,
@@ -60,9 +61,8 @@ M.set_opts(bool_opts)
 M.set_opts(num_opts)
 M.set_opts(str_opts)
 
-vim.defer_fn(function ()
-    -- api.nvim_command "filetype on"
-    vim.o.undofile = true -- Bad Startup performance
-end, 300)
+-- vim.defer_fn(function ()
+--     vim.o.undofile = true -- Bad Startup performance
+-- end, 300)
 
 return M

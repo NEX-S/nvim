@@ -1,4 +1,9 @@
 -- ~/nvim/lua/plugins/lazy-plugins.lua
+local api = vim.api
+
+api.nvim_set_option_value("loadplugins", true, {})
+api.nvim_set_option_value("runtimepath", "/home/nex/.local/share/nvim/lazy/lazy.nvim,/home/nex/nvim,/usr/share/nvim/runtime", {})
+
 require "lazy".setup ("plugins.lazy-plugins", {
         root = "/home/nex/.local/share/nvim/lazy",
         defaults = {
