@@ -45,7 +45,7 @@ local multi_mode_tbl = {
         ["<C-d>"]  =  "<C-x>",
 
         ["<C-m>"] =  "q",
-        ["<CR>"]  =  "@l|j",
+        ["<CR>"]  =  "@l",
 
         ["<C-u>"]  =  "viw~",
         -- ["<C-r>"]  =  '"',
@@ -94,6 +94,7 @@ local multi_mode_tbl = {
         [";w"] = "<CMD>write ++p<CR>", -- dont add !
         [";q"] = "<CMD>quit!<CR>",
 
+        ["<C-m>"] = "\"ly",
 
         ["aq"] = 'a"',
         ["iq"] = 'i"',
@@ -137,6 +138,9 @@ local multi_mode_tbl = {
     insert_mode = {
         ["<SPACE>"] = "<SPACE><C-g>u",
         ["<C-c>"]   = "<C-r>=",
+
+        ["<UP>"]   =  "<C-v>",
+        ["<C-v>"]  =  "<ESC>\"+pa",
     },
 
     -- COMMAND MAP --
