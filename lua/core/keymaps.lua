@@ -13,7 +13,6 @@ local multi_mode_tbl = {
         ["H"]  =  "^",
         ["L"]  =  "$",
         ["'"]  =  ";",
-        ["q"]  =  "za",
 
         ["+"]  =  "m0J`0",
 
@@ -45,6 +44,7 @@ local multi_mode_tbl = {
         ["<C-d>"]  =  "<C-x>",
 
         ["<C-m>"] =  "q",
+        -- todo CR check if register l is empty
         ["<CR>"]  =  "@l",
 
         ["<C-u>"]  =  "viw~",
@@ -125,10 +125,42 @@ local multi_mode_tbl = {
 
         ["aq"] = 'a"',
         ["iq"] = 'i"',
-        ["lq"] = 'i"',
 
-        ["l'"] = "i'",
-        ['l"'] = 'i"',
+        -- ["lq"] = 'i"',
+        -- ["l'"] = "i'",
+        -- ['l"'] = 'i"',
+
+        ["h("] = '<CMD>normal!F(vi(<CR>',
+        ["h)"] = '<CMD>normal!F)vi)<CR>',
+        ["l("] = '<CMD>normal!f(vi(<CR>',
+        ["l)"] = '<CMD>normal!f)vi)<CR>',
+        ["hb"] = '<CMD>normal!F)vi)<CR>',
+        ["lb"] = '<CMD>normal!f(vi(<CR>',
+
+        ["h["] = '<CMD>normal!F[vi[<CR>',
+        ["h]"] = '<CMD>normal!F]vi]<CR>',
+        ["l["] = '<CMD>normal!f[vi[<CR>',
+        ["l]"] = '<CMD>normal!f]vi]<CR>',
+
+        ["h<"] = '<CMD>normal!F<vi<<CR>',
+        ["h>"] = '<CMD>normal!F>vi><CR>',
+        ["l<"] = '<CMD>normal!f<vi<<CR>',
+        ["l>"] = '<CMD>normal!f>vi><CR>',
+
+        ["h{"] = '<CMD>normal!F{vi{<CR>',
+        ["h}"] = '<CMD>normal!F}vi}<CR>',
+        ["l{"] = '<CMD>normal!f{vi{<CR>',
+        ["l}"] = '<CMD>normal!f}vi}<CR>',
+
+        ["h'"] = "<CMD>normal!F'vi'<CR>",
+        ["l'"] = "<CMD>normal!f'vi'<CR>", 
+
+        ['h"'] = '<CMD>normal!F"vi"<CR>',
+        ['l"'] = '<CMD>normal!f"vi"<CR>',
+
+
+        ["h'"] = "<CMD>normal!F'vi'<CR>",
+        ["l'"] = "<CMD>normal!f'vi'<CR>",
 
         -- TODO
         -- ["hq"] = '<CMD>normal!F"<CR>i"',

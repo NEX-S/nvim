@@ -25,8 +25,8 @@ local function ft_detect ()
     local fileName = vim.fn.expand("%:t")
 
     -- vim.bo.ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
-    vim.bo.ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
-    -- api.nvim_command.setf(vim.bo.ft)
+    local ft = fileExt ~= "" and filetype_dict[fileExt] or filename_dict[fileName]
+    api.nvim_set_option_value("filetype", ft, {})
 
     vim.defer_fn(function()
         -- api.nvim_command "filetype plugin on"

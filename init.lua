@@ -10,18 +10,16 @@ local api = vim.api
 -- <C-f> in cmdline can edit history and re-execute it
 
 
-vim.defer_fn(function ()
+-- vim.defer_fn(function ()
     require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
-end, 10)
+-- end, 10)
 
 -- api.nvim_command("packadd impatient.nvim")
 -- require          "impatient"
 
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
-require "plugins.dot-repeat"
 
--- IassAbbbj
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/lua/core/options.lua
     require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
@@ -84,4 +82,3 @@ end, 100)
     --
     -- print((os.clock() - time) * 100)
 -- end)
-

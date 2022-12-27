@@ -88,6 +88,11 @@ if vim.g.neovide == true then
     vim.g.neovide_floating_blur_amount_x = 0.6
     vim.g.neovide_floating_blur_amount_y = 0.6
 
+    -- vim.g.neovide_padding_top    = 5
+    -- vim.g.neovide_padding_left   = 0
+    -- vim.g.neovide_padding_right  = 0
+    -- vim.g.neovide_padding_bottom = 0
+
     api.nvim_set_keymap("n", "<C-w>", "<CMD>q!<CR>", { noremap = true })
 
     local fn = vim.fn

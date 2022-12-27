@@ -52,7 +52,7 @@ local function VIFM (opts)
     end
 
     M.bufnr = api.nvim_create_buf(false, true)
-    M.winnr = utils.open_win_float(M.bufnr, { border = "none" })
+    M.winnr = utils.open_win_float(M.bufnr, { border = "single" })
 
     api.nvim_command "startinsert"
     vim.fn.termopen("vifm " .. dir .. " --choose-files /tmp/nvim-vifm", { on_exit = open_file })
