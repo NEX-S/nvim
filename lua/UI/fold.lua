@@ -5,9 +5,9 @@
 local api = vim.api
 
 local fold_opts = {
-    foldenable   = true,
+    foldenable   = false,
 
-    foldlevel    = 0,
+    foldlevel    = 10,
     foldnestmax  = 10,
     foldminlines = 4,
 
@@ -15,7 +15,9 @@ local fold_opts = {
     foldtext     = "v:lua._fold_text()",
 }
 
-require "core.options".set_opts(fold_opts)
+for key, value in pairs(fold_opts) do
+	api.nvim_set_option_value(key, value, {})
+end
 
 function _G._fold_text ()
     local fold_spos = vim.v.foldstart
@@ -26,7 +28,7 @@ function _G._fold_text ()
     -- local e_str = vim.fn.getline(fold_spos)
     -- local line_cnt = fold_epos - fold_spos
 
-    local fold_indent = s_str:find("%w") - 1
+    local fold_indent = s_str:find("[^%s]") - 1
 
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " " .. string.rep(" ", 1000)
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. "  " .. string.rep(" ", 1000)

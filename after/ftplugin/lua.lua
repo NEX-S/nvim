@@ -122,16 +122,6 @@ vim.defer_fn(function ()
     --     syntax match NvimCmd       "\vvim.cmd.*"
     -- ]]
 
-    -- TODO
-    api.nvim_command "cabbrev H tab help"
-    api.nvim_command "cabbrev s source %"
-
-
-    api.nvim_create_autocmd("FileType", {
-        pattern = "help",
-        command = "wincmd L"
-    })
-
     function _G._p(data)
         vim.pretty_print(data)
     end

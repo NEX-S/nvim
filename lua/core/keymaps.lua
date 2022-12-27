@@ -5,15 +5,16 @@ local cmd = vim.cmd
 local multi_mode_tbl = {
     -- NORMAL MAP --
     normal_mode = {
-
         ["J"]  =  "8j",
         ["U"]  =  "<C-r>",
         [">"]  =  ">>",
         ["<"]  =  "<<",
-        ["q"]  =  "za",
         ["K"]  =  "8k",
         ["H"]  =  "^",
         ["L"]  =  "$",
+        ["'"]  =  ";",
+        ["q"]  =  "za",
+
         ["+"]  =  "m0J`0",
 
         ["X"]  =  "<CMD>tabnew term://fish | startinsert<CR>",
@@ -40,12 +41,14 @@ local multi_mode_tbl = {
         ["<A-UP>"]     =  "<C-w>K",
         ["<A-RIGHT>"]  =  "<C-w>L",
 
-        ["<F1>"]  =  "<CMD>source %<CR>",
-
         ["<C-i>"]  =  "<C-a>",
         ["<C-d>"]  =  "<C-x>",
 
+        ["<C-m>"] =  "q",
+        ["<CR>"]  =  "@l|j",
+
         ["<C-u>"]  =  "viw~",
+        -- ["<C-r>"]  =  '"',
 
         ["<C-a>"]  =  "ggvG$",
 
@@ -71,7 +74,6 @@ local multi_mode_tbl = {
         ["g("] = "[(",
         ["g}"] = "]}",
         ["g{"] = "[{",
-
     },
 
     -- VISUAL MAP --
@@ -147,7 +149,16 @@ local multi_mode_tbl = {
 
     -- TERMINAL MAP --
     termnl_mode = {
-        ["<ESC>"]    =  "<C-\\><C-n>",
+        ["<ESC>"]  =  "<C-\\><C-n>",
+        -- ["<A-h>"]  =  "<CMD>wincmd h<CR>",
+        -- ["<A-j>"]  =  "<CMD>wincmd j<CR>",
+        -- ["<A-k>"]  =  "<CMD>wincmd k<CR>",
+        -- ["<A-l>"]  =  "<CMD>wincmd l<CR>",
+
+        ["<A-h>"]  =  "<C-\\><C-n><C-w><C-h>",
+        ["<A-j>"]  =  "<C-\\><C-n><C-w><C-j>",
+        ["<A-k>"]  =  "<C-\\><C-n><C-w><C-k>",
+        ["<A-l>"]  =  "<C-\\><C-n><C-w><C-l>",
     },
 }
 
@@ -162,9 +173,7 @@ local mode_map = {
 
 for mode, mode_tbl in pairs(multi_mode_tbl) do
     for lhs, rhs in pairs(mode_tbl) do
-        -- TODO
         api.nvim_set_keymap(mode_map[mode], lhs, rhs, { noremap = true, silent = false })
-        -- vim.keymap.set(mode_map[mode], lhs, rhs, { silent = true })
     end
 end
 

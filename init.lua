@@ -7,6 +7,7 @@
 
 -- TODO: h operatorfunc
 local api = vim.api
+-- <C-f> in cmdline can edit history and re-execute it 
 
 
 vim.defer_fn(function ()
@@ -18,6 +19,7 @@ end, 10)
 
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
+require "plugins.dot-repeat"
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/lua/core/options.lua
@@ -46,7 +48,7 @@ vim.defer_fn(function ()
     -- ]], false)
     -- require "matchparen".setup()
     -- require "colorizer".setup({ "*" }, { mode = "foreground" })
-end, 150)
+end, 100)
 
 -- vim.defer_fn(function ()
 --     -- api.nvim_command [[

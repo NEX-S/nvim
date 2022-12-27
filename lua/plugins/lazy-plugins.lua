@@ -2,24 +2,20 @@
 -- ~/nvim/nvim/lua/plugins/lazy-plugins/
 return {
     { "norcalli/nvim-colorizer.lua",
-        init = function ()
-            vim.defer_fn(function ()
-                require "colorizer".setup({ "*" }, { mode = "foreground" })
-            end, 50)
-        end
+       init = function ()
+           vim.defer_fn(function ()
+               require "colorizer".setup({ "*" }, { mode = "foreground" })
+           end, 50)
+       end
     },
     { "nex-s/matchparen.nvim",
-        init = function ()
-            vim.defer_fn(function ()
-                require "matchparen".setup {}
-            end, 200)
-        end
+       init = function ()
+           vim.defer_fn(function ()
+               require "matchparen".setup {}
+           end, 200)
+       end
     },
-    -- {
-    --     "nvim-treesitter/nvim-treesitter",
-    --      build = ":TSUpdate",
-    --      dependencies = {
-    --          "nvim-treesitter/nvim-treesitter-textobjects",
-    --      },
+    -- { "mbbill/undotree",
+    --    cmd = "UndotreeToggle",
     -- },
 }

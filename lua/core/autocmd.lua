@@ -29,7 +29,6 @@ end, 200)
 api.nvim_create_autocmd("CmdlineEnter", {
     pattern = ":",
     callback = function ()
-
         -- BAD PERFORMANCE
         -- local line_tbl = api.nvim_buf_get_lines(0, 1, -1, false)
         -- for i = 1, #line_tbl do
@@ -78,3 +77,12 @@ api.nvim_create_autocmd("BufWinEnter", {
     --     -- end
     -- end,
 })
+
+-- api.nvim_command "cabbrev S source %"
+api.nvim_command "cabbrev H tab help"
+
+api.nvim_create_autocmd("FileType", {
+    pattern = "help",
+    command = "wincmd L"
+})
+

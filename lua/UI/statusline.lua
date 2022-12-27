@@ -1,18 +1,6 @@
 
 local api = vim.api
 
-local function testasetaset()
-
-    print("asdfsadfasdf")
-    print("asdfsadfasdf")
-    print("asdfsadfasdf")
-    print("asdfsadfasdf")
-    print("asdfsadfasdf")
-
-    local function sadf() end
-
-end
-
 local L1 = "%#statusLineL1#[ %Y ] "
 local L2 = "%#statusLineL2#[ %#statusLineL2#%F  %p%% ] "
 local L3 = "%#statusLineL3#%{% &modified ? '%#statusLineR2#' : '%#statusLineL2#%r' %}"
@@ -23,7 +11,7 @@ local R3 = "%#statusLineR3#[ %l / %L ] "
 
 vim.opt.statusline = "%#statusLineL0#▎" .. L1 .. L2 .. L3 .. "%=" .. R1 .. R2 .. R3
 
-local StatusLineHL = {
+require "UI.x-color".set_hl {
     statusLine = { bg = "NONE", fg = "#585858" },
 
     statusLineL0 = { bg = "NONE", fg = "#333333" },
@@ -36,8 +24,3 @@ local StatusLineHL = {
     statusLineR2 = { bg = "NONE", fg = "#AFC460" },
     statusLineR3 = { bg = "NONE", fg = "#C53B82" },
 }
-
-for key, value in pairs(StatusLineHL) do
-    api.nvim_set_hl(0, key, value)
-end
-

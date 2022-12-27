@@ -9,8 +9,9 @@ vim.defer_fn(function ()
     require "plugins.match"
     require "plugins.align"
     require "plugins.file-explorer"
+    require "plugins.dot-repeat"
 
     require "plugins.surround"
 
-end, 150)
+end, 50)
 

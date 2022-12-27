@@ -46,8 +46,7 @@ local ui_opts = {
 }
 
 for key, value in pairs(ui_opts) do
-    -- can't use global?
-    api.nvim_set_option_value(key, value, {})
+	api.nvim_set_option_value(key, value, {})
 end
 
 require "UI.x-color" -- ~/nvim/lua/UI/x-color.lua
@@ -65,7 +64,6 @@ vim.defer_fn(function ()
 end, 200)
 
 if vim.g.neovide == true then
-
     vim.o.listchars = "eol:⇂,space:･,trail:,tab:"
     vim.o.guifont = "Fixedsys Excelsior:h14.3:#x-subpixelantialias"
     vim.g.neovide_refresh_rate_idle       = 1
@@ -116,6 +114,4 @@ if vim.g.neovide == true then
     --     end
     --     -- return "<CMD>F<CR>"
     -- end, { expr = false })
-
 end
-
