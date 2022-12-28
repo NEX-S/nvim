@@ -14,7 +14,10 @@ local multi_mode_tbl = {
         ["L"]  =  "$",
         ["'"]  =  ";",
 
+        ["q"]  =  "za",
+
         ["+"]  =  "m0J`0",
+
 
         ["X"]  =  "<CMD>tabnew term://fish | startinsert<CR>",
 
@@ -337,5 +340,24 @@ for lhs, rhs in pairs(file_action) do
             api.nvim_command(rhs)
         end
     end)
+end
+
+local function_omap = {
+    ["j{"] = function ()
+        local reg = vim.fn.getreg("/")
+        vim.fn.setreg("/", "{")
+        api.nvim_command("normal!nvi{")
+        vim.fn.setreg("/", reg)
+    end,
+    ["k{"] = function ()
+        local reg = vim.fn.getreg("/")
+        vim.fn.setreg("/", "}")
+        api.nvim_command("normal!Nvi}")
+        vim.fn.setreg("/", reg)
+    end,
+}
+
+for lhs, rhs in pairs(function_omap) do
+    vim.keymap.set("o", lhs, rhs, { expr = false })
 end
 

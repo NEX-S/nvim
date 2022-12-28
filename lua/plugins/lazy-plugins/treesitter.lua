@@ -1,4 +1,6 @@
 
+local api = vim.api
+
 require "UI.x-color".set_hl {
     ["@variable"]       = { bg = "NONE", fg = "#888888" },  -- var name
     ["@string"]         = { bg = "NONE", fg = "#585858" },  -- string
@@ -33,11 +35,29 @@ require "UI.x-color".set_hl {
     ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
 }
 
+local operator = {
+    ["jf"] = "<CMD>TSTextobjectGotoNextStart      @function.inner | normal vif<CR>",
+    ["kf"] = "<CMD>TSTextobjectGotoPreviousStart  @function.inner | normal vif<CR>",
+
+    ["jc"] = "<CMD>TSTextobjectGotoNextStart      @class.inner | normal vic<CR>",
+    ["kc"] = "<CMD>TSTextobjectGotoPreviousStart  @class.inner | normal vic<CR>",
+
+    ["ji"] = "<CMD>TSTextobjectGotoNextStart      @conditional.inner | normal vii<CR>",
+    ["ki"] = "<CMD>TSTextobjectGotoPreviousStart  @conditional.inner | normal vii<CR>",
+
+    ["jl"] = "<CMD>TSTextobjectGotoNextStart      @loop.inner | normal vil<CR>",
+    ["kl"] = "<CMD>TSTextobjectGotoPreviousStart  @loop.inner | normal vil<CR>",
+}
+
+for lhs, rhs in pairs(operator) do
+    api.nvim_set_keymap("o", lhs, rhs, { noremap = true })
+end
+
 return {
     "nvim-treesitter/nvim-treesitter",
      build = ":TSUpdate",
      init = function ()
-        -- vim.defer_fn(function ()
+        vim.defer_fn(function ()
             require "nvim-treesitter.configs".setup {
                 auto_install = false,
                 ensure_installed = { "lua", "c", "markdown", "vim" },
@@ -103,7 +123,7 @@ return {
                     }
                 },
             }
-        -- end, 30)
+        end, 30)
      end,
      dependencies = {
         { "nvim-treesitter/nvim-treesitter-textobjects", },
