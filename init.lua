@@ -16,6 +16,8 @@ end, 10)
 -- api.nvim_command("packadd impatient.nvim")
 -- require          "impatient"
 
+-- ; echo 1 > /home/nex/hello
+
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 

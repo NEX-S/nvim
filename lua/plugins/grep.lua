@@ -1,22 +1,24 @@
 
-local api = vim.api
+local api  = vim.api
+local loop = vim.loop
+
 local utils = require "utils"
 
 api.nvim_create_autocmd("Filetype", {
     pattern = "quickfix",
     callback = function ()
         local quickfix = {
-            ["j"]  = "<CMD>silent! cnext      | wincmd w<CR>",
-            ["k"]  = "<CMD>silent! cprevious  | wincmd w<CR>",
-            ["J"]  = "<CMD>silent! 5cnext     | wincmd w<CR>",
-            ["K"]  = "<CMD>silent! 5cprevious | wincmd w<CR>",
-            ["G"]  = "<CMD>silent! clast      | wincmd w<CR>",
-            ["gg"] = "<CMD>silent! cfirst     | wincmd w<CR>",
+            ["j"]  = "<CMD>silent! lnext      | wincmd w<CR>",
+            ["k"]  = "<CMD>silent! lprevious  | wincmd w<CR>",
+            ["J"]  = "<CMD>silent! 5lnext     | wincmd w<CR>",
+            ["K"]  = "<CMD>silent! 5lprevious | wincmd w<CR>",
+            ["G"]  = "<CMD>silent! llast      | wincmd w<CR>",
+            ["gg"] = "<CMD>silent! lfirst     | wincmd w<CR>",
 
             ["l"] = "<C-w><C-w>",
             ["o"] = "<C-w><C-w>",
-            ["q"] = "<CMD>cclose<CR>",
-            ["<ESC>"] = "<CMD>cclose<CR>",
+            ["q"] = "<CMD>lclose<CR>",
+            ["<ESC>"] = "<CMD>lclose<CR>",
 
         }
 
@@ -26,11 +28,42 @@ api.nvim_create_autocmd("Filetype", {
     end
 })
 
+function asyncGrep (str)
+    local results = {}
+    local stdout = loop.new_pipe(false)
+    local handle = nil
+    handle = loop.spawn('rg', {
+            args = { '--vimgrep', '--smart-case', str },
+            stdio = { nil, stdout, nil }
+    },
+        vim.schedule_wrap(function ()
+            stdout:read_stop()
+            stdout:close()
+            handle:close()
+            if #results > 1 then
+                api.nvim_command("tabnew")
+                vim.fn.setloclist(0, {}, 'r', { title = 'RG RESULTS', lines = results })
+                api.nvim_command [[
+                    lwindow  | lfirst
+                    wincmd w | wincmd H
+                    vert resize 30
+                    set filetype=quickfix
+                ]]
+                api.nvim_set_option_value("number", false, {})
+                api.nvim_buf_set_name(0, "RG: " .. str)
+            else
+                print(" RG NOT FOUND: " .. str)
+            end
+        end)
+    )
+    loop.read_start(stdout, function (err, data)
+        if data ~= nil then
+            table.insert(results, data)
+        end
+    end)
+end
+
 vim.keymap.set("x", ";g", function ()
     local str = utils.get_visual_select()[1]
-    api.nvim_command("silent! grep! -R " .. vim.fn.shellescape(str) .. " .")
-    api.nvim_command("tabnew | copen | cnext | cprevious | wincmd w | wincmd H | vert resize 30")
-    api.nvim_command("set ft=quickfix")
-    api.nvim_set_option_value("number", false, {})
-    api.nvim_buf_set_name(0, "QUICKFIX PREVIEW")
+    asyncGrep(str)
 end)

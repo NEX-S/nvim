@@ -23,4 +23,4 @@ local R1 = "%#statusLineR2#  %#statusLineR1#%{strftime('%H:%M %a')} %#statusL
 local R2 = "%#statusLine#%.20([ %c%#statusLineR2#  %#statusLine#0𝙭%B ]%) "
 local R3 = "%#statusLineR3#%.40([ %l / %L ]%) "
 
-vim.o.statusline = "%#statusLineL0#" .. L1 .. L2 .. L3 .. "%=" .. R1 .. R2 .. R3
+vim.o.statusline = "%#statusLineL0#▎" .. L1 .. L2 .. L3 .. "%=" .. R1 .. R2 .. R3

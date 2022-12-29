@@ -123,8 +123,8 @@ local multi_mode_tbl = {
 
     -- OPTRATOR MAP --
     operat_mode = {
-        ["J"] = "8j",
-        ["K"] = "8k",
+        -- ["J"] = "8j",
+        -- ["K"] = "8k",
         ["H"] = "^",
         ["L"] = "$<LEFT>",
 
