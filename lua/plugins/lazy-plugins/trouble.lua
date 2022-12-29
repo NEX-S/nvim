@@ -1,0 +1,81 @@
+
+-- require "UI.x-color".set_hl {
+--     TroubleCount           = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleError           = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleNormal          = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleTextInformation = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleSignWarning     = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleLocation        = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleWarning         = { bg = "NONE", fg = "#FFFFFF" },
+--     TroublePreview         = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleTextError       = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleSignInformation = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleIndent          = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleSource          = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleSignHint        = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleSignOther       = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleFoldIcon        = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleTextWarning     = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleCode            = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleInformation     = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleSignError       = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleFile            = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleHint            = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleTextHint        = { bg = "NONE", fg = "#FFFFFF" },
+--     TroubleText            = { bg = "NONE", fg = "#FFFFFF" },
+-- }
+-- 
+-- local trouble_config = {
+--     position    = "left",
+--     height      = 20,
+--     width       = 35,
+--     icons       = true,
+--     -- mode        = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+--     fold_open   = " ",
+--     fold_closed = " ",
+--     -- group       = true,
+--     -- padding     = true,
+--     action_keys = { -- key mappings for actions in the trouble list
+--         -- map to {} to remove a mapping, for example:
+--         -- close = {},
+--         close          = "<ESC>",      -- close the list
+--                                        -- cancel         = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+--         refresh        = "r",          -- manually refresh
+--         jump           = "<CR>",       -- jump to the diagnostic or open / close folds
+--         open_split     = "<C-s>",      -- open buffer in new split
+--         open_vsplit    = "<C-v>",      -- open buffer in new vsplit
+--         open_tab       = "t",          -- open buffer in new tab
+--         jump_close     = "o",          -- jump to the diagnostic and close the list
+--         toggle_mode    = "m",          -- toggle between "workspace" and "document" diagnostics mode
+--         toggle_preview = "P",          -- toggle auto_preview
+--         hover          = "K",          -- opens a small popup with the full multiline message
+--         preview        = "p",          -- preview the diagnostic location
+--         close_folds    = {"zM", "zm"}, -- close all folds
+--         open_folds     = {"zR", "zr"}, -- open all folds
+--         toggle_fold    = {"zA", "za"}, -- toggle fold of current file
+--         previous       = "k",          -- previous item
+--         next           = "j"           -- next item
+--     },
+--     indent_lines = true, -- add an indent guide below the fold icons
+--     auto_open    = false, -- automatically open the list when you have diagnostics
+--     auto_close   = false, -- automatically close the list when you have no diagnostics
+--     auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+--     auto_fold    = false, -- automatically fold a file trouble list at creation
+--     auto_jump    = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
+--     signs = {
+--         -- icons / text used for a diagnostic
+--         error       = "",
+--         warning     = "",
+--         hint        = "",
+--         information = "",
+--         other       = "﫠"
+--     },
+--     use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+-- }
+-- 
+-- return { "folke/trouble.nvim",
+--     cmd = "TroubleToggle",
+--     config = trouble_config,
+--     dependencies = { "kyazdani42/nvim-web-devicons" },
+-- }
+return {}

@@ -15,7 +15,4 @@ return {
            end, 200)
        end
     },
-    { "mbbill/undotree",
-       cmd = "UndotreeToggle",
-    },
 }

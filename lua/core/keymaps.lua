@@ -162,6 +162,8 @@ local multi_mode_tbl = {
 
         ['h"'] = '<CMD>normal! F"vi"<CR>',
         ['l"'] = '<CMD>normal! f"vi"<CR>',
+        ['hq'] = '<CMD>normal! F"vi"<CR>',
+        ['lq'] = '<CMD>normal! f"vi"<CR>',
 
 
         ["h'"] = "<CMD>normal! F'vi'<CR>",

@@ -19,7 +19,6 @@ api.nvim_create_autocmd("Filetype", {
             ["o"] = "<C-w><C-w>",
             ["q"] = "<CMD>lclose<CR>",
             ["<ESC>"] = "<CMD>lclose<CR>",
-
         }
 
         for lhs, rhs in pairs(quickfix) do
@@ -49,6 +48,7 @@ function asyncGrep (str)
                     vert resize 30
                     set filetype=quickfix
                 ]]
+                -- api.nvim_command("Trouble loclist")
                 api.nvim_set_option_value("number", false, {})
                 api.nvim_buf_set_name(0, "RG: " .. str)
             else
