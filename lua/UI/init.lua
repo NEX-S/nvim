@@ -34,7 +34,7 @@ local ui_opts = {
     redrawtime    = 100,
 
     -- colorcolumn  = "140",
-    signcolumn   = "auto:1",
+    signcolumn   = "yes:1",
     shortmess    = "WAICOTFcsao",
     -- shortmess    = "filmnrwxaoOstTWAIcCqFS",
 

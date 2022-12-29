@@ -9,17 +9,17 @@
 local api = vim.api
 -- <C-f> in cmdline can edit history and re-execute it
 
+require "UI"                -- ~/nvim/lua/UI/init.lua
+require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
+
 vim.defer_fn(function ()
     require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
-end, 10)
+end, 50)
 
 -- api.nvim_command("packadd impatient.nvim")
 -- require          "impatient"
 
 -- ; echo 1 > /home/nex/hello
-
-require "UI"                -- ~/nvim/lua/UI/init.lua
-require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/lua/core/options.lua
