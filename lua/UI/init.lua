@@ -42,7 +42,8 @@ local ui_opts = {
     -- titlestring  = " nvim ",
 
     -- rulerformat = "[ %c  0𝙭%B ]",
-    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸺,horizup: ,horizdown: ,fold: ,eob:⇁,msgsep:",
+    -- ⨯
+    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸻,horizup:⸻,horizdown:⸻,fold: ,eob:,msgsep:",
     listchars = "eol:⸥,space:·,trail:,tab:,nbsp:n,extends:e,precedes:+",
 }
 
@@ -94,7 +95,7 @@ if vim.g.neovide == true then
     -- vim.g.neovide_padding_right  = 0
     -- vim.g.neovide_padding_bottom = 0
 
-    api.nvim_set_keymap("n", "<C-w>", "<CMD>q!<CR>", { noremap = true })
+    api.nvim_set_keymap("n", "<C-w>", "<CMD>quit!<CR>", { noremap = true })
 
     local fn = vim.fn
     -- vim.keymap.set("n", ";d", function ()

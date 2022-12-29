@@ -19,7 +19,7 @@ local L1 = "%#statusLineL1#%.100([ %Y ]%) "
 local L2 = "%#statusLineL2#[ %#statusLineL2#%F  %p%% ] "
 local L3 = "%#statusLineL3#%{% &modified ? '%#statusLineR2#' : '%#statusLineL2#%r' %}"
 
-local R1 = "%#statusLineR2# %#statusLineR1#%{strftime('%H:%M %a')} %#statusLineR3#• "
+local R1 = "%#statusLineR2#  %#statusLineR1#%{strftime('%H:%M %a')} %#statusLineR3#• "
 local R2 = "%#statusLine#%.20([ %c%#statusLineR2#  %#statusLine#0𝙭%B ]%) "
 local R3 = "%#statusLineR3#%.40([ %l / %L ]%) "
 
