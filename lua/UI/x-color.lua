@@ -23,7 +23,8 @@ local basic_hl = {
     Visual       =  { bg = "NONE",    fg = "#9C8FDC", bold = false },
     ColorColumn  =  { bg = "#222222",     },
     SignColumn   =  { bg = "NONE",     },
-    NonText      =  { bg = "NONE",    fg = "#333333" },
+    NonText      =  { bg = "NONE",    fg = "#353535" },
+    EndOfBuffer  =  { bg = "NONE",    fg = "#303030" },
 
     ErrorMsg     =  { bg = "NONE",    fg = "#666666" },
 

@@ -42,6 +42,7 @@ local ui_opts = {
     -- titlestring  = " nvim ",
 
     -- rulerformat = "[ %c  0𝙭%B ]",
+    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸺,horizup: ,horizdown: ,fold: ,eob:⇁,msgsep:",
     listchars = "eol:⸥,space:·,trail:,tab:,nbsp:n,extends:e,precedes:+",
 }
 

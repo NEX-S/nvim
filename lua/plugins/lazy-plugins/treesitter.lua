@@ -57,7 +57,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
      build = ":TSUpdate",
      init = function ()
-        vim.defer_fn(function ()
+        -- vim.defer_fn(function ()
             require "nvim-treesitter.configs".setup {
                 auto_install = false,
                 ensure_installed = { "lua", "c", "markdown", "vim" },
@@ -123,7 +123,7 @@ return {
                     }
                 },
             }
-        end, 30)
+        -- end, 30)
      end,
      dependencies = {
         { "nvim-treesitter/nvim-treesitter-textobjects", },

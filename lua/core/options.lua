@@ -13,6 +13,7 @@ local bool_opts = {
     startofline    = true,
     writeany       = true,
     undofile       = true,
+    autochdir      = true,
 
     backup        = false,
     swapfile      = false,
