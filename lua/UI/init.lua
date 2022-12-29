@@ -21,7 +21,7 @@ local ui_opts = {
 
     cmdheight     = 0,
     laststatus    = 3,
-    numberwidth   = 4,
+    numberwidth   = 1,
     pumwidth      = 5,
     scrolloff     = 6,
     sidescrolloff = 10,

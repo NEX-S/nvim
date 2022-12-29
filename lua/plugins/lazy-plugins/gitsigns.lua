@@ -10,8 +10,8 @@ return {
                      add          = { hl = 'GitSignsAdd'   ,  text = '┃',  numhl = 'GitSignsAddNr'   ,  linehl = 'GitSignsAddLn'     },
                      -- change       = { hl = 'GitSignsChange',  text = '╏',  numhl = 'GitSignsChangeNr',  linehl = 'GitSignsChangeLn'  },
                      change       = { hl = 'GitSignsChange',  text = '┃',  numhl = 'GitSignsChangeNr',  linehl = 'GitSignsChangeLn'  },
-                     delete       = { hl = 'GitSignsDelete',  text = ' ⎽', numhl = 'GitSignsDeleteNr',  linehl = 'GitSignsDeleteLn'  },
-                     topdelete    = { hl = 'GitSignsDelete',  text = ' ⎺', numhl = 'GitSignsDeleteNr',  linehl = 'GitSignsDeleteLn'  },
+                     delete       = { hl = 'GitSignsDelete',  text = '⎽', numhl = 'GitSignsDeleteNr',  linehl = 'GitSignsDeleteLn'  },
+                     topdelete    = { hl = 'GitSignsDelete',  text = '⎺', numhl = 'GitSignsDeleteNr',  linehl = 'GitSignsDeleteLn'  },
                      changedelete = { hl = 'GitSignsChange',  text = '',  numhl = 'GitSignsChangeNr',  linehl = 'GitSignsChangeLn'  },
                      untracked    = { hl = 'GitSignsUntrack', text = '',  numhl = 'GitSignsUntrackNr', linehl = 'GitSignsUntrackLn' },
                  },
@@ -66,9 +66,9 @@ return {
                      local changed = status.changed
                      local removed = status.removed
 
-                     if added   and added   > 0 then table.insert(status_txt, "%#GitSignsAdd#+ "    .. added  ) end
-                     if changed and changed > 0 then table.insert(status_txt, "%#GitSignsChange# " .. changed) end
-                     if removed and removed > 0 then table.insert(status_txt, "%#GitSignsDelete# " .. removed) end
+                     if added   and added   > 0 then table.insert(status_txt, "%#GitSignsTablineAdd#+ "    .. added  ) end
+                     if changed and changed > 0 then table.insert(status_txt, "%#GitSignsTablineChange#∙ " .. changed) end
+                     if removed and removed > 0 then table.insert(status_txt, "%#GitSignsTablineDelete#﹘" .. removed) end
 
                      return table.concat(status_txt, ' ')
                  end
@@ -81,6 +81,10 @@ return {
              GitSignsChange    = { bg = "NONE", fg = "#FE8019" },
              GitSignsDelete    = { bg = "NONE", fg = "#E02C6D" },
              GitSignsUntrack   = { bg = "NONE", fg = "#E02C6D" },
+
+             GitSignsTablineAdd       = { bg = "#191919", fg = "#333333", italic = true },
+             GitSignsTablineChange    = { bg = "#191919", fg = "#444444", italic = true },
+             GitSignsTablineDelete    = { bg = "#191919", fg = "#E02C6D", italic = true },
 
              GitSignsAddLn     = { bg = "NONE", fg = "#AFC460" },
              GitSignsChangeLn  = { bg = "NONE", fg = "#FE8019" },

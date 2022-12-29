@@ -2,6 +2,7 @@
 local fn  = vim.fn
 local api = vim.api
 
+
 require "UI.x-color".set_hl {
     TabLine  = { bg = "#191919", fg = "#232323" },
     TabLineP = { bg = "#191919", fg = "#C53B82" },
@@ -36,6 +37,27 @@ function _G._tabline_close (tabnr)
     else
         api.nvim_command("tabclose!" .. tabnr)
     end
+end
+
+-- vim.b.gitsigns_status = ""
+-- api.nvim_buf_set_var(0, "gitsigns_status", "")
+function _G._GITSIGNS_TABLINE ()
+    -- local tabnr = api.nvim_tabpage_get_number(0)
+    -- local buflist = fn.tabpagebuflist(tabnr)
+    -- 
+    -- local status = nil
+    -- for i = 1, #buflist do
+    --     -- status = api.nvim_buf_get_var(buflist[i], "gitsigns_status")
+    --     if status ~= "" then
+    --         return status
+    --     end
+    -- end
+    -- 
+    -- return ""
+
+    local status = vim.b.gitsigns_status
+
+    return status and status or ""
 end
 
 local function tab_ft_icon (tabnr, buflist)
@@ -92,7 +114,7 @@ function _G.NVIM_TABLINE ()
 
     local tabnew = "%#TabLine#%@v:lua._tabline_create@+ %T %= %<"
 
-    return tabline .. tabnew .. "%#TabLineX#%@v:lua._tabline_close@  "
+    return tabline .. tabnew .. "%{% v:lua._GITSIGNS_TABLINE() %} %#TabLineX#%@v:lua._tabline_close@  "
 end
 
 api.nvim_set_option("showtabline", 2)
