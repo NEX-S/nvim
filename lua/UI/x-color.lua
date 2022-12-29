@@ -11,6 +11,7 @@ local basic_hl = {
     IncSearch    =  { bg = "NONE",    fg = "#D0EE7A" },
     MatchParen   =  { bg = "NONE",    fg = "#C53B82" },
     Error        =  { bg = "NONE",     },
+    QuickFixLine =  { bg = "#252525", fg = "#FF43BA" },
 
     Normal       =  { bg = "#232323",    fg = "#707070"},
     CursorLine   =  { bg = "#252525",     },

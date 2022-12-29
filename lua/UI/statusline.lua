@@ -15,12 +15,12 @@ require "UI.x-color".set_hl {
     statusLineR3 = { bg = "NONE", fg = "#C53B82" },
 }
 
-local L1 = "%#statusLineL1#%.10([ %Y ]%) "
+local L1 = "%#statusLineL1#%.100([ %Y ]%) "
 local L2 = "%#statusLineL2#[ %#statusLineL2#%F  %p%% ] "
 local L3 = "%#statusLineL3#%{% &modified ? '%#statusLineR2#' : '%#statusLineL2#%r' %}"
 
 local R1 = "%#statusLineR2# %#statusLineR1#%{strftime('%H:%M %a')} %#statusLineR3#• "
 local R2 = "%#statusLine#%.20([ %c%#statusLineR2#  %#statusLine#0𝙭%B ]%) "
-local R3 = "%#statusLineR3#%.20([ %l / %L ]%) "
+local R3 = "%#statusLineR3#%.40([ %l / %L ]%) "
 
 vim.o.statusline = "%#statusLineL0#" .. L1 .. L2 .. L3 .. "%=" .. R1 .. R2 .. R3

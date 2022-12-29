@@ -122,7 +122,7 @@ vim.defer_fn(function ()
     --     syntax match NvimCmd       "\vvim.cmd.*"
     -- ]]
 
-    function _G._p(data)
+    function _G._P(data)
         vim.pretty_print(data)
     end
 

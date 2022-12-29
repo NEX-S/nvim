@@ -8,6 +8,7 @@ vim.defer_fn(function ()
     require "plugins.run-code"
     require "plugins.match"
     require "plugins.align"
+    require "plugins.grep"
     require "plugins.file-explorer"
     require "plugins.dot-repeat"
 

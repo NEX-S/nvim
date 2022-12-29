@@ -77,6 +77,8 @@ local multi_mode_tbl = {
         ["g("] = "[(",
         ["g}"] = "]}",
         ["g{"] = "[{",
+
+        -- [";g"] = "<CMD>silent! execute 'grep! -R'  . shellescape('<cword>'). ' . ' | copen<CR>"
     },
 
     -- VISUAL MAP --
@@ -133,37 +135,37 @@ local multi_mode_tbl = {
         -- ["l'"] = "i'",
         -- ['l"'] = 'i"',
 
-        ["h("] = '<CMD>normal!F(vi(<CR>',
-        ["h)"] = '<CMD>normal!F)vi)<CR>',
-        ["l("] = '<CMD>normal!f(vi(<CR>',
-        ["l)"] = '<CMD>normal!f)vi)<CR>',
-        ["hb"] = '<CMD>normal!F)vi)<CR>',
-        ["lb"] = '<CMD>normal!f(vi(<CR>',
+        ["h("] = '<CMD>normal! F(vi(<CR>',
+        ["h)"] = '<CMD>normal! F)vi)<CR>',
+        ["l("] = '<CMD>normal! f(vi(<CR>',
+        ["l)"] = '<CMD>normal! f)vi)<CR>',
+        ["hb"] = '<CMD>normal! F)vi)<CR>',
+        ["lb"] = '<CMD>normal! f(vi(<CR>',
 
-        ["h["] = '<CMD>normal!F[vi[<CR>',
-        ["h]"] = '<CMD>normal!F]vi]<CR>',
-        ["l["] = '<CMD>normal!f[vi[<CR>',
-        ["l]"] = '<CMD>normal!f]vi]<CR>',
+        ["h["] = '<CMD>normal! F[vi[<CR>',
+        ["h]"] = '<CMD>normal! F]vi]<CR>',
+        ["l["] = '<CMD>normal! f[vi[<CR>',
+        ["l]"] = '<CMD>normal! f]vi]<CR>',
 
-        ["h<"] = '<CMD>normal!F<vi<<CR>',
-        ["h>"] = '<CMD>normal!F>vi><CR>',
-        ["l<"] = '<CMD>normal!f<vi<<CR>',
-        ["l>"] = '<CMD>normal!f>vi><CR>',
+        ["h<"] = '<CMD>normal! F<vi<<CR>',
+        ["h>"] = '<CMD>normal! F>vi><CR>',
+        ["l<"] = '<CMD>normal! f<vi<<CR>',
+        ["l>"] = '<CMD>normal! f>vi><CR>',
 
-        ["h{"] = '<CMD>normal!F{vi{<CR>',
-        ["h}"] = '<CMD>normal!F}vi}<CR>',
-        ["l{"] = '<CMD>normal!f{vi{<CR>',
-        ["l}"] = '<CMD>normal!f}vi}<CR>',
+        ["h{"] = '<CMD>normal! F{vi{<CR>',
+        ["h}"] = '<CMD>normal! F}vi}<CR>',
+        ["l{"] = '<CMD>normal! f{vi{<CR>',
+        ["l}"] = '<CMD>normal! f}vi}<CR>',
 
-        ["h'"] = "<CMD>normal!F'vi'<CR>",
-        ["l'"] = "<CMD>normal!f'vi'<CR>", 
+        ["h'"] = "<CMD>normal! F'vi'<CR>",
+        ["l'"] = "<CMD>normal! f'vi'<CR>",
 
-        ['h"'] = '<CMD>normal!F"vi"<CR>',
-        ['l"'] = '<CMD>normal!f"vi"<CR>',
+        ['h"'] = '<CMD>normal! F"vi"<CR>',
+        ['l"'] = '<CMD>normal! f"vi"<CR>',
 
 
-        ["h'"] = "<CMD>normal!F'vi'<CR>",
-        ["l'"] = "<CMD>normal!f'vi'<CR>",
+        ["h'"] = "<CMD>normal! F'vi'<CR>",
+        ["l'"] = "<CMD>normal! f'vi'<CR>",
 
         -- TODO
         -- ["hq"] = '<CMD>normal!F"<CR>i"',
@@ -346,13 +348,13 @@ local function_omap = {
     ["j{"] = function ()
         local reg = vim.fn.getreg("/")
         vim.fn.setreg("/", "{")
-        api.nvim_command("normal!nvi{")
+        api.nvim_command("normal! nvi{")
         vim.fn.setreg("/", reg)
     end,
     ["k{"] = function ()
         local reg = vim.fn.getreg("/")
         vim.fn.setreg("/", "}")
-        api.nvim_command("normal!Nvi}")
+        api.nvim_command("normal! Nvi}")
         vim.fn.setreg("/", reg)
     end,
 }
@@ -360,4 +362,3 @@ local function_omap = {
 for lhs, rhs in pairs(function_omap) do
     vim.keymap.set("o", lhs, rhs, { expr = false })
 end
-
