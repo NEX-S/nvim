@@ -76,10 +76,10 @@ end, 100)
 
 -- vim.keymap.set("n", ";d", function ()
 --     local time = os.clock()
---     
+--
 --     for i = 1, 10000000 do
 --         api.nvim_set_keymap("n", "J", "G", { noremap = true })
 --     end
---     
+--
 --     print((os.clock() - time) * 100)
 -- end)

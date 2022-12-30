@@ -2,7 +2,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
      build = ":TSUpdate",
-     event = "VimEnter",
+     event = "BufWinEnter",
      config = function ()
          require "UI.x-color".set_hl {
              ["@variable"]       = { bg = "NONE", fg = "#888888" },  -- var name
@@ -123,7 +123,7 @@ return {
          -- end, 20)
      end,
      dependencies = {
-        { "nvim-treesitter/nvim-treesitter-textobjects", event = "CursorHold", },
+        { "nvim-treesitter/nvim-treesitter-textobjects", event = "CursorMoved", },
         -- { "nvim-treesitter/nvim-treesitter-context",
         --     ft = "markdown",
         --     config = {

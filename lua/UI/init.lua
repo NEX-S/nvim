@@ -97,7 +97,6 @@ if vim.g.neovide == true then
 
     api.nvim_set_keymap("n", "<C-w>", "<CMD>quit!<CR>", { noremap = true })
 
-    local fn = vim.fn
     -- vim.keymap.set("n", ";d", function ()
     --     -- for i = 1, fn.bufnr("$") do
     --     --     if fn.buflisted(i) == 1 and api.nvim_buf_get_name(0) ~= "" then

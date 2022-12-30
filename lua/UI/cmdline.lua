@@ -41,7 +41,11 @@ end
 local function prompt_callback (text)
     -- api.nvim_win_hide(M.winid)
     close_float_cmdline()
-    api.nvim_command(text)
+    if text:match("q") then
+        api.nvim_command("silent!" .. text)
+    else
+        api.nvim_command(text)
+    end
 end
 
 function _G._cmdline_complete (findstart, base)

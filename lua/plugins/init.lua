@@ -1,5 +1,5 @@
 
-vim.defer_fn(function ()
+-- vim.defer_fn(function ()
     require "plugins.comments"
     require "plugins.fcitx"
     require "plugins.auto-pair"
@@ -13,5 +13,5 @@ vim.defer_fn(function ()
     require "plugins.dot-repeat"
 
     require "plugins.surround"
-end, 50)
+-- end, 50)
 
