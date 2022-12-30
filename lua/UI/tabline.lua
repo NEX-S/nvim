@@ -4,7 +4,8 @@ local api = vim.api
 
 
 require "UI.x-color".set_hl {
-    TabLine  = { bg = "#191919", fg = "#232323" },
+    TabLine  = { bg = "#191919", fg = "#252525" },
+    TabLineT = { bg = "#191919", fg = "#252525", italic = true },
     TabLineP = { bg = "#191919", fg = "#C53B82" },
     TabLineX = { bg = "#191919", fg = "#C53B82" },
 
@@ -114,7 +115,8 @@ function _G.NVIM_TABLINE ()
 
     local tabnew = "%#TabLine#%@v:lua._tabline_create@+ %T %= %<"
 
-    return tabline .. tabnew .. "%{% v:lua._GITSIGNS_TABLINE() %} %#TabLineX#%@v:lua._tabline_close@  "
+    -- return tabline .. tabnew .. "%{% v:lua._GITSIGNS_TABLINE() %} %#TabLineX#%@v:lua._tabline_close@  "
+    return tabline .. tabnew .. "%#TabLineT#%{strftime('%H:%M %a')}%#TabLineX#%@v:lua._tabline_close@  "
 end
 
 api.nvim_set_option("showtabline", 2)

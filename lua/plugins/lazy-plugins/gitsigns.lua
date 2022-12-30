@@ -9,9 +9,13 @@ return {
              GitSignsDelete    = { bg = "NONE", fg = "#E02C6D" },
              GitSignsUntrack   = { bg = "NONE", fg = "#E02C6D" },
 
-             GitSignsTablineAdd       = { bg = "#191919", fg = "#333333", italic = true },
-             GitSignsTablineChange    = { bg = "#191919", fg = "#444444", italic = true },
-             GitSignsTablineDelete    = { bg = "#191919", fg = "#E02C6D", italic = true },
+             -- GitSignsTablineAdd       = { bg = "#191919", fg = "#333333", italic = true },
+             -- GitSignsTablineChange    = { bg = "#191919", fg = "#444444", italic = true },
+             -- GitSignsTablineDelete    = { bg = "#191919", fg = "#E02C6D", italic = true },
+
+             GitSignsStatusLineAdd       = { bg = "NONE", fg = "#AFC460" },
+             GitSignsStatusLineChange    = { bg = "NONE", fg = "#FE8019" },
+             GitSignsStatusLineDelete    = { bg = "NONE", fg = "#E02C6D" },
 
              GitSignsAddLn     = { bg = "NONE", fg = "#AFC460" },
              GitSignsChangeLn  = { bg = "NONE", fg = "#FE8019" },
@@ -86,9 +90,9 @@ return {
                  local changed = status.changed
                  local removed = status.removed
 
-                 if added   and added   > 0 then table.insert(status_txt, "%#GitSignsTablineAdd#+ "    .. added  ) end
-                 if changed and changed > 0 then table.insert(status_txt, "%#GitSignsTablineChange#∙ " .. changed) end
-                 if removed and removed > 0 then table.insert(status_txt, "%#GitSignsTablineDelete#﹘" .. removed) end
+                 if added   and added   > 0 then table.insert(status_txt, "%#GitSignsStatusLineAdd#+ "    .. added  ) end
+                 if changed and changed > 0 then table.insert(status_txt, "%#GitSignsStatusLineChange#∙ " .. changed) end
+                 if removed and removed > 0 then table.insert(status_txt, "%#GitSignsStatusLineDelete#﹘" .. removed) end
 
                  return table.concat(status_txt, ' ')
              end
