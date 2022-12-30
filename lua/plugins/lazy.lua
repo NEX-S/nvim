@@ -2,7 +2,7 @@
 local api = vim.api
 
 api.nvim_set_option_value("loadplugins", true, {})
-api.nvim_set_option_value("runtimepath", "/home/nex/.local/share/nvim/lazy/lazy.nvim,/home/nex/nvim,/usr/share/nvim/runtime", {})
+api.nvim_set_option_value("runtimepath", "/home/nex/.local/share/nvim/lazy/lazy.nvim", {})
 
 require "lazy".setup ("plugins.lazy-plugins", {
         root = "/home/nex/.local/share/nvim/lazy",
@@ -67,6 +67,11 @@ require "lazy".setup ("plugins.lazy-plugins", {
                 -- paths = {
                 -- "/home/nex/nvim",
                 -- },
+                paths = {
+                    -- "/home/nex/.local/share/nvim/lazy/lazy.nvim",
+                    "/home/nex/nvim",
+                    "/usr/share/nvim/runtime/"
+                },
                 disabled_plugins = {
                     -- "gzip",
                     -- "matchit",
