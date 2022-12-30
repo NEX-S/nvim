@@ -13,6 +13,5 @@ vim.defer_fn(function ()
     require "plugins.dot-repeat"
 
     require "plugins.surround"
-
 end, 50)
 

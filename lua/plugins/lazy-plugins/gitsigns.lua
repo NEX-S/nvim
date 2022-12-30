@@ -1,9 +1,7 @@
 
-local api = vim.api
-
 return {
     "lewis6991/gitsigns.nvim",
-     event = "VeryLazy",
+     event = "CursorHold",
      config = function ()
          require "UI.x-color".set_hl {
              GitSignsAdd       = { bg = "NONE", fg = "#AFC460" },
@@ -24,7 +22,7 @@ return {
              GitSignsChangeNr  = { bg = "NONE", fg = "#FE8019" },
              GitSignsDeleteNr  = { bg = "NONE", fg = "#E02C6D" },
              GitSignsUntrackNr = { bg = "NONE", fg = "#E02C6D" },
-        }
+         }
          -- vim.defer_fn(function ()
          require "gitsigns".setup {
              signs = {
@@ -74,6 +72,7 @@ return {
                  vim.keymap.set("n", "gk", gitsigns.prev_hunk, { noremap = true })
                  vim.keymap.set("n", "gs", gitsigns.stage_buffer, { noremap = true })
 
+                 local api = vim.api
                  api.nvim_set_keymap("x", "ih", ":<C-u>lua package.loaded.gitsigns.select_hunk()<CR>", { noremap = true })
                  api.nvim_set_keymap("o", "ih", ":<C-u>lua package.loaded.gitsigns.select_hunk()<CR>", { noremap = true })
 
@@ -96,26 +95,4 @@ return {
          }
         -- end, 40)
      end,
-     -- config = function ()
-     --     require "UI.x-color".set_hl {
-     --         GitSignsAdd       = { bg = "NONE", fg = "#AFC460" },
-     --         GitSignsChange    = { bg = "NONE", fg = "#FE8019" },
-     --         GitSignsDelete    = { bg = "NONE", fg = "#E02C6D" },
-     --         GitSignsUntrack   = { bg = "NONE", fg = "#E02C6D" },
-     --
-     --         GitSignsTablineAdd       = { bg = "#191919", fg = "#333333", italic = true },
-     --         GitSignsTablineChange    = { bg = "#191919", fg = "#444444", italic = true },
-     --         GitSignsTablineDelete    = { bg = "#191919", fg = "#E02C6D", italic = true },
-     --
-     --         GitSignsAddLn     = { bg = "NONE", fg = "#AFC460" },
-     --         GitSignsChangeLn  = { bg = "NONE", fg = "#FE8019" },
-     --         GitSignsDeleteLn  = { bg = "NONE", fg = "#E02C6D" },
-     --         GitSignsUntrackLn = { bg = "NONE", fg = "#E02C6D" },
-     --
-     --         GitSignsAddNr     = { bg = "NONE", fg = "#AFC460" },
-     --         GitSignsChangeNr  = { bg = "NONE", fg = "#FE8019" },
-     --         GitSignsDeleteNr  = { bg = "NONE", fg = "#E02C6D" },
-     --         GitSignsUntrackNr = { bg = "NONE", fg = "#E02C6D" },
-     --    }
-     -- end
 }

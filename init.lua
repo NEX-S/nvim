@@ -14,6 +14,13 @@ require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 
+-- local timer = vim.loop.new_timer()
+-- vim.on_key(function()
+--   timer:start(2000, 0, function()
+--     print("Helloo")
+--   end)
+-- end)
+
 -- api.nvim_command("packadd impatient.nvim")
 -- require          "impatient"
 
@@ -68,16 +75,11 @@ end, 100)
 -- var           : api.nvim_buf_get_option < vim.bo.xxx
 
 -- vim.keymap.set("n", ";d", function ()
-    -- local time = os.clock()
-    --
-    -- for i = 1, 10000000 do
-    --     -- 388
-    --     -- vim.go.loadplugins = true
-    --     -- 257
-    --     -- api.nvim_set_option("loadplugins", true)
-    --
-    --     api.nvim_set_option_value("loadplugins", true, {})
-    -- end
-    --
-    -- print((os.clock() - time) * 100)
+--     local time = os.clock()
+--     
+--     for i = 1, 10000000 do
+--         api.nvim_set_keymap("n", "J", "G", { noremap = true })
+--     end
+--     
+--     print((os.clock() - time) * 100)
 -- end)

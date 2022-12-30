@@ -9,18 +9,18 @@ local api = vim.api
 
 -- AUTO CURSORLINE
 vim.defer_fn(function ()
-    vim.api.nvim_create_autocmd("InsertEnter", {
+    api.nvim_create_autocmd("InsertEnter", {
         pattern = "*",
         command = "set nocursorline"
     })
 
-    vim.api.nvim_create_autocmd("InsertLeave", {
+    api.nvim_create_autocmd("InsertLeave", {
         pattern = "*",
         command = "set cursorline"
     })
 end, 200)
 
--- vim.api.nvim_create_autocmd("VimLeave", {
+-- api.nvim_create_autocmd("VimLeave", {
 --     -- pattern = "*",
 --     command = "!rm /tmp/nvim_time.log"
 -- })
