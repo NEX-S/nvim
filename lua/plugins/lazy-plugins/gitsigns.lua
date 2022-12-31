@@ -85,16 +85,30 @@ return {
              -- b:gitsigns_status
              status_formatter = function (status)
                  local status_txt = {}
+                 
+                 local added   = status.added   or 0
+                 local changed = status.changed or 0
+                 local removed = status.removed or 0
+                 
+                 if added   > 0 then table.insert(status_txt, " %#GitSignsStatusLineAdd#+ "    .. added  ) end
+                 if changed > 0 then table.insert(status_txt, " %#GitSignsStatusLineChange#∙ " .. changed) end
+                 if removed > 0 then table.insert(status_txt, " %#GitSignsStatusLineDelete# " .. removed) end
 
-                 local added   = status.added
-                 local changed = status.changed
-                 local removed = status.removed
+                 -- table.insert(status_txt, ' ')
+                 
+                 return table.concat(status_txt, '')
 
-                 if added   and added   > 0 then table.insert(status_txt, "%#GitSignsStatusLineAdd#+ "    .. added  ) end
-                 if changed and changed > 0 then table.insert(status_txt, "%#GitSignsStatusLineChange#∙ " .. changed) end
-                 if removed and removed > 0 then table.insert(status_txt, "%#GitSignsStatusLineDelete#﹘" .. removed) end
-
-                 return table.concat(status_txt, ' ')
+                 -- local added   = status.added
+                 -- local changed = status.changed
+                 -- local removed = status.removed
+                 -- 
+                 -- local status = ''
+                 -- 
+                 -- if added   then status = status .. " %#GitSignsStatusLineAdd#+ "    .. added   end
+                 -- if changed then status = status .. " %#GitSignsStatusLineChange#∙ " .. changed end
+                 -- if removed then status = status .. " %#GitSignsStatusLineDelete#- " .. removed end
+                 -- 
+                 -- return status .. ' '
              end
          }
         -- end, 40)
