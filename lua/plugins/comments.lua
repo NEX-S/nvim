@@ -97,10 +97,10 @@ local function visual_comment ()
     end
 end
 
-vim.keymap.set("n", ";c", line_comment, { silent = false })
-vim.keymap.set("v", ";c", visual_comment, { silent = false })
+vim.keymap.set("n", ",c", line_comment, { silent = false })
+vim.keymap.set("v", ",c", visual_comment, { silent = false })
 
-vim.keymap.set("n", ";b", function ()
+vim.keymap.set("n", ",b", function ()
     local cms = cms_blk[vim.bo.ft]
 
     local res = api.nvim_get_current_line() == "" and "S" or "i"

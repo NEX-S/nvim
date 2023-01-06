@@ -32,8 +32,8 @@ vim.defer_fn(function ()
             vim.wo.sidescrolloff = 0
             vim.keymap.set("n", "<ESC>", "<CMD>quit!<CR>", { buffer = true })
         end,
-        -- [";r"] = "<CMD>source %<CR>",
-        [";;"] = function ()
+        -- [",r"] = "<CMD>source %<CR>",
+        [",,"] = function ()
             local opts = {
                 title = " [ LUA TEST ] ",
                 title_pos = "right",
@@ -48,9 +48,9 @@ vim.defer_fn(function ()
             vim.wo.numberwidth = 3
 
             local lua_test_map = {
-                [";q"] = "<CMD>source ~/nvim/init.lua | quit!<CR>",
-                [";;"] = "<CMD>source ~/nvim/init.lua | quit!<CR>",
-                [";r"] = "<CMD>write! | source %<CR>",
+                [",q"] = "<CMD>source ~/nvim/init.lua | quit!<CR>",
+                [",,"] = "<CMD>source ~/nvim/init.lua | quit!<CR>",
+                [",r"] = "<CMD>write! | source %<CR>",
             }
 
             for lhs, rhs in pairs(lua_test_map) do

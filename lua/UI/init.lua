@@ -13,6 +13,7 @@ local ui_opts = {
     splitright     = true,
     termguicolors  = true,
     wildmenu       = true,
+    breakindent    = true,
     wrap           = false,
     modeline       = false,
     showmode       = false,
@@ -34,6 +35,7 @@ local ui_opts = {
     redrawtime    = 100,
 
     -- colorcolumn  = "140",
+    splitkeep    = "screen", -- topline?
     signcolumn   = "yes:1",
     shortmess    = "WAICOTFcsao",
     -- shortmess    = "filmnrwxaoOstTWAIcCqFS",

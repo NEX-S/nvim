@@ -10,6 +10,7 @@ api.nvim_create_autocmd("Filetype", {
         local quickfix = {
             ["j"]  = "<CMD>silent! lnext      | wincmd w<CR>",
             ["k"]  = "<CMD>silent! lprevious  | wincmd w<CR>",
+
             ["J"]  = "<CMD>silent! 5lnext     | wincmd w<CR>",
             ["K"]  = "<CMD>silent! 5lprevious | wincmd w<CR>",
             ["G"]  = "<CMD>silent! llast      | wincmd w<CR>",
@@ -63,7 +64,7 @@ function asyncGrep (str)
     end)
 end
 
-vim.keymap.set("x", ";g", function ()
+vim.keymap.set("x", ",g", function ()
     local str = utils.get_visual_select()[1]
     asyncGrep(str)
 end)

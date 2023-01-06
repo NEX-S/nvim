@@ -139,9 +139,9 @@ api.nvim_create_user_command("FZF", FZF, {
 --     api.nvim_buf_set_name(M.bufnr, "TERMINAL")
 -- end
 
-vim.keymap.set("n", ";e", VIFM, { silent = true })
-vim.keymap.set("n", "<C-e>", VIFM, { silent = true })
-vim.keymap.set("n", "<C-f>", FZF, { silent = true })
+vim.keymap.set("n", ",e", VIFM, { silent = true })
+-- vim.keymap.set("n", "<C-e>", VIFM, { silent = true })
+vim.keymap.set("n", ",f", FZF, { silent = true })
 
 -- vim.keymap.set("n", ";d", TERMINAL, { silent = true })
 

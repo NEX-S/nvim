@@ -14,6 +14,7 @@ local bool_opts = {
     writeany       = true,
     undofile       = true,
     autochdir      = true,
+    shiftround     = true,
 
     backup        = false,
     swapfile      = false,

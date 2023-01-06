@@ -57,7 +57,7 @@ for lhs, rhs in pairs(search_keymap) do
     vim.keymap.set("n", lhs, rhs, { expr = false })
 end
 
-vim.keymap.set("n", ";f", function ()
+vim.keymap.set("n", ",f", function ()
     search_cnt_virt(1)
     return "/"
 end, { expr = true })

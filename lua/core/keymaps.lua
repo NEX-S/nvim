@@ -5,19 +5,23 @@ local cmd = vim.cmd
 local multi_mode_tbl = {
     -- NORMAL MAP --
     normal_mode = {
-        ["J"]  =  "8j",
+        ["j"]  =  "gj",
+        ["k"]  =  "gk",
+
+        ["J"]  =  "8gj",
+        ["K"]  =  "8gk",
+        ["H"]  =  "g^",
+        ["L"]  =  "g$",
+
         ["U"]  =  "<C-r>",
         [">"]  =  ">>",
         ["<"]  =  "<<",
-        ["K"]  =  "8k",
-        ["H"]  =  "^",
-        ["L"]  =  "$",
-        ["'"]  =  ";",
+        ["'"]  =  ",",
+        ["R"]  =  "gR",
 
         ["q"]  =  "za",
 
         ["+"]  =  "m0J`0",
-
 
         ["X"]  =  "<CMD>tabnew term://fish | startinsert<CR>",
 
@@ -26,7 +30,7 @@ local multi_mode_tbl = {
         ["d"]  =  "\"dd",
         ["y"]  =  "\"+y",
         ["p"]  =  "\"+p",
-        ["P"]  =  "\"+P",
+        ["P"]  =  "\"+gP",
 
         ["dd"]  =  "\"ddd",
         ["yy"]  =  "\"+yy",
@@ -43,8 +47,8 @@ local multi_mode_tbl = {
         ["<A-UP>"]     =  "<C-w>K",
         ["<A-RIGHT>"]  =  "<C-w>L",
 
-        ["<C-i>"]  =  "<C-a>",
-        ["<C-d>"]  =  "<C-x>",
+        ["="]  =  "<C-a>",
+        ["-"]  =  "<C-x>",
 
         ["<C-m>"] =  "q",
         -- todo CR check if register l is empty
@@ -53,7 +57,9 @@ local multi_mode_tbl = {
         ["<C-u>"]  =  "viw~",
         -- ["<C-r>"]  =  '"',
 
+
         ["<C-a>"]  =  "ggvG$",
+        -- ["<C-c>"]  =  "q:<CMD>nnoremap <buffer> <ESC> :quit<cr> <CR>",
 
         ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
@@ -63,30 +69,35 @@ local multi_mode_tbl = {
         ["<TAB>"]   = "<C-w><C-w>",
         ["<S-TAB>"] = "<C-w>p",
 
-        -- LEADER MAP --
-        [";f"] = "/",
+        ["<C-f>"] = "/",
+        ["<C-r>"] = "@",
         -- [";a"] = "ggvG$",
 
-        [";q"] = "<CMD>quit!<CR>",
+        ["<C-q>"] = "<CMD>quit!<CR>",
         -- [";w"] = "<CMD>write ++p<CR>", -- dont add !
-        [";w"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
+        ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
 
         -- GX MAP --
 
-        ["g)"] = "])",
-        ["g("] = "[(",
-        ["g}"] = "]}",
-        ["g{"] = "[{",
+        [")"] = "])",
+        ["("] = "[(",
+        ["}"] = "]}",
+        ["{"] = "[{",
 
         -- [";g"] = "<CMD>silent! execute 'grep! -R'  . shellescape('<cword>'). ' . ' | copen<CR>"
     },
 
     -- VISUAL MAP --
     visual_mode = {
-        ["J"] = "8j",
-        ["K"] = "8k",
-        ["H"] = "^",
-        ["L"] = "$<LEFT>",
+        ["j"]  =  "gj",
+        ["k"]  =  "gk",
+
+        ["s"]  =  "\"ss",
+
+        ["J"]  =  "8gj",
+        ["K"]  =  "8gk",
+        ["H"]  =  "g^",
+        ["L"]  =  "$h",
 
         [">"] = ">gv",
         ["<"] = "<gv",
@@ -96,26 +107,31 @@ local multi_mode_tbl = {
         ["y"] = "\"+y",
         ["d"] = "\"dd",
 
-        [";w"] = "<CMD>write ++p<CR>", -- dont add !
-        [";q"] = "<CMD>quit!<CR>",
+        ["<C-w>"] = "<CMD>write ++p<CR>", -- dont add !
+        ["<C-q>"] = "<CMD>quit!<CR>",
+        ["."] = ":normal! .<CR>",
+
+        ["<C-r>"] = "@",
+
+        ["<C-c>"] = "\"+y",
 
         ["<C-m>"] = "\"ly",
+
+        ["<C-u>"] = "Ue",
 
         ["aq"] = 'a"',
         ["iq"] = 'i"',
 
-        ["<C-a>"]   =  "<NOP>",
-        ["<C-x>"]   =  "<NOP>",
-        ["<C-i>"]   =  "<C-a>gv",
-        ["<C-d>"]   =  "<C-x>gv",
-        ["g<C-i>"]  =  "g<C-a>gv",
-        ["g<C-d>"]  =  "g<C-x>gv",
+        ["="]   =  "<C-a>gv",
+        ["-"]   =  "<C-x>gv",
+        ["<C-=>"]  =  "g<C-a>gv",
+        ["<C-->"]  =  "g<C-x>gv",
 
         -- ["<LEFT>"] = "=gv",
         -- ["<RIGHT>"] = "=gv",
 
-        ["<A-k>"] = ":<C-u>silent!'<,'>move-2<CR>gv=gv",
-        ["<A-j>"] = ":<C-u>silent!'<,'>move'>+<CR>gv=gv",
+        -- ["<A-k>"] = ":<C-u>silent!'<,'>move-2<CR>gv=gv",
+        -- ["<A-j>"] = ":<C-u>silent!'<,'>move'>+<CR>gv=gv",
 
         -- ["<UP>"] = ":<C-u>silent! '<,'>move-2<CR>gv-gv",
         -- ["<DOWN>"] = ":<C-u>silent! '<,'>move'>+<CR>gv-gv",
@@ -188,6 +204,7 @@ local multi_mode_tbl = {
         -- ["<DOWN>"] = "<DOWN>",
         -- ["<UP>"] = "<UP>",
         -- ["<RIGHT>"] = "<RIGHT>",
+        ["<C-v>"] = "<C-r>+",
     },
 
     -- TERMINAL MAP --
@@ -221,7 +238,7 @@ for mode, mode_tbl in pairs(multi_mode_tbl) do
 end
 
 local function_map = {
-    ["<C-=>"]  =  function ()
+    ["<C-i>"]  =  function ()
 
         local view = vim.fn.winsaveview()
         vim.cmd "normal!gg=G"
@@ -231,9 +248,9 @@ local function_map = {
         -- api.nvim_win_set_cursor(0, c_pos)
     end,
 
-    [";r"] = vim.cmd.R,
+    [",r"] = vim.cmd.R,
 
-    [";x"] = function ()
+    [",x"] = function ()
         local opts = {
             start_ins = true,
             resume    = true,
@@ -249,8 +266,13 @@ local function_map = {
         end})
     end,
 
-    [";t"] = require "plugins.translate".translate,
-    [";q"] = function ()
+    [",t"] = require "plugins.translate".translate,
+    -- ["<C-c>"]  = function ()
+    --     -- api.nvim_command("set ft=command_line")
+    --     api.nvim_command("normal! q:")
+    --     api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit!<CR>", { noremap = true })
+    -- end,
+    ["<C-q>"] = function ()
         local M = {}
 
         -- local lastbuf = false
@@ -329,8 +351,8 @@ for lhs, rhs in pairs(function_map) do
 end
 
 local file_action = {
-    [";v"] = "vsp",
-    [";s"] = "sp",
+    [",v"] = "vsp",
+    [",s"] = "sp",
     ["gf"] = "tabnew",
     ["<C-s>"] = "vsp",
 }
