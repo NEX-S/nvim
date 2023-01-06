@@ -28,7 +28,6 @@ vim.defer_fn(function ()
     require "plugins"          -- ~/nvim/lua/plugins/init.lua
 
     vim.o.shadafile = ""
-
 end, 100)
 
 -- vim.defer_fn(function ()

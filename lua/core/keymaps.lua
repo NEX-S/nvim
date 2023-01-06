@@ -77,12 +77,16 @@ local multi_mode_tbl = {
         -- [";w"] = "<CMD>write ++p<CR>", -- dont add !
         ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
 
+        -- ["<C-c>"] = "q:",
+
         -- GX MAP --
 
         [")"] = "])",
         ["("] = "[(",
         ["}"] = "]}",
         ["{"] = "[{",
+        -- ["]"] = "]]",
+        -- ["["] = "[[",
 
         -- [";g"] = "<CMD>silent! execute 'grep! -R'  . shellescape('<cword>'). ' . ' | copen<CR>"
     },
@@ -267,11 +271,13 @@ local function_map = {
     end,
 
     [",t"] = require "plugins.translate".translate,
-    -- ["<C-c>"]  = function ()
-    --     -- api.nvim_command("set ft=command_line")
-    --     api.nvim_command("normal! q:")
-    --     api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit!<CR>", { noremap = true })
-    -- end,
+    ["<C-c>"]  = function ()
+        -- api.nvim_command("normal! q:")
+        api.nvim_input("<C-m>:")
+        vim.defer_fn(function ()
+            api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit!<CR>", { noremap = true })
+        end, 100)
+    end,
     ["<C-q>"] = function ()
         local M = {}
 

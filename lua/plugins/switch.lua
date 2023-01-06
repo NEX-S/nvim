@@ -30,5 +30,5 @@ vim.keymap.set("n", "<C-o>", function ()
     local cword = vim.fn.expand("<cWORD>")
     local nword = switch_map[cword] or ""
 
-    return nword == "" and "" or "ciw" .. nword .. "<ESC>b"
+    return nword == "" and "" or "ciw" .. nword .. "<ESC>"
 end, { expr = true })
