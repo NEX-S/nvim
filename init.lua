@@ -50,3 +50,7 @@ end, 100)
 --
 --     print((os.clock() - time) * 100)
 -- end)
+
+-- THIS IS A TEST
+-- I LOVE CATS
+-- I LOVE NEOVIM

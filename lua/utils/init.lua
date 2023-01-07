@@ -85,7 +85,7 @@ function M.set_virt_buf (bufnr, ns, virt_str, virt_opts)
         virt_text_pos = virt_opts.pos,
     }
 
-    api.nvim_buf_set_extmark(bufnr, ns_id, virt_opts.line, virt_opts.col, opts)
+    api.nvim_buf_set_extmark(bufnr, ns_id, virt_opts.line, virt_opts.col or 0, opts)
 
     return ns_id
 end

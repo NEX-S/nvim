@@ -53,6 +53,7 @@ local plugin_hl = {
     CmdlineNormal   = { bg = "#202020",    fg = "#9C8FDC" },
     VisualCnt       = { bg = "NONE",    fg = "#444444" },
     SearchCnt       = { bg = "NONE",    fg = "#9C8FDC" },
+    TranslateVirt   = { bg = "NONE",    fg = "#383838", italic = false },
 
     LazyNormal = { bg = "#232323", fg = "#666666" },
     LazyHandlerSource = { bg = "NONE", fg = "#444444" },

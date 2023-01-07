@@ -13,6 +13,9 @@ local multi_mode_tbl = {
         ["H"]  =  "g^",
         ["L"]  =  "g$",
 
+        ["gH"]  =  "^",
+        ["gL"]  =  "$",
+
         ["U"]  =  "<C-r>",
         [">"]  =  ">>",
         ["<"]  =  "<<",
@@ -270,7 +273,6 @@ local function_map = {
         end})
     end,
 
-    [",t"] = require "plugins.translate".translate,
     ["<C-c>"]  = function ()
         -- api.nvim_command("normal! q:")
         api.nvim_input("<C-m>:")
