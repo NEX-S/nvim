@@ -77,7 +77,6 @@ local multi_mode_tbl = {
         -- [";a"] = "ggvG$",
 
         ["<C-q>"] = "<CMD>quit!<CR>",
-        -- [";w"] = "<CMD>write ++p<CR>", -- dont add !
         ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
 
         -- ["<C-c>"] = "q:",
@@ -133,6 +132,9 @@ local multi_mode_tbl = {
         ["-"]   =  "<C-x>gv",
         ["<C-=>"]  =  "g<C-a>gv",
         ["<C-->"]  =  "g<C-x>gv",
+
+        ["<C-q>"] = "<CMD>quit!<CR>",
+        ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
 
         -- ["<LEFT>"] = "=gv",
         -- ["<RIGHT>"] = "=gv",
@@ -203,6 +205,9 @@ local multi_mode_tbl = {
 
         ["<UP>"]   =  "<C-v>",
         ["<C-v>"]  =  "<ESC>\"+pa",
+
+        ["<C-q>"] = "<ESC>",
+        ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
     },
 
     -- COMMAND MAP --

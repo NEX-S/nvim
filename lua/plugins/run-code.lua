@@ -24,10 +24,6 @@ local ft_cmd = {
             pattern = "*.html",
             callback = function ()
                 vim.schedule(function ()
-                    -- local cline = api.nvim_win_get_cursor(0)[1]
-                    -- local lines = api.nvim_buf_get_lines(0, cline - 100, cline + 100, false)
-
-                    -- local cline = api.nvim_win_get_cursor(0)[1]
                     local lines = api.nvim_buf_get_lines(0, 0, -1, false)
                     table.insert(lines, 1, "<head><meta charset='UTF-8'></head>")
 
@@ -41,7 +37,7 @@ local ft_cmd = {
             end
         })
 
-        vim.loop.new_thread(function (file)
+        vim.loop.new_thread(function ()
             os.execute("live-server --wait=0 --quiet /tmp/live-server.html")
         end)
     end
