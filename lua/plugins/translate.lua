@@ -81,11 +81,8 @@ local function trans_content (visual_content)
             if data ~= nil then
                 local res = vim.json.decode(data).translations[1].text
 
-                print(res, "\n---------------------------------")
-
-                for line_res in res:gmatch("[^(%S%s%s)]+") do
-
-                    print(line_res)
+                -- TODO: %s%s%s -> .%s%s
+                for line_res in res:gmatch("[^(%s%s%s)]+") do
 
                     local line_str = api.nvim_buf_get_lines(0, sline, sline + 1, false)[1]
 
@@ -134,13 +131,15 @@ vim.keymap.set("n", ",t", function ()
 end)
 
 --     It seems I do understand your attitude somewhat, anyway, because I go through a similar process every so often.
---     I have an “Agonizing Reappraisal” of my work and change everything as much as possible and hate everything
---     I’ve done, and try to do something entirely different and better.
+--     I have an “Agonizing Reappraisal” of my work and change everything as much as possible and hate everything I’ve done,
+--     and try to do something entirely different and better.
 -- 
 --     Maybe that kind of process is necessary to me, pushing me on and on.
 --     The feeling that I can do better than that shit I just did.
 --     Maybe you need your agony to accomplish what you do.
---     And maybe it goads you on to do better. But it is very painful I know.
+--     And maybe it goads you on to do better.
+--
+--     But it is very painful, I know.
 
 -- local function get_res (str)
 --     local method    = "-X POST "
