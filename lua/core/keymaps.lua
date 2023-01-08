@@ -22,7 +22,7 @@ local multi_mode_tbl = {
         ["'"]  =  ",",
         ["R"]  =  "gR",
 
-        ["q"]  =  "za",
+        ["q"]  =  "<CMD>silent! normal!za<CR><CMD>redrawstatus!<CR>",
 
         ["+"]  =  "m0J`0",
 
@@ -103,7 +103,10 @@ local multi_mode_tbl = {
         ["J"]  =  "8gj",
         ["K"]  =  "8gk",
         ["H"]  =  "g^",
-        ["L"]  =  "$h",
+        ["L"]  =  "g$h",
+
+        ["gH"]  =  "^",
+        ["gL"]  =  "$h",
 
         [">"] = ">gv",
         ["<"] = "<gv",
@@ -150,8 +153,11 @@ local multi_mode_tbl = {
     operat_mode = {
         -- ["J"] = "8j",
         -- ["K"] = "8k",
-        ["H"] = "^",
-        ["L"] = "$<LEFT>",
+        ["H"] = "g^",
+        ["L"] = "g$h",
+
+        ["gH"]  =  "^",
+        ["gL"]  =  "$h",
 
         ["aq"] = 'a"',
         ["iq"] = 'i"',
