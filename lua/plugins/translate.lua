@@ -81,9 +81,15 @@ local function trans_content (visual_content)
             if data ~= nil then
                 local res = vim.json.decode(data).translations[1].text
 
-                for line_res in res:gmatch("[^(%s%s%s)]+") do
+                print(res, "\n---------------------------------")
 
-                    if api.nvim_buf_get_lines(0, sline, sline + 1, false)[1] == "" then
+                for line_res in res:gmatch("[^(%S%s%s)]+") do
+
+                    print(line_res)
+
+                    local line_str = api.nvim_buf_get_lines(0, sline, sline + 1, false)[1]
+
+                    if line_str == "" or line_str:match("[^%.]$") then
                         sline = sline + 1
                     end
 
