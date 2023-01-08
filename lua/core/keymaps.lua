@@ -54,6 +54,7 @@ local multi_mode_tbl = {
         ["-"]  =  "<C-x>",
 
         ["<C-m>"] =  "q",
+        ["<C-m><C-m>"] =  "ql",
         -- todo CR check if register l is empty
         ["<CR>"]  =  "@l",
 

@@ -42,6 +42,9 @@ local str_opts = {
 
     formatoptions   = "tcqjr",
 
+    grepformat = "%f:%l:%c:%m,%f:%l:%m",
+    grepprg    = "rg --vimgrep --no-heading --smart-case",
+
     -- matchpairs      = "(:),{:},[:],\":\",':',`:`",
 
     -- clipboard    = "unnamedplus", -- Bad Performance

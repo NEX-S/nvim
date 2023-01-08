@@ -20,6 +20,7 @@ function _G._GITSIGNS_STAUTS ()
     -- local status = vim.b.gitsigns_status
 
     -- return status ~= "" and "%#statusLine# [ " .. status .. "%#statusLine# ]" or ""
+
     -- return status ~= " " and status or ""
     -- if status ~= "" then
     --     return "[ " .. status .. "%#statusLineL2# ] "

@@ -21,6 +21,16 @@ require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 --   end)
 -- end)
 
+-- test a #
+-- test b #
+
+-- test c #
+-- test d #
+-- test e #
+
+-- test f #
+-- test g #
+
 vim.defer_fn(function ()
     require "core.options"     -- ~/nvim/lua/core/options.lua
     require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
