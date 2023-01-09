@@ -16,20 +16,29 @@ local bool_opts = {
     autochdir      = true,
     shiftround     = true,
     wrapscan       = true,
+    confirm        = true, -- ???
+
+    shiftround     = true, -- ?
+
+    timeout       = false,
+    ttimeout      = false,
 
     backup        = false,
     swapfile      = false,
     writebackup   = false,
-    confirm       = false,
     autoread      = false,
+    autowrite     = false,
     warn          = false,
     loadplugins   = false,
 }
 
 local num_opts = {
+    timeoutlen    = 0,
+    ttimeoutlen   = 0,
+
     tabstop       = 4,
     softtabstop   = 4,
-    shiftwidth    = 4,
+    shiftwidth    = 4, -- < / > lenth
     -- regexpengine  = 2,
 
     history       = 200,
@@ -37,6 +46,8 @@ local num_opts = {
 }
 
 local str_opts = {
+    shadafile  = "",
+
     shell           = "fish",
     mouse           = "a",
     virtualedit     = "block",

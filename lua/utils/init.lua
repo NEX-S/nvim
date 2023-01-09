@@ -91,19 +91,20 @@ function M.set_virt_buf (bufnr, ns, virt_str, virt_opts)
 end
 
 function M.get_visual_select ()
-    local mode = api.nvim_get_mode().mode
 
-    local res  = nil
     local spos = vim.fn.getpos("v")
     local epos = vim.fn.getpos(".")
 
-    if mode == "v" then
-        res = api.nvim_buf_get_text(0, spos[2] - 1, spos[3] - 1, epos[2] - 1, epos[3], {})
-    elseif mode == "V" then
-        res = api.nvim_buf_get_lines(0, spos[2] - 1, epos[2], false)
+    if epos[2] < spos[2] then
+        spos, epos = epos, spos
     end
 
-    return res
+    local mode = api.nvim_get_mode().mode
+    if mode == "v" then
+        return api.nvim_buf_get_text(0, spos[2] - 1, spos[3] - 1, epos[2] - 1, epos[3], {})
+    elseif mode == "V" then
+        return api.nvim_buf_get_lines(0, spos[2] - 1, epos[2], false)
+    end
 end
 
 return M

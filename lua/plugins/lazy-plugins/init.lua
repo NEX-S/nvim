@@ -8,12 +8,14 @@ return {
        end
     },
     { "nex-s/matchparen.nvim",
-       event = "CursorHold",
-       config = {},
+       event = "VeryLazy",
+       -- event = "BufReadPost",
+       opts = {},
     },
     { "lukas-reineke/indent-blankline.nvim",
-       event = "CursorHold",
-       config = {
+       -- event = "BufReadPre",
+       event = "VeryLazy",
+       opts = {
            char = '╎',
            space_char_blankline = "･",
            show_trailing_blankline_indent = true,

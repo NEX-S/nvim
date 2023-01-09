@@ -122,3 +122,21 @@ vim.keymap.set("n", ":", function ()
     end
 end)
 
+
+api.nvim_set_keymap("n", "<C-c>", "q:<CMD>set ft=command<CR>", { noremap = true })
+api.nvim_create_autocmd("Filetype", {
+    pattern = "command",
+    callback = function ()
+        local keymap = {
+            ["<ESC>"] = "<CMD>quit!<CR>",
+            ["<C-c>"] = "<CMD>quit!<CR>",
+            -- TODO: CR
+            -- ["<CR>"] = "<ESC><CR>",
+        }
+        for lhs, rhs in pairs(keymap) do
+            api.nvim_buf_set_keymap(0, "n", lhs, rhs, { noremap = true })
+        end
+        -- api.nvim_buf_del_keymap(0, "n", "<CR>")
+        -- vim.keymap.del("n", "<CR>", { buffer = true })
+    end
+})

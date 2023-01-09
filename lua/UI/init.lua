@@ -26,7 +26,7 @@ local ui_opts = {
     pumwidth      = 5,
     scrolloff     = 6,
     sidescrolloff = 10,
-    updatetime    = 30,
+    updatetime    = 20,
     pumheight     = 18,
     pumblend      = 25,
     winwidth      = 30,
@@ -34,10 +34,13 @@ local ui_opts = {
     synmaxcol     = 140,
     redrawtime    = 100,
 
+    conceallevel = 3, -- related to markdown * ???
+
     -- colorcolumn  = "140",
     splitkeep    = "screen", -- topline?
     signcolumn   = "yes:1",
-    shortmess    = "WAICOTFcsao",
+    -- shortmess    = "WAICOTFcsao",
+    shortmess    = "filnxtToOFWIcC",
     -- shortmess    = "filmnrwxaoOstTWAIcCqFS",
 
     -- titlestring  = "[   UNEXPECTED NVIM   ]",

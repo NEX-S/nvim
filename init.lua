@@ -9,37 +9,27 @@
 local api = vim.api
 -- <C-f> in cmdline can edit history and re-execute it
 
+-- vim.defer_fn(function ()
+--     require "core.options"     -- ~/nvim/lua/core/options.lua
+--     require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
+--     require "core.autocmd"     -- ~/nvim/lua/core/autocmd.lua
+--     require "plugins"          -- ~/nvim/lua/plugins/init.lua
+-- end, 100)
+
 require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 
--- local timer = vim.loop.new_timer()
--- vim.on_key(function()
---   timer:start(2000, 0, function()
---     print("Helloo")
---   end)
--- end)
-
-vim.defer_fn(function ()
-    require "core.options"     -- ~/nvim/lua/core/options.lua
-    require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
-    require "core.autocmd"     -- ~/nvim/lua/core/autocmd.lua
-    require "plugins"          -- ~/nvim/lua/plugins/init.lua
-
-    vim.o.shadafile = ""
-end, 100)
-
--- vim.defer_fn(function ()
---     -- api.nvim_command [[
---     --     " packadd nvim-treesitter-context
---     -- ]]
---
---     -- vim.o.shadafile = "~/.cache/nvim/shada"
---     -- vim.o.shada = "'10,<1,s1,:0,no /,no %,no h,n~/.cache/nvim/shada"
---     -- require "plug-manager.treesitter"  -- ~/nvim/lua/plug-manager/treesitter.lua
---
--- end, 10)
+api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    callback = function ()
+        require "core.options"     -- ~/nvim/lua/core/options.lua
+        require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
+        require "core.autocmd"     -- ~/nvim/lua/core/autocmd.lua
+        require "plugins"          -- ~/nvim/lua/plugins/init.lua
+    end,
+})
 
 -- vim.keymap.set("n", ";d", function ()
 --     local time = os.clock()

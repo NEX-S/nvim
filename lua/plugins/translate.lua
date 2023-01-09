@@ -6,6 +6,9 @@ local utils = require "utils"
 
 local function trans_line (visual_tbl)
     local sline = vim.fn.getpos("v")[2] - 2
+    local eline = vim.fn.getpos(".")[2] - 2
+
+    sline = sline < eline and sline or eline
 
     local line_str = ""
     local line_res = ""
@@ -56,6 +59,9 @@ end
 
 local function trans_content (visual_content)
     local sline = vim.fn.getpos("v")[2] - 2
+    local eline = vim.fn.getpos(".")[2] - 2
+
+    sline = sline < eline and sline or eline
 
     local ns_id = api.nvim_create_namespace("VirtualTranslate")
 

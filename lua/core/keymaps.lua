@@ -63,7 +63,6 @@ local multi_mode_tbl = {
 
 
         ["<C-a>"]  =  "ggvG$",
-        -- ["<C-c>"]  =  "q:<CMD>nnoremap <buffer> <ESC> :quit<cr> <CR>",
 
         ["<UP>"]     =  "<C-o>",
         ["<DOWN>"]   =  "<C-i>",
@@ -79,8 +78,6 @@ local multi_mode_tbl = {
 
         ["<C-q>"] = "<CMD>quit!<CR>",
         ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
-
-        -- ["<C-c>"] = "q:",
 
         -- GX MAP --
 
@@ -285,13 +282,13 @@ local function_map = {
         end})
     end,
 
-    ["<C-c>"]  = function ()
-        -- api.nvim_command("normal! q:")
-        api.nvim_input("<C-m>:")
-        vim.defer_fn(function ()
-            api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit!<CR>", { noremap = true })
-        end, 100)
-    end,
+    -- ["<C-c>"]  = function ()
+    --     api.nvim_input("<C-m>:")
+    --     vim.defer_fn(function ()
+    --         api.nvim_buf_set_keymap(0, "n", "<ESC>", "<CMD>quit!<CR>", { noremap = true })
+    --         api.nvim_buf_set_keymap(0, "n", "<C-c>", "<CMD>quit!<CR>", { noremap = true })
+    --     end, 100)
+    -- end,
     ["<C-q>"] = function ()
         local M = {}
 
@@ -406,3 +403,6 @@ local function_omap = {
 for lhs, rhs in pairs(function_omap) do
     vim.keymap.set("o", lhs, rhs, { expr = false })
 end
+
+-- vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

@@ -124,7 +124,7 @@ api.nvim_set_option("tabline",  "%!v:lua.NVIM_TABLINE()")
 
 
 local timer = vim.loop.new_timer()
-timer:start(60000, 1, vim.schedule_wrap (
+timer:start(10000, 1, vim.schedule_wrap (
     function()
         api.nvim_command("redrawtabline")
     end)
