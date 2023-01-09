@@ -97,7 +97,7 @@ if vim.g.neovide == true then
     -- vim.g.neovide_padding_right  = 0
     -- vim.g.neovide_padding_bottom = 0
 
-    api.nvim_set_keymap("n", "<C-w>", "<CMD>quit!<CR>", { noremap = true })
+    -- api.nvim_set_keymap("n", "<C-w>", "<CMD>quit!<CR>", { noremap = true })
 
     -- vim.keymap.set("n", ";d", function ()
     --     -- for i = 1, fn.bufnr("$") do

@@ -130,17 +130,6 @@ vim.keymap.set("n", ",t", function ()
     term.open_term_vert("trans -s en -to zh -j -speak -indent 2 '" .. cword .. "'", term_opts)
 end)
 
---     It seems I do understand your attitude somewhat, anyway, because I go through a similar process every so often.
---     I have an “Agonizing Reappraisal” of my work and change everything as much as possible and hate everything I’ve done,
---     and try to do something entirely different and better.
--- 
---     Maybe that kind of process is necessary to me, pushing me on and on.
---     The feeling that I can do better than that shit I just did.
---     Maybe you need your agony to accomplish what you do.
---     And maybe it goads you on to do better.
---
---     But it is very painful, I know.
-
 -- local function get_res (str)
 --     local method    = "-X POST "
 --     local deepl_api = "-s 'https://api-free.deepl.com/v2/translate' "
