@@ -45,7 +45,7 @@ end
 function _G._GITSIGNS_TABLINE ()
     -- local tabnr = api.nvim_tabpage_get_number(0)
     -- local buflist = fn.tabpagebuflist(tabnr)
-    -- 
+    --
     -- local status = nil
     -- for i = 1, #buflist do
     --     -- status = api.nvim_buf_get_var(buflist[i], "gitsigns_status")
@@ -53,7 +53,7 @@ function _G._GITSIGNS_TABLINE ()
     --         return status
     --     end
     -- end
-    -- 
+    --
     -- return ""
 
     local status = vim.b.gitsigns_status
@@ -122,3 +122,10 @@ end
 api.nvim_set_option("showtabline", 2)
 api.nvim_set_option("tabline",  "%!v:lua.NVIM_TABLINE()")
 
+
+local timer = vim.loop.new_timer()
+timer:start(60000, 1, vim.schedule_wrap (
+    function()
+        api.nvim_command("redrawtabline")
+    end)
+)

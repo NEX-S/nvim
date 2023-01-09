@@ -10,7 +10,7 @@ require "UI.x-color".set_hl {
     statusLineL3 = { bg = "NONE", fg = "#444444" },
     statusLineL4 = { bg = "NONE", fg = "#444444" },
 
-    statusLineR1 = { bg = "NONE", fg = "#444444" },
+    statusLineR1 = { bg = "NONE", fg = "#383838" },
     -- statusLineR2 = { bg = "NONE", fg = "#555555" },
     statusLineR2 = { bg = "NONE", fg = "#AFC460" },
     statusLineR3 = { bg = "NONE", fg = "#C53B82" },
@@ -36,11 +36,12 @@ local L1 = "%#statusLineL1#%.100([ %Y ]%)"
 -- local L2 = "%#statusLineL2# %{% v:lua._GITSIGNS_STAUTS() %}"
 local L2 = "%#statusLineL2# "
 -- local L3 = "%#statusLineL2#[ %#statusLineL3#%F  %p%% %{% v:lua._GITSIGNS_STAUTS() %}%#statusLineL2#]"
-local L3 = "%#statusLineL2#[ %#statusLineL3#%F%{% v:lua._GITSIGNS_STAUTS() %}%#statusLineL2#] "
+local L3 = "%#statusLineL2#[ %#statusLineL3#%F%{% v:lua._GITSIGNS_STAUTS() %}%#statusLineL2# %p ] "
 local L4 = "%#statusLineL4#%{% &modified ? '%#statusLineR2#' : '%#statusLineL2#%r' %}"
 
 -- •
 -- local R1 = "%#statusLineR2#  %#statusLineR1#%{strftime('%H:%M %a')} %#statusLineR3# "
+-- local R1 = "%#statusLineR1#  %p "
 local R1 = ""
 local R2 = "%#statusLine#%.20([ %c%#statusLineR2#  %#statusLine#0𝙭%B ]%) "
 local R3 = "%#statusLineR3#%.40([ %l / %L ]%) "

@@ -1,5 +1,5 @@
 
-vim.keymap.set("n", "/", ":", { remap = false, silent = false })
+vim.keymap.set("n", "<F12>", ":", { remap = false, silent = false })
 
 local api = vim.api
 

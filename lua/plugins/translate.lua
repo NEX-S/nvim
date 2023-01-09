@@ -55,7 +55,7 @@ local function trans_line (visual_tbl)
 end
 
 local function trans_content (visual_content)
-    local sline = vim.fn.getpos("v")[2] - 1
+    local sline = vim.fn.getpos("v")[2] - 2
 
     local ns_id = api.nvim_create_namespace("VirtualTranslate")
 

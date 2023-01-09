@@ -25,10 +25,16 @@ end, 200)
 --     command = "!rm /tmp/nvim_time.log"
 -- })
 
+api.nvim_create_autocmd("CmdlineEnter", {
+    pattern = { "/", "?" },
+    command = "set hlsearch",
+})
+
 -- AUTO TRIM SPACES TODO
 api.nvim_create_autocmd("CmdlineEnter", {
     pattern = ":",
     callback = function ()
+
         -- BAD PERFORMANCE
         -- local line_tbl = api.nvim_buf_get_lines(0, 1, -1, false)
         -- for i = 1, #line_tbl do
@@ -43,7 +49,7 @@ api.nvim_create_autocmd("CmdlineEnter", {
         -- PLUGIN cmdline also trim too (checkit out!) :)
         local cursor_pos = api.nvim_win_get_cursor(0)
         -- retab ?
-        pcall(api.nvim_command, [[ keeppatterns %s/\s\+$//e | set hlsearch ]])
+        pcall(api.nvim_command, [[ keeppatterns %s/\s\+$//e ]])
         api.nvim_win_set_cursor(0, cursor_pos)
 
         local n_lines = api.nvim_buf_line_count(0)

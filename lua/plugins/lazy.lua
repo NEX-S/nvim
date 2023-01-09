@@ -1,4 +1,3 @@
--- ~/nvim/lua/plugins/lazy-plugins.lua
 local api = vim.api
 
 api.nvim_set_option_value("loadplugins", true, {})
