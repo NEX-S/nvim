@@ -29,8 +29,14 @@ local ns_id = api.nvim_create_namespace("fold_ns")
 vim.keymap.set('n', 'q', function ()
 
     local sline = vim.v.foldstart
+    local eline = vim.v.foldend
 
-    if sline ~= 0 then
+    local cline = api.nvim_win_get_cursor(0)[1]
+
+    if sline ~= 0 and cline >= sline and cline <= eline then
+
+        local indents = api.nvim_buf_get_lines(0, sline - 1, sline, true)[1]
+        local fillpos = indents:find("[^%s]") - 3
 
         local opts = {
             id = sline,
@@ -38,9 +44,7 @@ vim.keymap.set('n', 'q', function ()
             virt_text_pos = "overlay",
         }
 
-        local eline = vim.v.foldend
-        local cline = api.nvim_win_get_cursor(0)[1]
-        if vim.fn.foldclosed(cline) == -1 and cline >= sline and cline <= eline then
+        if vim.fn.foldclosed(cline) == -1 then
             opts = {
                 id = sline,
                 virt_text = { { '+', "FoldOpen" }, },
@@ -48,7 +52,7 @@ vim.keymap.set('n', 'q', function ()
             }
         end
 
-        api.nvim_buf_set_extmark(0, ns_id, sline - 1, 0, opts)
+        api.nvim_buf_set_extmark(0, ns_id, sline - 1, fillpos, opts)
     end
 
     api.nvim_command("silent!normal! za")
@@ -75,10 +79,8 @@ function _G._fold_text ()
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
     -- return s_str .. " ⁄⁄⁄⁄ "
 
-    -- return '+' .. string.rep(" ", fold_indent - 1) .. s_str:gsub("^%s*", "") .. "  ⁄⁄⁄⁄ "
+    return string.rep(' ', fold_indent - 2) .. "+ " .. s_str:gsub("^%s*", "") .. "  ⁄⁄⁄⁄ "
     -- return '' .. string.rep(" ", fold_indent - 1) .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
-    -- return '' .. s_str:gsub("^%s", "") .. " ⁄⁄⁄⁄ "
-    return '+' .. s_str:gsub("^%s", "") .. " ⁄⁄⁄⁄ "
     -- return s_str .. " ⁄⁄⁄⁄ "
 
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)

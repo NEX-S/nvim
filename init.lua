@@ -31,6 +31,12 @@ api.nvim_create_autocmd("User", {
         require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
         require "core.autocmd"     -- ~/nvim/lua/core/autocmd.lua
         require "plugins"          -- ~/nvim/lua/plugins/init.lua
+
+        require "plugins"          -- ~/nvim/lua/plugins/init.lua
+        require "plugins"          -- ~/nvim/lua/plugins/init.lua
+        require "plugins"          -- ~/nvim/lua/plugins/init.lua
+        require "plugins"          -- ~/nvim/lua/plugins/init.lua
+        require "plugins"          -- ~/nvim/lua/plugins/init.lua
     end,
 })
 
