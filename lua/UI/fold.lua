@@ -40,16 +40,16 @@ vim.keymap.set('n', 'q', function ()
 
         local opts = {
             id = sline,
-            virt_text = { { '', "FoldClose" }, },
+            virt_text = { { '', "FoldClose" }, },
             virt_text_pos = "overlay",
         }
 
         if vim.fn.foldclosed(cline) == -1 then
-            opts = {
-                id = sline,
-                virt_text = { { '+', "FoldOpen" }, },
-                virt_text_pos = "overlay",
-            }
+            -- opts = {
+            --     id = sline,
+            --     virt_text = { { '', "FoldOpen" }, },
+            --     virt_text_pos = "overlay",
+            -- }
         end
 
         api.nvim_buf_set_extmark(0, ns_id, sline - 1, fillpos, opts)
@@ -79,7 +79,8 @@ function _G._fold_text ()
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
     -- return s_str .. " ⁄⁄⁄⁄ "
 
-    return string.rep(' ', fold_indent - 2) .. "+ " .. s_str:gsub("^%s*", "") .. "  ⁄⁄⁄⁄ "
+    return string.rep(' ', fold_indent - 2) .. " " .. s_str:gsub("^%s*", '')
+
     -- return '' .. string.rep(" ", fold_indent - 1) .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
     -- return s_str .. " ⁄⁄⁄⁄ "
 
