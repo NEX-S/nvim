@@ -45,7 +45,7 @@ local function trans_line (visual_tbl)
                             id = sline + i,
                             virt_text_pos = "eol",
                             virt_text = {
-                                { "  " .. res:gsub("^%s+", ''), "TranslateVirt" },
+                                { "\t " .. res:gsub("^%s+", ''), "TranslateVirt" },
                             },
                         }
 

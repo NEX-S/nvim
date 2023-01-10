@@ -32,6 +32,8 @@ local basic_hl = {
 
     Folded       =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
     FoldColumn   =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
+    FoldOpen     =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
+    FoldClose    =  { bg = "NONE",     fg = "#FF43BA", bold = false },
 }
 
 -- local builtin_syntax_hl = {

@@ -49,7 +49,8 @@ local str_opts = {
     shadafile  = "",
 
     shell           = "fish",
-    mouse           = "a",
+    -- mouse           = "a",
+    mouse           = "v",
     virtualedit     = "block",
 
     formatoptions   = "tcqjr",

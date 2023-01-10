@@ -22,7 +22,7 @@ local multi_mode_tbl = {
         ["'"]  =  ",",
         ["R"]  =  "gR",
 
-        ["q"]  =  "<CMD>silent! normal!za<CR><CMD>redrawstatus!<CR>",
+        -- ["q"]  =  "<CMD>silent! normal!za<CR><CMD>redrawstatus!<CR>",
 
         ["+"]  =  "m0J`0",
 
@@ -53,6 +53,10 @@ local multi_mode_tbl = {
         ["="]  =  "<C-a>",
         ["-"]  =  "<C-x>",
 
+        -- TODO
+        ["<S-CR>"] = "G",
+
+        -- TODO: Q repeat last record (like @@ ?)
         ["<C-m>"] =  "q",
         ["<C-m><C-m>"] =  "ql",
         -- todo CR check if register l is empty
@@ -119,6 +123,8 @@ local multi_mode_tbl = {
         ["."] = ":normal! .<CR>",
 
         ["<C-r>"] = "@",
+
+        ["<C-i>"] = "=",
 
         ["<C-c>"] = "\"+y",
 

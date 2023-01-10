@@ -63,11 +63,11 @@ end
 
 local function tab_ft_icon (tabnr, buflist)
     local icons = {
-        lua  = "  ",
-        vim  = "  ",
-        markdown = "  ",
-        html = "  ",
-        c    = "  "
+        lua  = "   ",
+        vim  = "   ",
+        markdown = "   ",
+        html = "   ",
+        c    = "   "
     }
 
     local ft = api.nvim_buf_get_option(buflist[1], "filetype")
@@ -116,7 +116,7 @@ function _G.NVIM_TABLINE ()
     local tabnew = "%#TabLine#%@v:lua._tabline_create@+ %T %= %<"
 
     -- return tabline .. tabnew .. "%{% v:lua._GITSIGNS_TABLINE() %} %#TabLineX#%@v:lua._tabline_close@  "
-    return tabline .. tabnew .. "%#TabLineT#%{strftime('%H:%M %a')}%#TabLineX#%@v:lua._tabline_close@  "
+    return tabline .. tabnew .. " %#TabLineT#%{ strftime('%H:%M %a') }%#TabLineX#%@v:lua._tabline_close@  "
 end
 
 api.nvim_set_option("showtabline", 2)

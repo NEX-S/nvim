@@ -42,10 +42,10 @@ end, 200)
 --     command = "!rm /tmp/nvim_time.log"
 -- })
 
-api.nvim_create_autocmd("CmdlineEnter", {
-    pattern = { "/", "?" },
-    command = "set hlsearch",
-})
+-- api.nvim_create_autocmd("CmdlineEnter", {
+--     pattern = { "/", "?" },
+--     command = "set hlsearch",
+-- })
 
 -- AUTO TRIM SPACES TODO
 api.nvim_create_autocmd("CmdlineEnter", {

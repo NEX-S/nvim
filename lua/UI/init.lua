@@ -50,9 +50,9 @@ local ui_opts = {
     -- → ￫
     numberwidth  = 1,
     signcolumn   = "yes:1",
-    statuscolumn = "%s%=%{ printf('%X', v:lnum) }%= %C",
+    statuscolumn = "%s%=%{ printf('%X', v:lnum) }%= ",
     -- statuscolumn = "%s%l%= ",
-    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸻,horizup:⸻,horizdown:⸻,fold: ,foldopen:,foldclose:+,foldsep:╎,eob:,msgsep:",
+    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸻,horizup:⸻,horizdown:⸻,fold: ,foldopen:+,foldclose:,foldsep:⎥,eob:,msgsep:",
     listchars = "eol:⸥,space:·,trail:,tab:,nbsp:n,extends:e,precedes:+",
 }
 

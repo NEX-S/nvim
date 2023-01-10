@@ -16,9 +16,44 @@ local fold_opts = {
     foldtext     = "v:lua._fold_text()",
 }
 
+-- TODO: local listchars = {
+--  xxx = xxx
+-- }
+-- for + opt:append
+
 for key, value in pairs(fold_opts) do
-	api.nvim_set_option_value(key, value, {})
+    api.nvim_set_option_value(key, value, {})
 end
+
+local ns_id = api.nvim_create_namespace("fold_ns")
+vim.keymap.set('n', 'q', function ()
+
+    local sline = vim.v.foldstart
+
+    if sline ~= 0 then
+
+        local opts = {
+            id = sline,
+            virt_text = { { '', "FoldClose" }, },
+            virt_text_pos = "overlay",
+        }
+
+        local eline = vim.v.foldend
+        local cline = api.nvim_win_get_cursor(0)[1]
+        if vim.fn.foldclosed(cline) == -1 and cline >= sline and cline <= eline then
+            opts = {
+                id = sline,
+                virt_text = { { '+', "FoldOpen" }, },
+                virt_text_pos = "overlay",
+            }
+        end
+
+        api.nvim_buf_set_extmark(0, ns_id, sline - 1, 0, opts)
+    end
+
+    api.nvim_command("silent!normal! za")
+
+end, { expr = false })
 
 function _G._fold_text ()
     local fold_spos = vim.v.foldstart
@@ -36,7 +71,16 @@ function _G._fold_text ()
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ " .. string.rep("    ", 100)
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)
-    return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
+
+    -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
+    -- return s_str .. " ⁄⁄⁄⁄ "
+
+    -- return '+' .. string.rep(" ", fold_indent - 1) .. s_str:gsub("^%s*", "") .. "  ⁄⁄⁄⁄ "
+    -- return '' .. string.rep(" ", fold_indent - 1) .. s_str:gsub("^%s*", "") .. " ⁄⁄⁄⁄ "
+    -- return '' .. s_str:gsub("^%s", "") .. " ⁄⁄⁄⁄ "
+    return '+' .. s_str:gsub("^%s", "") .. " ⁄⁄⁄⁄ "
+    -- return s_str .. " ⁄⁄⁄⁄ "
+
     -- return string.rep(" ", fold_indent - 2) .. " " .. s_str:gsub("^%s*", "") .. " ⇂" .. string.rep("    ", 100)
     -- return string.rep(" ", fold_indent - 3) .. "  " .. s_str:gsub("^%s*", "") .. "  " .. string.rep(" ", 1000)
     -- return string.rep(" ", fold_indent - 2) .. "  " .. s_str:gsub("^%s*", "") .. "  " .. string.rep(" ", 1000)

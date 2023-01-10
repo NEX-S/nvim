@@ -6,6 +6,7 @@
 --                                                                  --
 
 -- TODO: h operatorfunc
+-- TODO: add cmd that can search sth in chrome
 local api = vim.api
 -- <C-f> in cmdline can edit history and re-execute it
 
@@ -16,6 +17,8 @@ local api = vim.api
 --     require "plugins"          -- ~/nvim/lua/plugins/init.lua
 -- end, 100)
 
+-- vim.bo.syntax = "on"
+-- vim.g.ts_highlight_lua = true
 require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 
 require "UI"                -- ~/nvim/lua/UI/init.lua
@@ -40,3 +43,18 @@ api.nvim_create_autocmd("User", {
 --
 --     print((os.clock() - time) * 100)
 -- end)
+
+local ns = vim.api.nvim_create_namespace('toggle_hlsearch')
+
+local function toggle_hlsearch(char)
+    if vim.fn.mode() == 'n' then
+        local keys = { '<CR>', 'n', 'N', '*', '#', '?', '/' }
+        local new_hlsearch = vim.tbl_contains(keys, vim.fn.keytrans(char))
+
+        if vim.opt.hlsearch:get() ~= new_hlsearch then
+            vim.opt.hlsearch = new_hlsearch
+        end
+    end
+end
+
+vim.on_key(toggle_hlsearch, ns)
