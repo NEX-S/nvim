@@ -7,16 +7,17 @@ local api = vim.api
 --     command = "source %",
 -- })
 
-api.nvim_create_autocmd ({ "FocusGained", "TermClose", "TermLeave" }, {
-    command = "checktime"
-})
+-- api.nvim_create_autocmd ({ "FocusGained", "TermClose", "TermLeave" }, {
+--     command = "checktime"
+-- })
 
-api.nvim_create_autocmd("BufReadPost", {
+-- BufReadPost 
+api.nvim_create_autocmd("BufWinEnter", {
     callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
-        if mark[1] > 0 and mark[1] <= lcount then
-            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+        local mark = api.nvim_buf_get_mark(0, '"')
+        local line = api.nvim_buf_line_count(0)
+        if mark[1] > 0 and mark[1] <= line then
+            pcall(api.nvim_win_set_cursor, 0, mark)
         end
     end,
 })
@@ -85,21 +86,21 @@ api.nvim_create_autocmd("CmdlineEnter", {
 -- })
 
 -- RESUME CURSOR
-api.nvim_create_autocmd("BufWinEnter", {
-    pattern = "*",
-    command = "normal! g`\""
-    -- command = [[
-    --     execute "normal! g`\""
-    -- ]]
-    -- callback = function ()
-    --     local cursor_pos = api.nvim_buf_get_mark(0, [["]])
-    --     api.nvim_win_set_cursor(0, cursor_pos)
-    --     -- local fn = vim.fn
-    --     -- if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
-    --     --     fn.setpos(".", fn.getpos("'\""))
-    --     -- end
-    -- end,
-})
+-- api.nvim_create_autocmd("BufWinEnter", {
+--     pattern = "*",
+--     command = "normal! g`\""
+--     -- command = [[
+--     --     execute "normal! g`\""
+--     -- ]]
+--     -- callback = function ()
+--     --     local cursor_pos = api.nvim_buf_get_mark(0, [["]])
+--     --     api.nvim_win_set_cursor(0, cursor_pos)
+--     --     -- local fn = vim.fn
+--     --     -- if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
+--     --     --     fn.setpos(".", fn.getpos("'\""))
+--     --     -- end
+--     -- end,
+-- })
 
 -- api.nvim_command "cabbrev S source %"
 api.nvim_command "cabbrev H tab help"

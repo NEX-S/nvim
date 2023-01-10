@@ -13,8 +13,8 @@ return {
        opts = {},
     },
     { "lukas-reineke/indent-blankline.nvim",
-       -- event = "BufReadPre",
-       event = "VeryLazy",
+       event = "BufReadPre",
+       -- event = "VeryLazy",
        opts = {
            char = '╎',
            space_char_blankline = "･",

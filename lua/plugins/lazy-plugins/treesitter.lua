@@ -55,7 +55,8 @@ return {
     { "nvim-treesitter/nvim-treesitter",
        build = ":TSUpdate",
        -- event = "VimEnter",
-       event = "BufReadPost",
+       -- event = "BufReadPost",
+       event = "VimEnter",
        opts = {
            auto_install = false,
            ensure_installed = { "lua", "c", "markdown", "vim" },

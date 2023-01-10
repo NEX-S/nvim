@@ -1,7 +1,7 @@
 local api = vim.api
 
 api.nvim_set_option_value("loadplugins", true, {})
-api.nvim_set_option_value("runtimepath", "/home/nex/.local/share/nvim/lazy/lazy.nvim", {})
+api.nvim_set_option_value("runtimepath", "/usr/local/share/nvim/runtime,/home/nex/.local/share/nvim/lazy/lazy.nvim", {})
 
 require "lazy".setup {
     spec = {
