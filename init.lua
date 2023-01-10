@@ -16,8 +16,6 @@ local api = vim.api
 --     require "plugins"          -- ~/nvim/lua/plugins/init.lua
 -- end, 100)
 
-vim.o.statuscolumn = "a"
-
 require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 
 require "UI"                -- ~/nvim/lua/UI/init.lua

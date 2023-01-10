@@ -1,7 +1,15 @@
 
-vim.keymap.set("n", "<F12>", ":", { remap = false, silent = false })
+-- vim.keymap.set("n", "<F12>", ":", { remap = false, silent = false })
 
 local api = vim.api
+
+-- EXPIRIMENTAL
+api.nvim_set_keymap("n", "<F12>", ":J ", { noremap = true })
+
+api.nvim_create_user_command("J", function (args)
+    local line = tonumber(args.args, 16)
+    api.nvim_command(tostring(line))
+end, { nargs = 1 })
 
 local M = {}
 

@@ -37,7 +37,9 @@ local function search_cnt_virt (offset)
 end
 
 local search_keymap = {
+    -- TODO: remap ESC's logic
     ["<ESC>"] = function ()
+        api.nvim_command "normal!,"
         api.nvim_command "set hls!"
         if _G.search_virt_ns_id ~= nil then
             api.nvim_buf_del_extmark(0, _G.search_virt_ns_id, 1)

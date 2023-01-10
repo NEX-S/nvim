@@ -22,7 +22,6 @@ local ui_opts = {
 
     cmdheight     = 0,
     laststatus    = 3,
-    numberwidth   = 1,
     pumwidth      = 5,
     scrolloff     = 6,
     sidescrolloff = 10,
@@ -38,7 +37,7 @@ local ui_opts = {
 
     -- colorcolumn  = "140",
     splitkeep    = "screen", -- topline?
-    signcolumn   = "yes:1",
+    -- signcolumn   = "yes:1",
     -- shortmess    = "WAICOTFcsao",
     shortmess    = "filnxtToOFWIcC",
     -- shortmess    = "filmnrwxaoOstTWAIcCqFS",
@@ -48,7 +47,12 @@ local ui_opts = {
 
     -- rulerformat = "[ %c  0𝙭%B ]",
     -- ⨯
-    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸻,horizup:⸻,horizdown:⸻,fold: ,eob:,msgsep:",
+    -- → ￫
+    numberwidth  = 1,
+    signcolumn   = "yes:1",
+    statuscolumn = "%s%=%{ printf('%X', v:lnum) }%= %C",
+    -- statuscolumn = "%s%l%= ",
+    fillchars = "vert:⎹,vertleft:⎹,vertright:⎹,horiz:⸻,horizup:⸻,horizdown:⸻,fold: ,foldopen:,foldclose:+,foldsep:╎,eob:,msgsep:",
     listchars = "eol:⸥,space:·,trail:,tab:,nbsp:n,extends:e,precedes:+",
 }
 
@@ -62,8 +66,9 @@ require "UI.statusline"
 require "UI.tabline"
 require "UI.startup"
 
+require "UI.fold"
+
 vim.defer_fn(function ()
-    require "UI.fold"
     require "UI.visual-cnt"
     require "UI.search-cnt"
     require "UI.cmdline"

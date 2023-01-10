@@ -29,7 +29,8 @@ vim.defer_fn(function ()
     local lua_keymap = {
         ["gh"] = function ()
             vim.cmd("vert help " .. vim.fn.expand("<cword>") .. "| vert resize 80")
-            vim.wo.sidescrolloff = 0
+            -- vim.wo.sidescrolloff = 0
+            vim.wo.wrap = true
             vim.keymap.set("n", "<ESC>", "<CMD>quit!<CR>", { buffer = true })
         end,
         -- [",r"] = "<CMD>source %<CR>",

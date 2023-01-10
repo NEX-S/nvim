@@ -7,10 +7,11 @@ local api = vim.api
 local fold_opts = {
     foldenable   = false,
 
+    foldminlines = 4,
     foldlevel    = 10,
     foldnestmax  = 10,
-    foldminlines = 4,
 
+    foldcolumn   = '1',
     foldmethod   = "indent",
     foldtext     = "v:lua._fold_text()",
 }
