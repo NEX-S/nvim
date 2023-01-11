@@ -31,7 +31,7 @@ local basic_hl = {
     StartTime    =  { bg = "NONE",     fg = "#C53B82" },
 
     Folded       =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
-    FoldColumn   =  { bg = "NONE",     fg = "#444444", bold = false },
+    FoldColumn   =  { bg = "NONE",     fg = "#383838", bold = false },
     FoldOpen     =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
     FoldClose    =  { bg = "NONE",     fg = "#FF43BA", bold = false },
 }
