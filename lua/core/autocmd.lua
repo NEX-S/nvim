@@ -110,10 +110,10 @@ api.nvim_command "cabbrev H tab help"
 --     command = "wincmd L"
 -- })
 
-api.nvim_create_autocmd("BufWinEnter", {
+api.nvim_create_autocmd( "BufWinEnter", {
     command = "silent! loadview"
 })
 
-api.nvim_create_autocmd("BufWinLeave", {
+api.nvim_create_autocmd( "BufWinLeave", {
     command = "silent! mkview"
 })

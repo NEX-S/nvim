@@ -298,19 +298,7 @@ local function_map = {
     ["<C-q>"] = function ()
         local M = {}
 
-        -- local lastbuf = false
-        -- for i = 1, vim.fn.bufnr("$") do
-        --     if vim.fn.buflisted(i) then
-        --         lastbuf = true
-        --         break
-        --     end
-        -- end
-
-        -- TODO
-        -- if api.nvim_buf_get_name(0):match("term://.*vifm") then
-        --     api.nvim_command("quit!")
-        -- -- elseif vim.fn.tabpagenr("$") == 1 and lastbuf == true and api.nvim_buf_get_option(0, "modifiable") == true then
-        -- if vim.fn.tabpagenr("$") == 1 and api.nvim_win_get_number(0) == 1 then
+        -- api.nvim_command("silent! mkview")
         if vim.fn.tabpagenr("$") == 1 and vim.fn.winnr("$") == 1 then
 
             api.nvim_set_option_value("laststatus", 0, {})
