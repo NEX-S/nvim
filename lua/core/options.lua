@@ -46,7 +46,7 @@ local num_opts = {
 }
 
 local str_opts = {
-    shadafile  = "",
+    -- shadafile  = "",
 
     shell           = "fish",
     -- mouse           = "a",

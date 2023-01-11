@@ -133,22 +133,30 @@ if vim.g.neovide == true then
 end
 
 vim.defer_fn(function ()
-    local ns_id = api.nvim_create_namespace("SignColumn")
+    local function set_signcolumn ()
+        local ns_id = api.nvim_create_namespace("SignColumn")
 
-    local linecnt = api.nvim_buf_line_count(0)
+        local linecnt = api.nvim_buf_line_count(0)
 
-    if linecnt > 10000 then return end
+        if linecnt > 10000 then return end
 
-    local opts = {
-        virt_text = { { '', "SignColumn" }, },
-        virt_text_pos = "overlay",
-        virt_text_win_col = 140,
-    }
+        local opts = {
+            virt_text = { { '_', "SignColumn" }, },
+            virt_text_pos = "overlay",
+            virt_text_win_col = 140,
+        }
 
-    for i = 1, linecnt do
-        opts.id = i
-        api.nvim_buf_set_extmark(0, ns_id, i, 0, opts)
+        for i = 1, linecnt do
+            opts.id = i
+            api.nvim_buf_set_extmark(0, ns_id, i, 0, opts)
+        end
     end
+
+    api.nvim_create_autocmd( "BufReadPost", {
+        callback = set_signcolumn
+    })
+
+    set_signcolumn()
 
     -- --------------------------------------------------------- -- 
     local ns = vim.api.nvim_create_namespace('toggle_hlsearch')
@@ -166,4 +174,3 @@ vim.defer_fn(function ()
 
     vim.on_key(toggle_hlsearch, ns)
 end, 100)
-

@@ -109,5 +109,5 @@ api.nvim_create_autocmd("BufWinEnter", {
 })
 
 api.nvim_create_autocmd("BufWinLeave", {
-    command = "mkview"
+    command = "silent! mkview"
 })

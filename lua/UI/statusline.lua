@@ -43,7 +43,7 @@ local L4 = "%#statusLineL4#%{% &modified ? '%#statusLineR2#' : '%#statusLineL
 -- local R1 = "%#statusLineR2#  %#statusLineR1#%{strftime('%H:%M %a')} %#statusLineR3# "
 -- local R1 = "%#statusLineR1#  %p "
 local R1 = ""
-local R2 = "%#statusLine#%.20([ %c%#statusLineR2#  %#statusLine#0𝙭%B ]%) "
+local R2 = "%#statusLine#%.20([ %c%#statusLineR2#  %#statusLine#0×%B ]%) "
 local R3 = "%#statusLineR3#%.40([ %l / %L ]%) "
 
 vim.o.statusline = "%#statusLineL0#▎" .. L1 .. L2 .. L3 .. L4 .. "%=" .. R1 .. R2 .. R3
