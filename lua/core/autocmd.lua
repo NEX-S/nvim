@@ -12,15 +12,15 @@ local api = vim.api
 -- })
 
 -- BufReadPost 
-api.nvim_create_autocmd("BufWinEnter", {
-    callback = function()
-        local mark = api.nvim_buf_get_mark(0, '"')
-        local line = api.nvim_buf_line_count(0)
-        if mark[1] > 0 and mark[1] <= line then
-            pcall(api.nvim_win_set_cursor, 0, mark)
-        end
-    end,
-})
+-- api.nvim_create_autocmd( "BufWinEnter", {
+--     callback = function()
+--         local mark = api.nvim_buf_get_mark(0, '"')
+--         local line = api.nvim_buf_line_count(0)
+--         if mark[1] > 0 and mark[1] <= line then
+--             pcall(api.nvim_win_set_cursor, 0, mark)
+--         end
+--     end,
+-- })
 
 -- TODO: enable spell in markdown file
 
@@ -105,8 +105,15 @@ api.nvim_create_autocmd("CmdlineEnter", {
 -- api.nvim_command "cabbrev S source %"
 api.nvim_command "cabbrev H tab help"
 
-api.nvim_create_autocmd("FileType", {
-    pattern = "help",
-    command = "wincmd L"
+-- api.nvim_create_autocmd("FileType", {
+--     pattern = "help",
+--     command = "wincmd L"
+-- })
+
+api.nvim_create_autocmd("BufWinEnter", {
+    command = "silent! loadview"
 })
 
+api.nvim_create_autocmd("BufWinLeave", {
+    command = "silent! mkview"
+})

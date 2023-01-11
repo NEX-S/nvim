@@ -21,6 +21,8 @@ local api = vim.api
 -- vim.g.ts_highlight_lua = true
 require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 
+api.nvim_command("silent! loadview")
+
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 
@@ -31,8 +33,6 @@ api.nvim_create_autocmd("User", {
         require "core.keymaps"     -- ~/nvim/lua/core/keymaps.lua
         require "core.autocmd"     -- ~/nvim/lua/core/autocmd.lua
         require "plugins"          -- ~/nvim/lua/plugins/init.lua
-
-        api.nvim_command("silent! loadview")
     end,
 })
 

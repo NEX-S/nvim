@@ -35,6 +35,8 @@ local ui_opts = {
 
     conceallevel = 3, -- related to markdown * ???
 
+    viewoptions = "cursor,folds",
+
     -- colorcolumn  = "140",
     splitkeep    = "screen", -- topline?
     -- signcolumn   = "yes:1",
