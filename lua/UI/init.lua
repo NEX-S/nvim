@@ -25,7 +25,7 @@ local ui_opts = {
     pumwidth      = 5,
     scrolloff     = 6,
     sidescrolloff = 10,
-    updatetime    = 20,
+    updatetime    = 30,
     pumheight     = 18,
     pumblend      = 25,
     winwidth      = 30,
@@ -39,8 +39,8 @@ local ui_opts = {
     splitkeep    = "screen", -- topline?
     -- signcolumn   = "yes:1",
     -- shortmess    = "WAICOTFcsao",
-    shortmess    = "filnxtToOFWIcC",
-    -- shortmess    = "filmnrwxaoOstTWAIcCqFS",
+    -- shortmess    = "filnxtToOFWIcC",
+    shortmess    = "filmnrwxaoOstTWAIcCqFS",
 
     -- titlestring  = "[   UNEXPECTED NVIM   ]",
     -- titlestring  = " nvim ",
@@ -131,3 +131,39 @@ if vim.g.neovide == true then
     --     -- return "<CMD>F<CR>"
     -- end, { expr = false })
 end
+
+vim.defer_fn(function ()
+    local ns_id = api.nvim_create_namespace("SignColumn")
+
+    local linecnt = api.nvim_buf_line_count(0)
+
+    if linecnt > 10000 then return end
+
+    local opts = {
+        virt_text = { { '', "SignColumn" }, },
+        virt_text_pos = "overlay",
+        virt_text_win_col = 140,
+    }
+
+    for i = 1, linecnt do
+        opts.id = i
+        api.nvim_buf_set_extmark(0, ns_id, i, 0, opts)
+    end
+
+    -- --------------------------------------------------------- -- 
+    local ns = vim.api.nvim_create_namespace('toggle_hlsearch')
+
+    local function toggle_hlsearch(char)
+        if vim.fn.mode() == 'n' then
+            local keys = { '<CR>', 'n', 'N', '*', '#', '?', '/' }
+            local new_hlsearch = vim.tbl_contains(keys, vim.fn.keytrans(char))
+
+            if vim.opt.hlsearch:get() ~= new_hlsearch then
+                vim.opt.hlsearch = new_hlsearch
+            end
+        end
+    end
+
+    vim.on_key(toggle_hlsearch, ns)
+end, 100)
+

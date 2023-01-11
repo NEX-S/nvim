@@ -25,7 +25,7 @@ keymap({ "n", "x" }, "m", function ()
 
 end, { expr = true, remap = true })
 
-keymap({ 'n', 'v', 'o' }, "<SPACE>", ";", { silent = true })
+-- keymap({ 'n', 'v', 'o' }, "<SPACE>", ";", { silent = true })
 
 
 -- vim.o.updatetime = 50

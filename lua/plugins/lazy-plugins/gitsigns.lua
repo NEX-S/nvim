@@ -3,7 +3,7 @@ require "UI.x-color".set_hl {
     GitSignsAdd       = { bg = "NONE", fg = "#AFC460" },
     GitSignsChange    = { bg = "NONE", fg = "#FE8019" },
     GitSignsDelete    = { bg = "NONE", fg = "#E02C6D" },
-    GitSignsUntrack   = { bg = "NONE", fg = "#E02C6D" },
+    GitSignsUntrack   = { bg = "NONE", fg = "#333333" },
 
     -- GitSignsTablineAdd       = { bg = "#191919", fg = "#333333", italic = true },
     -- GitSignsTablineChange    = { bg = "#191919", fg = "#444444", italic = true },

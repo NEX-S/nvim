@@ -17,7 +17,6 @@ function M.get_char_num (str, char, pos)
 end
 
 function M.file_sub (str)
-
     if str == "" or str == nil then
         print("utils.file_sub: str is NULL")
         return nil

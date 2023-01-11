@@ -22,7 +22,7 @@ local basic_hl = {
     CursorLineNr =  { bg = "NONE",    fg = "#505050", bold = false },
     Visual       =  { bg = "NONE",    fg = "#9C8FDC", bold = false },
     ColorColumn  =  { bg = "#222222",     },
-    SignColumn   =  { bg = "NONE",     },
+    SignColumn   =  { bg = "NONE",    fg = "#383838", },
     NonText      =  { bg = "NONE",    fg = "#353535" },
     EndOfBuffer  =  { bg = "NONE",    fg = "#303030" },
 
@@ -31,7 +31,7 @@ local basic_hl = {
     StartTime    =  { bg = "NONE",     fg = "#C53B82" },
 
     Folded       =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
-    FoldColumn   =  { bg = "NONE",     fg = "#383838", bold = false },
+    FoldColumn   =  { bg = "NONE",     fg = "#353535", bold = false },
     FoldOpen     =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
     FoldClose    =  { bg = "NONE",     fg = "#FF43BA", bold = false },
 }

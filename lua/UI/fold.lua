@@ -26,7 +26,7 @@ for key, value in pairs(fold_opts) do
 end
 
 local ns_id = api.nvim_create_namespace("fold_ns")
-vim.keymap.set('n', 'q', function ()
+vim.keymap.set('n', ' ', function ()
 
     local sline = vim.v.foldstart
     local eline = vim.v.foldend
@@ -56,7 +56,7 @@ vim.keymap.set('n', 'q', function ()
     end
 
     api.nvim_command("silent!normal! za")
-
+    api.nvim_command("silent!mkview")
 end, { expr = false })
 
 function _G._fold_text ()
@@ -66,7 +66,7 @@ function _G._fold_text ()
 
         local string = api.nvim_buf_get_lines(0, sline - 1, sline, true)[1]
 
-        local indent = string:find("[^%s]") - 1
+        local indent = string:find("%S") - 1
 
         return string.rep(' ', indent - 2) .. " " .. string:gsub("^%s*", '')
     end
@@ -103,3 +103,11 @@ function _G._fold_text ()
     -- return string.rep(" ", fold_indent - 3) .. " " ..  s_str:gsub("^%s*", "") .. " " .. string.rep(" ", 1000)
     -- return string.rep(" ", fold_indent - 3) .. "  " ..  s_str:gsub("^%s*", "") .. " " .. string.rep(" ", 1000)
 end
+
+api.nvim_create_autocmd("BufWinEnter", {
+    command = "silent! loadview"
+})
+
+api.nvim_create_autocmd("BufWinLeave", {
+    command = "mkview"
+})
