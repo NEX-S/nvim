@@ -22,7 +22,6 @@ local bo = vim.bo
 -- }
 
 vim.defer_fn(function ()
-
     bo.comments = ":--"
     bo.formatoptions = "tcqjr"
 
@@ -30,7 +29,7 @@ vim.defer_fn(function ()
         ["gh"] = function ()
             vim.cmd("vert help " .. vim.fn.expand("<cword>") .. "| vert resize 80")
             -- vim.wo.sidescrolloff = 0
-            vim.wo.wrap = true
+            -- vim.wo.wrap = false
             vim.keymap.set("n", "<ESC>", "<CMD>quit!<CR>", { buffer = true })
         end,
         -- [",r"] = "<CMD>source %<CR>",
@@ -126,5 +125,4 @@ vim.defer_fn(function ()
     function _G._P(data)
         vim.pretty_print(data)
     end
-
 end, 150)

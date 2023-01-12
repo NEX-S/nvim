@@ -30,10 +30,11 @@ local basic_hl = {
 
     StartTime    =  { bg = "NONE",     fg = "#C53B82" },
 
-    Folded       =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
+    Folded       =  { bg = "NONE",     fg = "#484848", bold = false },
     FoldColumn   =  { bg = "NONE",     fg = "#353535", bold = false },
-    FoldOpen     =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
-    FoldClose    =  { bg = "NONE",     fg = "#FF43BA", bold = false },
+    -- FoldOpen     =  { bg = "NONE",     fg = "#FF43BA", bold = false },
+    -- FoldText     =  { bg = "NONE",     fg = "#BB9AF7", bold = false },
+    FoldClose    =  { bg = "NONE",     fg = "#484848", bold = false },
 }
 
 -- local builtin_syntax_hl = {

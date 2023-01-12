@@ -4,7 +4,7 @@
 local api = vim.api
 
 -- EXPIRIMENTAL
-api.nvim_set_keymap("n", "<F12>", ":J ", { noremap = true })
+-- api.nvim_set_keymap("n", "<F12>", ":J ", { noremap = true })
 
 api.nvim_create_user_command("J", function (args)
     local line = tonumber(args.args, 16)

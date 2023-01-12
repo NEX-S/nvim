@@ -29,7 +29,7 @@ require "UI.x-color".set_hl {
     ["@keyword.function"]    = { bg = "NONE", fg = "#FF43BA" },  -- function end
     ["@keyword.operator"]    = { bg = "NONE", fg = "#C53B82" },  -- and or not
 
-    ["@comment"]        = { bg = "NONE", fg = "#484848", italic = true }, -- comment
+    ["@comment"]        = { bg = "NONE", fg = "#383838", italic = true }, -- comment
 }
 
 local operator = {

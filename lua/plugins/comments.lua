@@ -100,6 +100,9 @@ end
 vim.keymap.set("n", ",c", line_comment, { silent = false })
 vim.keymap.set("v", ",c", visual_comment, { silent = false })
 
+vim.keymap.set("n", "<C-/>", line_comment, { silent = false })
+vim.keymap.set("v", "<C-/>", visual_comment, { silent = false })
+
 vim.keymap.set("n", ",b", function ()
     local cms = cms_blk[vim.bo.ft]
 

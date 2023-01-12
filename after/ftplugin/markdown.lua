@@ -13,13 +13,11 @@ require"UI.x-color".set_hl {
 }
 
 vim.defer_fn(function ()
-
     api.nvim_create_autocmd ("InsertEnter", {
         pattern = "*.md",
         once = true,
         callback = function ()
             vim.keymap.set("i", "`", function ()
-
                 local line_str = api.nvim_get_current_line()
 
                 local char_rgt = utils.get_cursor_content(1, 1)
@@ -50,5 +48,4 @@ vim.defer_fn(function ()
             vim.cmd(tostring(math.floor(pos * api.nvim_buf_line_count(0))))
         end, { buffer = true })
     end)
-
 end, 300)

@@ -82,7 +82,8 @@ if vim.g.neovide == true then
     vim.o.guifont = "Fixedsys Excelsior:h14.3:#x-subpixelantialias"
     vim.g.neovide_refresh_rate_idle       = 1
     vim.g.neovide_refresh_rate            = 360
-    vim.g.neovide_transparency            = 0.98
+    -- vim.g.neovide_transparency            = 0.98
+    vim.g.neovide_transparency            = 1
     vim.g.neovide_cursor_animation_length = 0.02
     vim.g.neovide_scroll_animation_length = 0.07
     vim.g.neovide_cursor_trail_size       = 0.6
@@ -143,9 +144,10 @@ vim.defer_fn(function ()
         if linecnt > 10000 then return end
 
         local opts = {
-            virt_text = { { '_', "SignColumn" }, },
+            virt_text_win_col = 150,
             virt_text_pos = "overlay",
-            virt_text_win_col = 140,
+            virt_text = { { '_', "SignColumn" }, },
+            hl_mode = "combine",
         }
 
         for i = 1, linecnt do
@@ -154,7 +156,7 @@ vim.defer_fn(function ()
         end
     end
 
-    api.nvim_create_autocmd( "BufReadPost", {
+    api.nvim_create_autocmd( { "BufReadPost", "CursorMovedI" }, {
         callback = set_signcolumn
     })
 

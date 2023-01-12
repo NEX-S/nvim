@@ -21,7 +21,6 @@ local api = vim.api
 -- vim.g.ts_highlight_lua = true
 require "plugins.lazy" -- ~/nvim/lua/plugins/lazy.lua
 
-
 require "UI"                -- ~/nvim/lua/UI/init.lua
 require "core.filetype"     -- ~/nvim/lua/core/filetype.lua
 

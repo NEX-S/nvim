@@ -40,6 +40,7 @@ local multi_mode_tbl = {
         ["dp"]  =  "\"dp",
         ["dP"]  =  "\"dP",
 
+
         ["<A-k>"]  =  "<C-w>k",
         ["<A-j>"]  =  "<C-w>j",
         ["<A-h>"]  =  "<C-w>h",
@@ -57,6 +58,7 @@ local multi_mode_tbl = {
         ["<S-CR>"] = "G",
 
         -- TODO: Q repeat last record (like @@ ?)
+        ["q"] = "",
         ["<C-m>"] =  "q",
         ["<C-m><C-m>"] =  "ql",
         -- todo CR check if register l is empty
@@ -82,6 +84,8 @@ local multi_mode_tbl = {
 
         ["<C-q>"] = "<CMD>quit!<CR>",
         ["<C-w>"] = "<CMD>silent! write ++p | redrawstatus! <CR>", -- dont add !
+
+        ["<F12>"] = ":",
 
         -- GX MAP --
 
@@ -298,7 +302,7 @@ local function_map = {
     ["<C-q>"] = function ()
         local M = {}
 
-        -- api.nvim_command("silent! mkview")
+        api.nvim_command("silent! mkview")
         if vim.fn.tabpagenr("$") == 1 and vim.fn.winnr("$") == 1 then
 
             api.nvim_set_option_value("laststatus", 0, {})

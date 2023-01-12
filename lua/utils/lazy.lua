@@ -1,6 +1,7 @@
 local M = {}
 
-M.require_on_index = function (require_path)
+--- Require on index.
+function M.require_on_index ()
     return setmetatable ({}, {
         __index = function (_, key)
             return require(require_path)[key]
@@ -12,7 +13,8 @@ M.require_on_index = function (require_path)
     })
 end
 
-M.require_on_module_call = function (require_path)
+--- Requires only when you call the _module_ itself.
+function M.require_on_module_call (require_path)
     return setmetatable ({}, {
         __call = function (_, ...)
             return require(require_path)(...)
@@ -20,14 +22,15 @@ M.require_on_module_call = function (require_path)
     })
 end
 
-M.require_on_exported_call = function (require_path)
+--- Require when an exported method is called.
+function M.require_on_exported_call (require_path)
     return setmetatable ({}, {
         __index = function (_, k)
-            return function (...)
+            return function(...)
                 return require(require_path)[k](...)
             end
         end,
     })
 end
 
-return lazy
+return M
